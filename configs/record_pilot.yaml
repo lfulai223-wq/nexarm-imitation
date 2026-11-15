@@ -1,0 +1,58 @@
+# 项目二试录：在桌上抓方块、放进盒子。只用来跑通流程，正式数据另录。
+#
+# 用法（在商家 LeRobot 的虚拟环境里，在本仓库根目录运行）：
+#   V=~/nexarm-teleop-latency/vendor-nexarm/finsh/.venv/bin/python
+#   $V scripts/check_setup.py                                   # 先做开工检查
+#   $V -m lerobot.scripts.lerobot_record --config_path=configs/record_pilot.yaml
+#
+# 录制时的按键：→ 提前结束当前这条（进入复位），← 重录这条，Esc 停止。
+# 每一条是在它后面的复位时间结束时才保存的，所以：
+#   - 只在复位时间里按 Esc；录制中按 Esc 会把录了一半的这条也存进去。
+#
+# 收尾：程序结束时会关掉从臂的力矩，手臂悬空的话会直接掉下来。
+# 所以 num_episodes 比计划多设 1 条：第 10 条录完进入复位后，用主臂把从臂放到休息姿势，
+# 再按 Esc。第 10 条照常保存，第 11 条不会开始。
+#
+# 开始时从臂一上力矩就会以较快速度转到主臂的姿势，所以启动前先把主臂摆成和从臂差不多的姿势
+# （scripts/check_setup.py 会提示两者差多少）。
+
+robot:
+  type: nexarm_follower
+  port: /dev/serial/by-path/pci-0000:00:14.0-usb-0:4.4:1.0-port0  # 从臂，主板 4.4 号口
+  baudrate: 1000000
+  cameras:
+    front:  # 支架相机。640×360 保留完整广角；640×480 会把左右各裁掉约 12%
+      type: opencv
+      index_or_path: /dev/v4l/by-id/usb-icSpring_icspring_camera_202404160005-video-index0
+      width: 640
+      height: 360
+      fps: 20
+      fourcc: MJPG
+      backend: 200  # V4L2
+    wrist:  # 手臂相机，只支持 YUYV 640×480；光线不足时实际帧率会掉到 10–15
+      type: opencv
+      index_or_path: /dev/v4l/by-id/usb-icSpring_icspring_camera-video-index0
+      width: 640
+      height: 480
+      fps: 20
+      fourcc: YUYV
+      backend: 200
+
+teleop:
+  type: nexarm_leader
+  port: /dev/serial/by-path/pci-0000:00:14.0-usb-0:11:1.0-port0  # 主臂，主板 11 号口
+  baudrate: 1000000
+
+dataset:
+  repo_id: local/nexarm_block_box_pilot
+  root: data/pilot
+  single_task: "Pick up the block and put it in the box."
+  num_episodes: 11  # 计划 10 条，第 11 条只用它前面的复位时间收臂，见文件开头
+  episode_time_s: 20
+  reset_time_s: 15
+  fps: 20  # 也是录制时的遥操作控制频率（项目一是 50 Hz）
+  video: true
+  push_to_hub: false
+
+display_data: false
+play_sounds: true

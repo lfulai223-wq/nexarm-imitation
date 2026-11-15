@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+
+# 录的数据集、训练输出、开工检查的基准画面：体积大，而且画面里有房间
+data/
+outputs/
+
+# 生成的打印文件（scripts/make_print_sheets.py 可以重新生成）
+print/
