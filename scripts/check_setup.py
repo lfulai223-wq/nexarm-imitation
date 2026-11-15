@@ -44,7 +44,7 @@ CAMERAS = {  # 与 configs/record_pilot.yaml 一致
     "wrist": dict(path="/dev/v4l/by-id/usb-icSpring_icspring_camera-video-index0",
                   w=640, h=480, fourcc="YUYV"),
 }
-RECORD_FPS = 20
+RECORD_FPS = 15  # 与 configs/record_pilot.yaml 的 dataset.fps 一致
 MARKER_IDS = [0, 1, 2, 3]
 MOVED_PX = 3.0  # 码中心偏移超过这么多像素就提示相机可能动过
 START_DIFF_WARN = 300  # 主从姿势差（计数）超过这个就提醒先对齐
@@ -66,44 +66,43 @@ def check_devices() -> None:
             report("FAIL", name, f"找不到 {path}（没插、插错口，或者掉线了）")
 
 
-def grab(cam: dict, secs: float = 3.0):
+def grab(cam: dict, secs: float = 3.0, keep: int = 10):
+    """按录制设置取流 secs 秒，返回 (最后 keep 帧, 实际帧率, 平均亮度)。"""
     cap = cv2.VideoCapture(cam["path"], cv2.CAP_V4L2)
     if not cap.isOpened():
         return None, 0.0, 0.0
     cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*cam["fourcc"]))
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, cam["w"])
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, cam["h"])
-    frame = None
     for _ in range(30):  # 让自动曝光稳定
-        ok, f = cap.read()
-        if ok:
-            frame = f
-    n, means, t0 = 0, [], time.perf_counter()
+        cap.read()
+    frames, n, means, t0 = [], 0, [], time.perf_counter()
     while time.perf_counter() - t0 < secs:
         ok, f = cap.read()
         if ok:
-            frame, n = f, n + 1
+            n += 1
             means.append(float(f.mean()))
+            frames = (frames + [f])[-keep:]
     cap.release()
-    return frame, n / secs, (float(np.mean(means)) if means else 0.0)
+    return (frames or None), n / secs, (float(np.mean(means)) if means else 0.0)
 
 
-def check_cameras() -> np.ndarray | None:
+def check_cameras() -> list[np.ndarray] | None:
     front = None
     for name, cam in CAMERAS.items():
-        frame, fps, bright = grab(cam)
+        frames, fps, bright = grab(cam)
         label = "支架相机" if name == "front" else "手臂相机"
-        if frame is None:
+        if frames is None:
             report("FAIL", label, "打不开或没有画面（ffplay 预览没关？）")
             continue
-        h, w = frame.shape[:2]
+        h, w = frames[-1].shape[:2]
         if (w, h) != (cam["w"], cam["h"]):
             report("FAIL", label, f"分辨率是 {w}×{h}，不是 {cam['w']}×{cam['h']}")
-        level = "OK" if fps >= RECORD_FPS * 0.9 else "WARN"
-        hint = "" if level == "OK" else f"，低于录制用的 {RECORD_FPS} 帧" + ("，光线不够" if name == "wrist" else "")
+        level = "OK" if fps >= RECORD_FPS * 1.2 else "WARN"  # 要比录制频率高一截，取帧时才很少拿到重复帧
+        hint = "" if level == "OK" else f"，不够录制用的 {RECORD_FPS} 帧（要 {RECORD_FPS * 1.2:.0f} 以上）" + ("，光线不够" if name == "wrist" else "")
         report(level, label, f"{fps:.1f} 帧/秒，平均亮度 {bright:.0f}{hint}")
         if name == "front":
-            front = frame
+            front = frames
     return front
 
 
@@ -115,11 +114,18 @@ def detect_markers(frame: np.ndarray) -> dict[int, np.ndarray]:
     return {int(i): c.reshape(4, 2) for i, c in zip(ids.ravel(), corners)}
 
 
-def check_markers(front: np.ndarray, save: bool) -> None:
-    found = detect_markers(front)
+def check_markers(frames: list[np.ndarray], save: bool) -> None:
+    # 远处的码在 640×360 下只有 20 多像素，单帧偶尔认不出；取多帧，每个码用认出来的那些帧的中位数
+    hits: dict[int, list[np.ndarray]] = {}
+    for f in frames:
+        for i, c in detect_markers(f).items():
+            hits.setdefault(i, []).append(c)
+    found = {i: np.median(np.stack(cs), axis=0) for i, cs in hits.items()}
+    front = frames[-1]
     missing = [i for i in MARKER_IDS if i not in found]
     sizes = {i: float(np.mean([np.linalg.norm(c[k] - c[(k + 1) % 4]) for k in range(4)])) for i, c in found.items()}
-    desc = "，".join(f"ID {i} 边长 {sizes[i]:.0f} 像素" for i in sorted(found) if i in MARKER_IDS) or "一个都没认出来"
+    desc = "，".join(f"ID {i} 边长 {sizes[i]:.0f} 像素（{len(hits[i])}/{len(frames)} 帧认出）"
+                     for i in sorted(found) if i in MARKER_IDS) or "一个都没认出来"
     report("OK" if not missing else "WARN", "ArUco 码", desc + (f"；缺 {missing}" if missing else ""))
 
     if save:
