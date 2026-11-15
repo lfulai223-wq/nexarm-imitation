@@ -53,6 +53,9 @@ CAMERAS = {  # 分辨率和格式与录制配置一致；曝光是 2026-11-15 �
 MARKER_W, MARKER_H = 1920, 1080  # 识别码用的分辨率，和 640×360 是同一个视野
 RECORD_FPS = 15  # 与 configs/record_pilot.yaml 的 dataset.fps 一致
 MARKER_IDS = [0, 1, 2, 3]
+# 存基准至少要认出几个码：3 个码的 12 个角点足够判断相机有没有动、换算桌面坐标。
+# 2026-11-15 的布置里 0 号码在从臂休息姿势时被小臂挡住，基准只用 1–3 号。
+MIN_REF_MARKERS = 3
 MOVED_PX = 3.0 * MARKER_W / 640  # 码中心偏移超过录制画面里 3 像素就提示相机可能动过
 START_DIFF_WARN = 300  # 主从姿势差（计数）超过这个就提醒先对齐
 
@@ -175,11 +178,12 @@ def check_markers(save: bool) -> None:
     report("OK" if not missing else "WARN", "ArUco 码", desc + (f"；缺 {missing}" if missing else ""))
 
     if save:
-        if missing:
-            report("FAIL", "保存基准", f"缺 {missing}，没有保存。先让 4 个码都能认出来")
+        present = [i for i in MARKER_IDS if i in found]
+        if len(present) < MIN_REF_MARKERS:
+            report("FAIL", "保存基准", f"只认出 {present}，至少要 {MIN_REF_MARKERS} 个码，没有保存")
             return
         REF_DIR.mkdir(parents=True, exist_ok=True)
-        REF_JSON.write_text(json.dumps({str(i): found[i].tolist() for i in MARKER_IDS}, indent=1))
+        REF_JSON.write_text(json.dumps({str(i): found[i].tolist() for i in present}, indent=1))
         cv2.imwrite(str(REF_IMG), front)
         report("OK", "保存基准", f"已存到 {REF_JSON.relative_to(ROOT)} 和 {REF_IMG.relative_to(ROOT)}")
         return
