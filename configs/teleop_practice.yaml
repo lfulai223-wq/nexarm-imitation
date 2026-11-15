@@ -5,12 +5,13 @@
 #   $V -m lerobot.scripts.lerobot_teleoperate --config_path=configs/teleop_practice.yaml
 #
 # 开始前：先把主臂摆成和从臂差不多的姿势，从臂一上力矩就会快速转到主臂的姿势。
-# 结束：先用主臂把从臂放到休息姿势，再按 Ctrl+C。程序退出时会关掉从臂力矩，悬空的手臂会直接掉下来。
+# 结束：先用主臂把从臂放到休息姿势，再按 Ctrl+C。程序退出时从臂保持力矩、停在原地（不会掉），要关掉就给从臂断电。
 
 robot:
   type: nexarm_follower
   port: /dev/serial/by-path/pci-0000:00:14.0-usb-0:4.4:1.0-port0
   baudrate: 1000000
+  disable_torque_on_disconnect: false
 
 teleop:
   type: nexarm_leader
