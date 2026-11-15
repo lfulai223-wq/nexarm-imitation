@@ -1,0 +1,21 @@
+# 录之前练手：只遥操作、不录数据、不开相机，控制频率和录制时一样（15 Hz），手感一致。
+#
+# 用法（在本仓库根目录）：
+#   V=~/nexarm-teleop-latency/vendor-nexarm/finsh/.venv/bin/python
+#   $V -m lerobot.scripts.lerobot_teleoperate --config_path=configs/teleop_practice.yaml
+#
+# 开始前：先把主臂摆成和从臂差不多的姿势，从臂一上力矩就会快速转到主臂的姿势。
+# 结束：先用主臂把从臂放到休息姿势，再按 Ctrl+C。程序退出时会关掉从臂力矩，悬空的手臂会直接掉下来。
+
+robot:
+  type: nexarm_follower
+  port: /dev/serial/by-path/pci-0000:00:14.0-usb-0:4.4:1.0-port0
+  baudrate: 1000000
+
+teleop:
+  type: nexarm_leader
+  port: /dev/serial/by-path/pci-0000:00:14.0-usb-0:11:1.0-port0
+  baudrate: 1000000
+
+fps: 15
+display_data: false
