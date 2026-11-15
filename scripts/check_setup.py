@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """开工检查：每次录数据或评测之前跑一遍，确认硬件和桌面布置跟以前一样。
 
-只读，不写舵机位置、不改力矩：
+只读，不写舵机位置、不改力矩（唯一会改的是相机的曝光设置）：
 
 1. 设备都在不在（两条臂的串口、两个相机）；
-2. 两个相机按录制设置能不能出帧、实际帧率和亮度（手臂相机帧率低说明光线不够）；
-3. 支架相机里的 ArUco 码：0–3 号是否都认得出，和存下的基准位置比有没有偏（偏了说明相机被碰过）；
+2. 把两个相机设成固定曝光（相机拔插或断电后会恢复自动曝光，所以每次都要设），
+   再按录制设置看能不能出帧、实际帧率和亮度；
+3. 支架相机里的 ArUco 码（用 1920×1080 识别，远处的码才够大）：0–3 号是否都认得出，
+   和存下的基准位置比有没有偏（偏了说明相机被碰过）；
 4. 从臂读舵机是否正常（2026-11-15 出现过 4–6 号关节大量读错，原因是接线/供电）；
 5. 主臂和从臂的姿势差多少（差太多的话，录制程序一上力矩从臂会快速跳到主臂的姿势）。
 
@@ -37,19 +39,25 @@ ROOT = Path(__file__).resolve().parent.parent
 REF_DIR = ROOT / "data" / "reference"
 REF_JSON = REF_DIR / "aruco_front.json"
 REF_IMG = REF_DIR / "front.jpg"
+REF_LIGHT = REF_DIR / "brightness.json"  # 存基准时两个相机的平均亮度，用来发现灯光变了
+LIGHT_TOL = 0.15  # 亮度和基准差超过 15% 就提示
 
-CAMERAS = {  # 与 configs/record_pilot.yaml 一致
+CAMERAS = {  # 分辨率和格式与录制配置一致；曝光是 2026-11-15 在顶灯下实测选的
+    # 支架相机：曝光 30 ms 时亮度和自动曝光差不多（约 142），帧率不受曝光影响，固定是为了画面亮度不随手臂进出画面变化
     "front": dict(path="/dev/v4l/by-id/usb-icSpring_icspring_camera_202404160005-video-index0",
-                  w=640, h=360, fourcc="MJPG"),
+                  w=640, h=360, fourcc="MJPG", exposure=300, brightness=0),
+    # 手臂相机：自动曝光时只有约 11 帧、白色药盒过曝；固定 25 ms 曝光 + 亮度补偿 64 时 22.8 帧、亮度约 88、不过曝
     "wrist": dict(path="/dev/v4l/by-id/usb-icSpring_icspring_camera-video-index0",
-                  w=640, h=480, fourcc="YUYV"),
+                  w=640, h=480, fourcc="YUYV", exposure=250, brightness=64),
 }
+MARKER_W, MARKER_H = 1920, 1080  # 识别码用的分辨率，和 640×360 是同一个视野
 RECORD_FPS = 15  # 与 configs/record_pilot.yaml 的 dataset.fps 一致
 MARKER_IDS = [0, 1, 2, 3]
-MOVED_PX = 3.0  # 码中心偏移超过这么多像素就提示相机可能动过
+MOVED_PX = 3.0 * MARKER_W / 640  # 码中心偏移超过录制画面里 3 像素就提示相机可能动过
 START_DIFF_WARN = 300  # 主从姿势差（计数）超过这个就提醒先对齐
 
 results: list[tuple[str, str, str]] = []  # (级别, 项目, 说明)
+brightness: dict[str, float] = {}  # 这次测到的各相机平均亮度
 
 
 def report(level: str, item: str, msg: str) -> None:
@@ -66,15 +74,29 @@ def check_devices() -> None:
             report("FAIL", name, f"找不到 {path}（没插、插错口，或者掉线了）")
 
 
-def grab(cam: dict, secs: float = 3.0, keep: int = 10):
-    """按录制设置取流 secs 秒，返回 (最后 keep 帧, 实际帧率, 平均亮度)。"""
+def apply_exposure(cam: dict) -> bool:
+    """设固定曝光。设置保存在相机里，关掉再打开（包括 LeRobot 打开）仍然有效，拔插或断电后恢复自动。"""
+    cap = cv2.VideoCapture(cam["path"], cv2.CAP_V4L2)
+    if not cap.isOpened():
+        return False
+    cap.set(cv2.CAP_PROP_AUTO_EXPOSURE, 1)  # V4L2：1 = 手动曝光
+    cap.set(cv2.CAP_PROP_EXPOSURE, cam["exposure"])  # 单位 100 微秒
+    cap.set(cv2.CAP_PROP_BRIGHTNESS, cam["brightness"])
+    ok = cap.get(cv2.CAP_PROP_AUTO_EXPOSURE) == 1 and cap.get(cv2.CAP_PROP_EXPOSURE) == cam["exposure"]
+    cap.release()
+    return ok
+
+
+def grab(cam: dict, secs: float = 3.0, keep: int = 10, size: tuple[int, int] | None = None):
+    """按录制设置（或给定分辨率）取流 secs 秒，返回 (最后 keep 帧, 实际帧率, 平均亮度)。"""
     cap = cv2.VideoCapture(cam["path"], cv2.CAP_V4L2)
     if not cap.isOpened():
         return None, 0.0, 0.0
+    w, h = size or (cam["w"], cam["h"])
     cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*cam["fourcc"]))
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, cam["w"])
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, cam["h"])
-    for _ in range(30):  # 让自动曝光稳定
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, w)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, h)
+    for _ in range(20):
         cap.read()
     frames, n, means, t0 = [], 0, [], time.perf_counter()
     while time.perf_counter() - t0 < secs:
@@ -87,11 +109,13 @@ def grab(cam: dict, secs: float = 3.0, keep: int = 10):
     return (frames or None), n / secs, (float(np.mean(means)) if means else 0.0)
 
 
-def check_cameras() -> list[np.ndarray] | None:
-    front = None
+def check_cameras() -> None:
     for name, cam in CAMERAS.items():
-        frames, fps, bright = grab(cam)
         label = "支架相机" if name == "front" else "手臂相机"
+        if not apply_exposure(cam):
+            report("FAIL", label, "设不了固定曝光，或者打不开（ffplay 预览没关？）")
+            continue
+        frames, fps, bright = grab(cam)
         if frames is None:
             report("FAIL", label, "打不开或没有画面（ffplay 预览没关？）")
             continue
@@ -100,10 +124,28 @@ def check_cameras() -> list[np.ndarray] | None:
             report("FAIL", label, f"分辨率是 {w}×{h}，不是 {cam['w']}×{cam['h']}")
         level = "OK" if fps >= RECORD_FPS * 1.2 else "WARN"  # 要比录制频率高一截，取帧时才很少拿到重复帧
         hint = "" if level == "OK" else f"，不够录制用的 {RECORD_FPS} 帧（要 {RECORD_FPS * 1.2:.0f} 以上）" + ("，光线不够" if name == "wrist" else "")
-        report(level, label, f"{fps:.1f} 帧/秒，平均亮度 {bright:.0f}{hint}")
-        if name == "front":
-            front = frames
-    return front
+        report(level, label, f"固定曝光，{fps:.1f} 帧/秒，平均亮度 {bright:.0f}{hint}")
+        brightness[name] = bright
+
+
+def check_light(save: bool) -> None:
+    """曝光是固定的，所以画面亮度只取决于灯光：和基准差太多说明灯光变了（窗帘没拉、换了灯、白天漏光）。"""
+    if len(brightness) < 2:
+        return
+    if save:
+        REF_DIR.mkdir(parents=True, exist_ok=True)
+        REF_LIGHT.write_text(json.dumps(brightness, indent=1))
+        return
+    if not REF_LIGHT.exists():
+        report("WARN", "灯光", "还没有基准亮度，运行一次 --save-reference")
+        return
+    ref = json.loads(REF_LIGHT.read_text())
+    diffs = {k: (brightness[k] - ref[k]) / ref[k] for k in ref if k in brightness}
+    text = "，".join(f"{'支架' if k == 'front' else '手臂'}相机 {brightness[k]:.0f}（基准 {ref[k]:.0f}）" for k in diffs)
+    if all(abs(d) <= LIGHT_TOL for d in diffs.values()):
+        report("OK", "灯光", f"和基准一致：{text}")
+    else:
+        report("WARN", "灯光", f"{text}，差超过 {LIGHT_TOL:.0%}：窗帘拉严了吗？开的是同一盏灯吗？")
 
 
 def detect_markers(frame: np.ndarray) -> dict[int, np.ndarray]:
@@ -114,8 +156,12 @@ def detect_markers(frame: np.ndarray) -> dict[int, np.ndarray]:
     return {int(i): c.reshape(4, 2) for i, c in zip(ids.ravel(), corners)}
 
 
-def check_markers(frames: list[np.ndarray], save: bool) -> None:
-    # 远处的码在 640×360 下只有 20 多像素，单帧偶尔认不出；取多帧，每个码用认出来的那些帧的中位数
+def check_markers(save: bool) -> None:
+    # 用 1920×1080 识别（远处的码在 640×360 下只有 20 多像素，认不稳）；取多帧，每个码用认出来的那些帧的中位数
+    frames, _, _ = grab(CAMERAS["front"], secs=1.5, size=(MARKER_W, MARKER_H))
+    if frames is None:
+        report("FAIL", "ArUco 码", "支架相机打不开")
+        return
     hits: dict[int, list[np.ndarray]] = {}
     for f in frames:
         for i, c in detect_markers(f).items():
@@ -124,7 +170,7 @@ def check_markers(frames: list[np.ndarray], save: bool) -> None:
     front = frames[-1]
     missing = [i for i in MARKER_IDS if i not in found]
     sizes = {i: float(np.mean([np.linalg.norm(c[k] - c[(k + 1) % 4]) for k in range(4)])) for i, c in found.items()}
-    desc = "，".join(f"ID {i} 边长 {sizes[i]:.0f} 像素（{len(hits[i])}/{len(frames)} 帧认出）"
+    desc = "，".join(f"ID {i} 边长 {sizes[i] * 640 / MARKER_W:.0f} 像素（录制画面里；{len(hits[i])}/{len(frames)} 帧认出）"
                      for i in sorted(found) if i in MARKER_IDS) or "一个都没认出来"
     report("OK" if not missing else "WARN", "ArUco 码", desc + (f"；缺 {missing}" if missing else ""))
 
@@ -147,7 +193,7 @@ def check_markers(frames: list[np.ndarray], save: bool) -> None:
         report("FAIL", "相机位置", "一个基准码都没认出来，没法比较")
         return
     worst = max(shifts.values())
-    text = "，".join(f"ID {i} 偏 {s:.1f}" for i, s in sorted(shifts.items()))
+    text = "，".join(f"ID {i} 偏 {s * 640 / MARKER_W:.1f}" for i, s in sorted(shifts.items()))  # 换算到录制画面的像素
     if worst <= MOVED_PX:
         report("OK", "相机位置", f"和基准一致（{text} 像素）")
     else:
@@ -211,9 +257,9 @@ def main() -> None:
     args = ap.parse_args()
 
     check_devices()
-    front = check_cameras()
-    if front is not None:
-        check_markers(front, args.save_reference)
+    check_cameras()
+    check_light(args.save_reference)
+    check_markers(args.save_reference)
     if not args.skip_arms:
         check_arms()
 
