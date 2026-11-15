@@ -1,6 +1,6 @@
 # nexarm-imitation
 
-在 NexArm 主从臂上做模仿学习：用遥操作采集"抓耳机盒放进盒子"的示教数据，训练 ACT、微调 π0.5，
+在 NexArm 主从臂上做模仿学习：用遥操作采集"抓药盒放进收纳盒"的示教数据，训练 ACT、微调 π0.5，
 在真机上用同样的条件评测两者的成功率和推理延迟。
 
 接在项目一 [nexarm-teleop-latency](https://github.com/lfulai223-wq/nexarm-teleop-latency) 后面：

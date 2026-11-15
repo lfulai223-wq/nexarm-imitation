@@ -1,4 +1,4 @@
-# 项目二试录：在桌上抓耳机盒、放进盒子。只用来跑通流程，正式数据另录。
+# 项目二试录：在桌上抓药盒、放进收纳盒。只用来跑通流程，正式数据另录。
 #
 # 用法（在商家 LeRobot 的虚拟环境里，在本仓库根目录运行）：
 #   V=~/nexarm-teleop-latency/vendor-nexarm/finsh/.venv/bin/python
@@ -46,9 +46,9 @@ teleop:
   baudrate: 1000000
 
 dataset:
-  repo_id: local/nexarm_case_box_pilot
+  repo_id: local/nexarm_medbox_bin_pilot
   root: data/pilot
-  single_task: "Pick up the earbud case and put it in the box."
+  single_task: "Pick up the medicine box and put it in the bin."  # π0.5 会读这句话，药盒和收纳盒用不同的词
   num_episodes: 11  # 计划 10 条，第 11 条只用它前面的复位时间收臂，见文件开头
   episode_time_s: 20
   reset_time_s: 15
