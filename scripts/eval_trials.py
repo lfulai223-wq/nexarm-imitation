@@ -43,6 +43,7 @@ PY = sys.executable
 TASK = "Pick up the medicine box and put it in the bin."
 SLOW_MARK = "Record loop is running slower"  # LeRobot 每次控制循环超时都会打这一行
 SLOW_WARN = 10  # 超时次数（不算第一步的预热）达到这个数就语音提醒：这一次的结果可能不可信
+GUARD_MARK = "从臂读数保护已开启"  # scripts/rollout_safe.py 连上从臂后打的日志
 
 # 位置名和录数据时的表一致（以操作者坐的位置为准）。方向：横放 = 长边和面前的桌沿平行，竖放 = 长边指向对面
 TRIALS = [
@@ -113,7 +114,8 @@ class Keys:
 
 
 def rollout_cmd(args, rec_dir: Path, tag: str) -> list[str]:
-    return [PY, "-m", "lerobot.scripts.lerobot_rollout", "--config_path=configs/rollout_base.yaml",
+    # rollout_safe.py = lerobot-rollout + 从臂读数保护（连上后的第一次读数可能是坏的，见该文件说明）
+    return [PY, "scripts/rollout_safe.py", "--config_path=configs/rollout_base.yaml",
             f"--policy.path={args.policy}", f"--duration={args.duration}", "--play_sounds=false",
             "--strategy.type=sentry", f"--dataset.repo_id=local/rollout_{args.name}_{tag}",
             f"--dataset.root={rec_dir}", f"--dataset.single_task={TASK}", "--dataset.fps=15",
@@ -147,6 +149,8 @@ def run_child(cmd: list[str], log_path: Path, keys: Keys, quiet: bool) -> tuple[
     text = log_path.read_text(errors="replace")
     slow = max(0, text.count(SLOW_MARK) - 1)  # 第一步要预热 GPU，必然超时一次，不算
     if p.returncode != 0 or "Rollout finished" not in text:
+        return "error", slow
+    if not keys.scripted and GUARD_MARK not in text:  # 读数保护没生效：结果不可信，也说明命令被改坏了
         return "error", slow
     return "done", slow
 
