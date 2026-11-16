@@ -119,7 +119,16 @@ def rollout_cmd(args, rec_dir: Path, tag: str) -> list[str]:
             f"--policy.path={args.policy}", f"--duration={args.duration}", "--play_sounds=false",
             "--strategy.type=sentry", f"--dataset.repo_id=local/rollout_{args.name}_{tag}",
             f"--dataset.root={rec_dir}", f"--dataset.single_task={TASK}", "--dataset.fps=15",
-            "--dataset.push_to_hub=false", "--dataset.video=true"]
+            "--dataset.push_to_hub=false", "--dataset.video=true"] + policy_overrides(args)
+
+
+def policy_overrides(args) -> list[str]:
+    """推理时可以改、不用重新训练的 ACT 设置。"""
+    if args.ensemble is not None:  # 时间集成：每一步都重新推理，把几个动作块对同一时刻的预测加权平均
+        return [f"--policy.temporal_ensemble_coeff={args.ensemble}", "--policy.n_action_steps=1"]
+    if args.n_action_steps is not None:  # 每个动作块只执行前 N 步就重新推理
+        return [f"--policy.n_action_steps={args.n_action_steps}"]
+    return []
 
 
 def fake_rollout(n: int) -> list[str]:
@@ -175,6 +184,10 @@ def main() -> None:
     ap.add_argument("--policy", type=str, help="checkpoint 的 pretrained_model 目录")
     ap.add_argument("--name", type=str, help="这一轮评测的名字，用于录像目录和 CSV，例如 act45_100k")
     ap.add_argument("--duration", type=float, default=25.0)
+    ap.add_argument("--ensemble", type=float, default=None,
+                    help="ACT 时间集成系数（如 0.01）：每一步都重新推理并加权平均；不用重新训练")
+    ap.add_argument("--n-action-steps", type=int, default=None,
+                    help="每个动作块执行几步就重新推理（训练时是 30，即 2 秒）；不用重新训练")
     ap.add_argument("--start", type=int, default=1, help="从第几次开始（中途退出后接着测）")
     ap.add_argument("--quiet", action="store_true", help="不出声，只打印")
     ap.add_argument("--selftest", action="store_true")
@@ -191,6 +204,10 @@ def main() -> None:
         if not (args.policy and args.name):
             ap.error("需要 --policy 和 --name")
         keys = Keys()
+
+    if args.ensemble is not None and args.n_action_steps is not None:
+        ap.error("--ensemble 和 --n-action-steps 只能选一个")
+    policy_label = " ".join([args.policy] + policy_overrides(args))  # 写进 CSV 的 policy 列
 
     out_dir = ROOT / "outputs" / "eval" / args.name
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -210,7 +227,7 @@ def main() -> None:
         def record(result: str, note: str = "") -> None:
             w.writerow(dict(trial=i, position=pos, orientation=ori, result=result, started=f"{started:%H:%M:%S}",
                             seconds=seconds, slow_steps=slow, note=note,
-                            recording=str(rec_dir.relative_to(ROOT)), policy=args.policy))
+                            recording=str(rec_dir.relative_to(ROOT)), policy=policy_label))
             f.flush()
 
         while i <= len(TRIALS):
