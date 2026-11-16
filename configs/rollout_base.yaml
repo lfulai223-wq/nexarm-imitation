@@ -2,12 +2,14 @@
 #
 # 用法（在本仓库根目录；先跑 scripts/check_setup.py 设好相机曝光）：
 #   V=~/nexarm-teleop-latency/vendor-nexarm/finsh/.venv/bin/python
-#   $V -m lerobot.scripts.lerobot_rollout --config_path=configs/rollout_base.yaml \
+#   $V scripts/rollout_safe.py --config_path=configs/rollout_base.yaml \
 #      --policy.path=outputs/train/act_medbox_45ep/checkpoints/025000/pretrained_model
 #
 # 开始前：从臂要已经停在起始姿势（用 configs/teleop_practice.yaml 带过去再退出，力矩保持），药盒放进起点区。
 # 程序启动后策略立刻接管从臂，跑 duration 秒；结束时从臂用 3 秒平滑回到启动时的姿势（起始姿势），保持力矩。
 # 相机、分辨率、帧率必须和录数据时一样。
+# 不要直接用 -m lerobot.scripts.lerobot_rollout：从臂连上后的第一次读数经常是坏的，会被存成"回位"的目标，
+# rollout_safe.py 在外面加了读数保护（见该文件说明）。正式评测用 scripts/eval_trials.py，它也调用 rollout_safe.py。
 
 robot:
   type: nexarm_follower
