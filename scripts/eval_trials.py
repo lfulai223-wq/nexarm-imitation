@@ -43,6 +43,7 @@ PY = sys.executable
 TASK = "Pick up the medicine box and put it in the bin."
 SLOW_MARK = "Record loop is running slower"  # LeRobot 每次控制循环超时都会打这一行
 SLOW_WARN = 10  # 超时次数（不算第一步的预热）达到这个数就语音提醒：这一次的结果可能不可信
+# 这个数是按每次 25 秒、每 30 步推理一次定的（第一轮每次 2–7 次）；每次更长时按时长等比放大
 GUARD_MARK = "从臂读数保护已开启"  # scripts/rollout_safe.py 连上从臂后打的日志
 
 # 位置名和录数据时的表一致（以操作者坐的位置为准）。方向：横放 = 长边和面前的桌沿平行，竖放 = 长边指向对面
@@ -284,7 +285,7 @@ def main() -> None:
                 say("Align the leader with the arm, press T to bring it back, then R to redo, or S or F to score",
                     args.quiet)
             else:
-                if slow >= SLOW_WARN:
+                if slow >= SLOW_WARN * max(args.duration, 25.0) / 25.0:
                     notes.append(f"控制循环超时 {slow} 次")
                     say(f"Warning: the control loop was slow {slow} times. Consider redo", args.quiet)
                 say("Success or fail? Press S or F. R to redo", args.quiet)
