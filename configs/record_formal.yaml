@@ -1,11 +1,14 @@
-# 项目二正式录制：在桌上抓药盒、放进收纳盒。共 100 条，分两批，每批 50 条。
-# 第一批直接运行；第二批在命令后面加 --resume=true，接着同一个数据集往下录。
+# 项目二正式录制：在桌上抓药盒、放进收纳盒。分两批：第一批 50 条（2026-11-15），第二批 55 条（2026-11-17）。
+# 第一批直接运行；第二批加 --resume=true，接着同一个数据集往下录（命令见下面）。
 # 开录前必须跑 scripts/check_setup.py：它会把两个相机设成固定曝光（拔插或断电后会丢），并检查灯光和相机位置。
 #
 # 用法（在商家 LeRobot 的虚拟环境里，在本仓库根目录运行）：
 #   V=~/nexarm-teleop-latency/vendor-nexarm/finsh/.venv/bin/python
 #   $V scripts/check_setup.py                                   # 先做开工检查
-#   $V -m lerobot.scripts.lerobot_record --config_path=configs/record_formal.yaml
+#   $V -m lerobot.scripts.lerobot_record --config_path=configs/record_formal.yaml   # 第一批当时的命令
+#   # 第二批：走 record_safe.py（加从臂读数保护），55 条 + 1 条收臂空位，每条上限 25 秒
+#   $V scripts/record_safe.py --config_path=configs/record_formal.yaml --resume=true \
+#       --dataset.num_episodes=56 --dataset.episode_time_s=25
 #
 # 按键（全局监听，不用切到终端窗口）：
 #   →   录制中：这条做完了，提前结束，进入复位；复位中：准备好了，提前开始下一条
