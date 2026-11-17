@@ -6,7 +6,7 @@
 接在项目一 [nexarm-teleop-latency](https://github.com/lfulai223-wq/nexarm-teleop-latency) 后面：
 遥操作链路、串口驱动和延迟测量方法都来自那里。
 
-**状态：** 第一批 50 条示范已录完（可用 45 条），ACT 已训练完成，下一步是真机评测。
+**状态：** 第一批 50 条示范已录完（可用 45 条），ACT 已训练完成；第一次真机评测 20 次成功 6 次，正在用同一个模型试不同的推理方式。
 计划和进度见 [docs/roadmap.md](docs/roadmap.md)。
 
 ## 环境
@@ -26,4 +26,6 @@
 | `docs/recording_guide.md` | 录制操作步骤：每一步按什么键、听到什么语音、出意外怎么办 |
 | `scripts/check_setup.py` | 开工检查：设备、相机帧率和亮度、ArUco 码有没有偏、从臂读舵机是否正常、主从姿势差 |
 | `scripts/eval_trials.py` | 真机评测：20 个固定摆放逐次试抓，键盘记成功失败，每次录像，结果写进 CSV |
+| `scripts/rollout_safe.py` | `lerobot-rollout` 外面包一层从臂读数保护（连上后的第一次读数经常是坏的），上真机一律用它 |
+| `scripts/align_camera.py` | 支架相机被碰歪后，语音报和基准差几个像素，边听边调回去 |
 | `scripts/make_print_sheets.py` | 生成 ArUco 码和标定棋盘格的 A4 打印文件 |

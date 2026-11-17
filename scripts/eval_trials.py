@@ -58,6 +58,22 @@ SPOKEN = {"左上": "top left", "右上": "top right", "右下": "bottom right",
           "横放": "horizontal", "竖放": "vertical", "斜放": "diagonal", "往另一边斜": "other diagonal"}
 
 
+CHILDREN: list[subprocess.Popen] = []  # 启动过的试抓 / 遥操作子进程，本程序被中断时要一起正常结束
+
+
+def stop_children() -> None:
+    """本程序被 Ctrl+C 或 kill 中断时调用：还在跑的子进程发 SIGINT 正常结束（试抓会回到起始姿势，
+    遥操作会停在原地），不留下没人管的遥操作。2026-11-16 停掉评测时遥操作子进程曾被留下继续运行。"""
+    for p in CHILDREN:
+        if p.poll() is None:
+            p.send_signal(signal.SIGINT)
+    for p in CHILDREN:
+        try:
+            p.wait(timeout=20)
+        except subprocess.TimeoutExpired:
+            print(f"子进程 {p.pid} 20 秒内没有退出", flush=True)
+
+
 def say(text: str, quiet: bool = False) -> None:
     print(f"[voice] {text}", flush=True)
     if not quiet:
@@ -144,6 +160,7 @@ def run_child(cmd: list[str], log_path: Path, keys: Keys, quiet: bool) -> tuple[
     with log_path.open("w") as log:
         p = subprocess.Popen(cmd, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT,
                              env={**os.environ, "PYTHONUNBUFFERED": "1"})
+        CHILDREN.append(p)
         keys.estop.clear()
         while p.poll() is None:
             if keys.scripted and keys.peek() == "estop":  # selftest：脚本里用 "estop" 表示试抓中按 Esc
@@ -171,6 +188,7 @@ def teleop(keys: Keys, log_dir: Path, quiet: bool, selftest: bool) -> None:
         [PY, "-m", "lerobot.scripts.lerobot_teleoperate", "--config_path=configs/teleop_practice.yaml"]
     with (log_dir / f"teleop_{datetime.now():%H%M%S}.log").open("w") as log:
         p = subprocess.Popen(cmd, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)
+        CHILDREN.append(p)
         keys.get({"teleop", "esc"})
         if p.poll() is None:
             p.send_signal(signal.SIGINT)  # 正常退出：从臂停在当前姿势、保持力矩
@@ -293,4 +311,8 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    signal.signal(signal.SIGTERM, lambda *_: (_ for _ in ()).throw(KeyboardInterrupt()))  # kill 也走下面的收尾
+    try:
+        main()
+    finally:
+        stop_children()
