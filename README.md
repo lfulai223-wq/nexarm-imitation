@@ -29,6 +29,8 @@
 | `scripts/eval_stages.py` | 评测结果按关节数据逐次分析（什么时候夹住、什么时候松手），算限定秒数内的成功，两个模型逐个位置配对比较 |
 | `scripts/record_safe.py` | `lerobot-record` 外面包一层：同样的从臂读数保护，加上多按的 → 和空的一条不会让录制崩溃；第二批起录制一律用它 |
 | `scripts/record_prompter.py` | 录制时跟着日志用语音报下一条摆在哪里、什么方向 |
+| `scripts/pi05_train_memory.py` | π0.5 各种微调方式在本机显卡上的峰值显存和每步耗时（合成输入，和 lerobot-train 一样的一步更新） |
+| `scripts/pi05_infer_latency.py` | π0.5 预测一个动作块要多久、占多少显存 |
 | `scripts/rollout_safe.py` | `lerobot-rollout` 外面包一层从臂读数保护（连上后的第一次读数经常是坏的），上真机一律用它 |
 | `scripts/align_camera.py` | 支架相机被碰歪后，语音报和基准差几个像素，边听边调回去 |
 | `scripts/make_print_sheets.py` | 生成 ArUco 码和标定棋盘格的 A4 打印文件 |
