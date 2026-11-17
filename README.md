@@ -6,7 +6,7 @@
 接在项目一 [nexarm-teleop-latency](https://github.com/lfulai223-wq/nexarm-teleop-latency) 后面：
 遥操作链路、串口驱动和延迟测量方法都来自那里。
 
-**状态：** 两批共录 109 条示范（可用 102 条）。ACT 用 45 条和 102 条各训练一个，同一天在 20 个固定位置交替评测：40 秒内成功 8/20 和 12/20（25 秒内 6 和 11），多出来的成功全在第二批补录的横放上。下一步用同样的 102 条微调 π0.5，和 102 条的 ACT 对比。
+**状态：** 两批共录 109 条示范（可用 102 条）。ACT 用 45 条和 102 条各训练一个，同一天在 20 个固定位置交替评测：40 秒内成功 8/20 和 12/20（25 秒内 6 和 11），多出来的成功全在第二批补录的横放上。π0.5 正在本机用同样的 102 条做 LoRA 微调（2026-11-17 开始，约 15.5 小时），训完和 102 条的 ACT 交替评测。
 计划和进度见 [docs/roadmap.md](docs/roadmap.md)。
 
 ## 环境
@@ -31,6 +31,7 @@
 | `scripts/record_prompter.py` | 录制时跟着日志用语音报下一条摆在哪里、什么方向 |
 | `scripts/pi05_train_memory.py` | π0.5 各种微调方式在本机显卡上的峰值显存和每步耗时（合成输入，和 lerobot-train 一样的一步更新） |
 | `scripts/pi05_infer_latency.py` | π0.5 预测一个动作块要多久、占多少显存 |
+| `scripts/train_pi05.py` | 从 `lerobot/pi05_base` 微调 π0.5：lerobot-train 加一处步骤名兼容，参数和 lerobot-train 一样 |
 | `scripts/rollout_safe.py` | `lerobot-rollout` 外面包一层从臂读数保护（连上后的第一次读数经常是坏的），上真机一律用它 |
 | `scripts/align_camera.py` | 支架相机被碰歪后，语音报和基准差几个像素，边听边调回去 |
 | `scripts/make_print_sheets.py` | 生成 ArUco 码和标定棋盘格的 A4 打印文件 |

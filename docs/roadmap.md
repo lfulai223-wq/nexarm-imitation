@@ -56,7 +56,7 @@
 | 4. 正式录制 | 约 100 条，分两批（`configs/record_formal.yaml`） | 完成：两批共录 109 条，可用 102 条（`data/formal_clean_v2`） |
 | 5. 训练 ACT | 本机训练：batch 8、10 万步、bf16，约 3.6 小时（2026-11-15 实测每步 0.13 s） | 45 条版本完成；102 条版本完成（2026-11-17，3 小时 27 分） |
 | 6. 评测 ACT | 20 次试抓（`scripts/eval_trials.py`，固定 20 个摆放位置）；成功率低则补录 | 完成：45 条第一轮 20 次成功 6 次，补录；2026-11-17 两个版本交替测，40 秒内 45 条 8/20、102 条 12/20（25 秒内 6 对 11），选 102 条 |
-| 7. π0.5 对比 | 微调、同条件评测、用项目一的方法测推理延迟 | 本机实测（2026-11-17）：LoRA 或只训练动作专家放得下，全量微调放不下；还差分词器的下载许可。之后用同样的 102 条微调，和 102 条的 ACT 交替测 |
+| 7. π0.5 对比 | 微调、同条件评测、用项目一的方法测推理延迟 | 本机实测（2026-11-17）：LoRA 或只训练动作专家放得下，全量微调放不下。2026-11-17 18:58 开始用同样的 102 条做 LoRA 微调（1.2 万步，约 15.5 小时）；之后和 102 条的 ACT 交替测 |
 | 8. 整理成果 | README、图、演示视频、报告 | |
 
 ## 4. 录制流程
@@ -439,3 +439,46 @@
 - 还差一步：π0.5 的分词器取自 `google/paligemma-3b-pt-224`（预训练模型的处理器配置里写死了这个名字）。
   这个仓库要登录 Hugging Face、同意 Gemma 许可才能下载，只需要分词器文件，约 20 MB。要本人用自己的账号同意许可，再在本机 `hf auth login`。
 - 结论：本机能微调 π0.5，但不能全量微调，要用 LoRA 或只训练动作专家。
+
+### 2026-11-17 π0.5 开始微调（LoRA，102 条）
+
+- 本人同意了 PaliGemma 的许可，在本机 `hf auth login`（Read 权限的 token）。分词器下载好了（`tokenizer.json` 17.5 MB），
+  任务那句话切成 13 个 token，正常。
+- 直接用 lerobot-train 从 `lerobot/pi05_base` 微调会报错：Hub 上 pi05_base 的前处理配置把"相对动作"这一步叫
+  `relative_actions_processor`（LeRobot 后来改的名字），商家 LeRobot 里同一个类注册成 `delta_actions_processor`。
+  加了 `scripts/train_pi05.py`：给这一步补注册一个别名，其余就是 lerobot-train，参数完全一样。
+  两个名字的参数一样，我们不用相对动作（`enabled=false`），这一步什么都不做；训练存下的检查点里写的是商家的名字，部署直接能加载。
+- 相机：按 LeRobot π0.5 文档的写法用 `--policy.type=pi05 --policy.pretrained_path=...`，模型的图像输入直接取数据集的两路相机
+  （支架相机在前、手臂相机在后）。另一种写法 `--policy.path=lerobot/pi05_base` 会沿用预训练配置里的三路相机名字，
+  要用 `--rename_map` 把我们的两路改成 `base_0_rgb`、`left_wrist_0_rgb`，第三路补一张被屏蔽的空图（OpenPI 单臂机器人的做法）。
+  两种写法算出来一样：被屏蔽的图在注意力里不参与，位置编号按没被屏蔽的 token 累加（`modeling_pi05.py` 里
+  `position_ids = cumsum(pad_masks) - 1`），空图也不改变后面 token 的位置。但第三路空图照样要过一遍视觉编码器，白花时间和显存，所以用前一种。
+- 微调方式（30 步试训选定）：
+  - LoRA，秩 16，加在大模型和动作专家的所有线性层上（注意力的 q/k/v/o 和 MLP 的 gate/up/down）；
+  - 动作输入输出投影和时间 MLP 四层全量训练（`--peft.full_training_modules`），和 OpenPI 低显存 LoRA 配置一致（那里这几层不冻结）；
+  - 视觉编码器冻结。OpenPI 的 LoRA 配置只冻结大模型里不是 LoRA 的参数，视觉编码器（约 4 亿参数）是全量训练的。
+    本机没试：它的梯度和优化器状态约 5 GB，加上现在的 13.3 GB 超过这张卡；
+  - 学习率按 LeRobot PEFT 文档的建议放大 10 倍：峰值 2.5e-4，降到 2.5e-5。步数少于 3 万时 LeRobot 自动按比例缩短预热和衰减：
+    1.2 万步时预热 400 步、余弦衰减到 1.2 万步。其余用 π0.5 默认（AdamW β 0.9/0.95、权重衰减 0.01、梯度裁剪 1.0）；
+  - LeRobot 的 LoRA 没有开放 alpha，用 peft 默认的 8（缩放 0.5）。
+- 30 步试训（真实数据，batch 8）：每步 4.67 秒，读数据 0.004 秒（不是瓶颈），显存峰值 13.3 GB（nvidia-smi，含桌面），
+  损失 2.6 → 约 1.2。可训练参数 2870 万。
+- `--policy.compile_model=true` 不能用：`max-autotune`（默认，会用 CUDA graph）和 `default` 两种模式都在第一步爆显存。
+- 检查点加载检查（和 lerobot-rollout 同一条 `make_policy` 路径）：先加载基础模型再套 LoRA，全量训练的四层是检查点里的值、和基础模型不同；
+  在数据集的帧上能推理，输出在关节范围内。每次推理约 0.37 秒（含前处理，LoRA 没有合并进权重；前面的 246 毫秒是不带 LoRA、只算模型）。
+  部署前要测把 LoRA 合并进权重之后的耗时。
+- 本人定的两项：动作块 50 步（π0.5 预训练和 LeRobot 默认；部署时每次执行多少步另外定，可以每 30 步重新预测和 ACT 对齐）；
+  训练 1.2 万步 × batch 8 = 9.6 万个样本（LeRobot 文档示例的量，约 3.7 遍数据）。
+- 18:58 开始训练 `outputs/train/pi05_lora_102ep`，预计明天（11-18）10:30 左右训完。每 3000 步存一个检查点（只存 LoRA 和四层投影，约 100 MB），
+  基础模型固定用本机缓存里的这一版（`snapshots/22c30e5b…`）。日志在 `outputs/logs/train_pi05_lora_102ep.log`。
+
+      $V scripts/train_pi05.py \
+          --dataset.repo_id=local/nexarm_medbox_bin_clean_v2 --dataset.root=data/formal_clean_v2 \
+          --policy.type=pi05 --policy.pretrained_path=$HOME/.cache/huggingface/hub/models--lerobot--pi05_base/snapshots/22c30e5b34f9e7ab738b1b34fc2fc5ecfe2d28f0 \
+          --policy.push_to_hub=false --policy.device=cuda --policy.dtype=bfloat16 --policy.gradient_checkpointing=true \
+          --policy.optimizer_lr=2.5e-4 --policy.scheduler_decay_lr=2.5e-5 \
+          --peft.method_type=LORA --peft.r=16 \
+          '--peft.target_modules=.*\.(language_model|gemma_expert)\..*\.(q_proj|k_proj|v_proj|o_proj|gate_proj|up_proj|down_proj)' \
+          '--peft.full_training_modules=["action_in_proj","action_out_proj","time_mlp_in","time_mlp_out"]' \
+          --batch_size=8 --steps=12000 --log_freq=100 --save_freq=3000 --num_workers=4 --seed=1000 \
+          --output_dir=outputs/train/pi05_lora_102ep --job_name=pi05_lora_102ep --wandb.enable=false
