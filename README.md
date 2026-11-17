@@ -25,7 +25,10 @@
 | `configs/rollout_base.yaml` | 在真机上跑训练好的策略（`lerobot-rollout`），跑完回到起始姿势 |
 | `docs/recording_guide.md` | 录制操作步骤：每一步按什么键、听到什么语音、出意外怎么办 |
 | `scripts/check_setup.py` | 开工检查：设备、相机帧率和亮度、ArUco 码有没有偏、从臂读舵机是否正常、主从姿势差 |
-| `scripts/eval_trials.py` | 真机评测：20 个固定摆放逐次试抓，键盘记成功失败，每次录像，结果写进 CSV |
+| `scripts/eval_trials.py` | 真机评测：20 个固定摆放逐次试抓，键盘记成功失败，每次录像，结果写进 CSV；两个模型对比时每个位置两个模型交替各测一次 |
+| `scripts/eval_stages.py` | 评测结果按关节数据逐次分析（什么时候夹住、什么时候松手），算限定秒数内的成功，两个模型逐个位置配对比较 |
+| `scripts/record_safe.py` | `lerobot-record` 外面包一层：同样的从臂读数保护，加上多按的 → 和空的一条不会让录制崩溃；第二批起录制一律用它 |
+| `scripts/record_prompter.py` | 录制时跟着日志用语音报下一条摆在哪里、什么方向 |
 | `scripts/rollout_safe.py` | `lerobot-rollout` 外面包一层从臂读数保护（连上后的第一次读数经常是坏的），上真机一律用它 |
 | `scripts/align_camera.py` | 支架相机被碰歪后，语音报和基准差几个像素，边听边调回去 |
 | `scripts/make_print_sheets.py` | 生成 ArUco 码和标定棋盘格的 A4 打印文件 |
