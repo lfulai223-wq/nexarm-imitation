@@ -26,6 +26,19 @@ ZONE = (1509, 1692)  # 松手时底座关节（j1）的范围
 CLOSE_DELTA = 250  # 夹爪读数比开头大这么多算合上
 
 
+def frame_times(rec_dir: Path, n: int) -> np.ndarray:
+    """每一帧的时间（秒，从第一帧算起）。有 rollout_safe.py 记下的 frame_times.txt（2026-11-18 起）就用它：
+    控制循环超时的那一步不补帧，π0.5 每次重新预测要停约 0.25 秒，按"第几帧 / 15"算会偏短。
+    以前的录像没有这个文件，按帧数算（ACT 每次只超时几步，差别不到 1%）。"""
+    f = rec_dir / "frame_times.txt"
+    if f.exists():
+        t = np.loadtxt(f, ndmin=1)
+        if len(t) == n:
+            return t
+        print(f"   {f} 有 {len(t)} 行，录像有 {n} 帧，对不上，改按帧数算时间")
+    return np.arange(n) / FPS
+
+
 def analyse(name: str, cut: float) -> dict[int, dict[str, bool]]:
     """打印每次的阶段，返回 {第几次: {"op": 操作者判成功, "data": cut 秒内数据判定放进}}。"""
     with (ROOT / "outputs" / "eval" / name / "results.csv").open(newline="") as f:
@@ -42,18 +55,19 @@ def analyse(name: str, cut: float) -> dict[int, dict[str, bool]]:
         df = pd.concat([pd.read_parquet(p) for p in files])
         s = np.stack(df["observation.state"].to_numpy())
         g, j1 = s[:, 5], s[:, 0]
+        t = frame_times(d, len(df))
         closed = g > g[:5].mean() + CLOSE_DELTA
         on = np.flatnonzero(np.diff(closed.astype(int)) == 1) + 1
         off = np.flatnonzero(np.diff(closed.astype(int)) == -1) + 1
         rel = [i for i in off if ZONE[0] <= j1[i] <= ZONE[1]]
-        t_rel = rel[0] / FPS if rel else None
+        t_rel = float(t[rel[0]]) if rel else None
         n_rel += t_rel is not None
         stage = ("放进收纳盒" if rel else
                  "夹住后没送到" if any(ZONE[0] <= x <= ZONE[1] for x in j1[closed]) else
                  (f"合上 {len(on)} 次没夹起来" if len(on) else "夹爪没合上"))
-        print(f"{r['trial']:>2} {r['position']}{r['orientation']:<5} 操作者:{r['result']:<7} 帧 {len(df):>3}  "
-              f"合上 {[round(float(i) / FPS, 1) for i in on]}  松手 {None if t_rel is None else round(t_rel, 1)}"
-              f"  -> {stage}")
+        print(f"{r['trial']:>2} {r['position']}{r['orientation']:<5} 操作者:{r['result']:<7} 帧 {len(df):>3}"
+              f"（{t[-1]:.1f} 秒）  合上 {[round(float(t[i]), 1) for i in on]}  "
+              f"松手 {None if t_rel is None else round(t_rel, 1)}  -> {stage}")
         out[int(r["trial"])] = {"op": r["result"] == "success", "data": t_rel is not None and t_rel <= cut}
     n_op = sum(r["result"] == "success" for r in rows)
     n_cut = sum(x["data"] for x in out.values())

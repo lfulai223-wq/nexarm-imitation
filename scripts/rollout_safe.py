@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """lerobot-rollout 加一层从臂读数保护。参数和 lerobot-rollout 完全一样，原样传进去。
 
+另外三处（2026-11-18 为 π0.5 加的，ACT 不受影响，见各函数说明）：
+π0.5 建模型时跳过随机初始化（加载 76 秒 → 12 秒）；LoRA 加载后合并进权重（重新预测 373 → 245 ms）；
+录像时记下每一帧的真实时间（frame_times.txt，控制循环超时不补帧，按帧数算时间会偏短）。
+
 为什么要有这个（2026-11-16 开评测前发现）：
     从臂连上后的第一次读数偶尔是坏的：关节 4–6 读成 4095 / 544 / 4095，就是舵机链末端没应答的那种读错。
     商家代码只在"已经有上一次读数"时才把坏值换掉，第一次读数没有上一次，坏值原样通过。
@@ -104,8 +108,82 @@ def install() -> None:
     NexArmFollower.connect = connect
 
 
+MERGE_MARK = "LoRA 已合并进权重"  # eval_trials.py 对 LoRA 微调的模型检查这一行
+
+
+def install_pi05_fast_load() -> None:
+    """π0.5 建模型时跳过随机初始化：41 亿个参数随机初始化要 73 秒，反正马上被检查点覆盖。
+    2026-11-18 实测：加载 76 秒 → 12 秒；跳过和不跳过加载出来的 state_dict 813 项完全一样，
+    同一噪声下的动作块也完全一样，参数和缓冲没有 NaN/inf。只影响 π0.5，ACT 不经过这里。"""
+    from transformers.initialization import no_init_weights
+
+    from lerobot.policies.pi05.modeling_pi05 import PI05Policy
+
+    orig = PI05Policy.from_pretrained.__func__
+
+    def from_pretrained(cls, *args, **kwargs):
+        with no_init_weights():
+            return orig(cls, *args, **kwargs)
+
+    PI05Policy.from_pretrained = classmethod(from_pretrained)
+
+
+def install_lora_merge() -> None:
+    """LoRA 微调的检查点（π0.5）：lerobot-rollout 加载后不合并，每层推理都多算一条 LoRA 支路。
+    2026-11-18 离线实测（batch 1，含前后处理）：重新预测一个动作块 373 ms → 合并后 245 ms，普通一步 6.9 → 2.8 ms；
+    同一噪声下合并前后动作块最大差 0.0074（归一化单位，约 1 个计数）。所以加载完就合并。"""
+    from peft import PeftModel
+
+    orig = PeftModel.from_pretrained
+
+    def from_pretrained(*args, **kwargs):
+        merged = orig(*args, **kwargs).merge_and_unload()
+        logger.info(MERGE_MARK)
+        return merged
+
+    PeftModel.from_pretrained = from_pretrained
+
+
+def install_frame_clock(argv: list[str]) -> None:
+    """记下每个录下来的帧对应的真实时间，存到录像目录的 frame_times.txt（每行一个秒数，从第一帧算起）。
+
+    为什么：控制循环超时的那一步不会补帧，所以录像的帧数比 时长 × 15 少，按"第几帧 / 15"算时间会偏短。
+    ACT 每次只少几帧；π0.5 每次重新预测要停约 0.25 秒，40 秒少约 70 帧，按帧数算的"25 秒内"会多给它约 3 秒。
+    eval_stages.py 有这个文件时用它算时间。时间取每一步拿到观测、开始算动作的时刻（就是这一帧画面和读数的时刻）。"""
+    root = next((a.split("=", 1)[1] for a in argv if a.startswith("--dataset.root=")), None)
+    if root is None:
+        return
+    import atexit
+    from pathlib import Path
+
+    import lerobot.rollout.strategies.sentry as sentry
+
+    times: list[float] = []
+    orig = sentry.send_next_action
+
+    def send_next_action(*args, **kwargs):
+        t = time.perf_counter()
+        out = orig(*args, **kwargs)
+        if out is not None:  # 只有拿到动作的那一步才会录一帧
+            times.append(t)
+        return out
+
+    sentry.send_next_action = send_next_action
+
+    def write() -> None:
+        if times and Path(root).is_dir():
+            Path(root, "frame_times.txt").write_text("".join(f"{t - times[0]:.4f}\n" for t in times))
+
+    atexit.register(write)
+
+
 def main() -> None:
+    import sys
+
     install()
+    install_pi05_fast_load()
+    install_lora_merge()
+    install_frame_clock(sys.argv[1:])
     from lerobot.scripts import lerobot_rollout
 
     lerobot_rollout.main()

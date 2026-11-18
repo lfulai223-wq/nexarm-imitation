@@ -27,7 +27,14 @@
     $V scripts/eval_trials.py --duration 40 \\
         --name act45_100k_ab --policy outputs/train/act_medbox_45ep/checkpoints/100000/pretrained_model \\
         --name-b act102_100k_ab --policy-b outputs/train/act_medbox_102ep/checkpoints/100000/pretrained_model
+    $V scripts/eval_trials.py --duration 40 --n-action-steps 30 \\
+        --name act102_100k_vs_pi05 --policy outputs/train/act_medbox_102ep/checkpoints/100000/pretrained_model \\
+        --name-b pi05_12k_vs_act102 --policy-b outputs/train/pi05_lora_102ep/checkpoints/012000/pretrained_model
     $V scripts/eval_trials.py --selftest    # 不连硬件、不监听键盘，用脚本化的按键检查两种流程，核对 CSV
+
+π0.5（LoRA 微调，2026-11-18 起）：rollout_safe.py 加载时跳过随机初始化、把 LoRA 合并进权重，
+日志里没有合并的记录就记 error。π0.5 每次重新预测约 0.25 秒，超过一个控制周期，必然超时一次，
+提醒门槛会自动加上这些次数（按 时长 × 15 / 每块执行步数 算）。--n-action-steps 对两个模型都生效，ACT 训练时就是 30。
 
 开始前：跑过 scripts/check_setup.py；从臂停在起始姿势。位置表见 TRIALS 和 docs/recording_guide.md。
 结果：outputs/eval/<name>/results.csv；每次的日志在同一目录；录像在 data/rollouts/<name>/<trialNN_时间>/。
@@ -39,6 +46,8 @@ from __future__ import annotations
 import argparse
 import contextlib
 import csv
+import json
+import math
 import os
 import queue
 import signal
@@ -59,6 +68,7 @@ SLOW_MARK = "Record loop is running slower"  # LeRobot 每次控制循环超时�
 SLOW_WARN = 10  # 超时次数（不算第一步的预热）达到这个数就语音提醒：这一次的结果可能不可信
 # 这个数是按每次 25 秒、每 30 步推理一次定的（第一轮每次 2–7 次）；每次更长时按时长等比放大
 GUARD_MARK = "从臂读数保护已开启"  # scripts/rollout_safe.py 连上从臂后打的日志
+MERGE_MARK = "LoRA 已合并进权重"  # rollout_safe.py 合并 LoRA 后打的日志（π0.5 这类 LoRA 微调的模型才有）
 
 # 位置名和录数据时的表一致（以操作者坐的位置为准）。方向：横放 = 长边和面前的桌沿平行，竖放 = 长边指向对面
 TRIALS = [
@@ -159,6 +169,8 @@ class Model:
     label: str  # 写进 CSV 的 policy 列：模型目录、每次时长和推理时改过的设置
     out_dir: Path
     rec_root: Path
+    use_peft: bool = False  # LoRA 微调的模型：每次都要确认 rollout_safe.py 把 LoRA 合并进了权重
+    expected_slow: int = 0  # 推理本身就超过一个控制周期的模型（π0.5），每次重新预测必然超时一次，提醒门槛要加上这些
     file: IO[str] | None = None
     writer: csv.DictWriter | None = None
 
@@ -174,9 +186,24 @@ class Model:
             return [r for r in csv.DictReader(f) if r["result"] in ("success", "fail")]
 
 
+def policy_info(policy: str, base: Path) -> dict:
+    """读检查点的 config.json：模型类型、是不是 LoRA 微调、每个动作块执行几步。读不到（自测的假模型）就返回空。"""
+    p = Path(policy) if Path(policy).is_absolute() else base / policy
+    try:
+        return json.loads((p / "config.json").read_text())
+    except (OSError, ValueError):
+        return {}
+
+
 def make_model(name: str, policy: str, args, base: Path) -> Model:
     label = " ".join([policy, f"--duration={args.duration:g}"] + policy_overrides(args))
-    m = Model(name, policy, label, base / "outputs" / "eval" / name, base / "data" / "rollouts" / name)
+    info = policy_info(policy, base)
+    expected_slow = 0
+    if info.get("type") == "pi05":  # 重新预测一个动作块约 0.25 秒（控制周期 67 ms），每次重新预测超时一次
+        n_steps = args.n_action_steps or info.get("n_action_steps") or 50
+        expected_slow = math.ceil(args.duration * 15 / n_steps)
+    m = Model(name, policy, label, base / "outputs" / "eval" / name, base / "data" / "rollouts" / name,
+              use_peft=bool(info.get("use_peft")), expected_slow=expected_slow)
     m.out_dir.mkdir(parents=True, exist_ok=True)
     m.rec_root.mkdir(parents=True, exist_ok=True)
     return m
@@ -208,8 +235,10 @@ def fake_rollout(n: int) -> list[str]:
     return [PY, "-c", f"import sys, time; {warn} time.sleep(0.2); {end} sys.exit({code})"]
 
 
-def run_child(cmd: list[str], log_path: Path, keys: Keys, quiet: bool) -> tuple[str, int]:
-    """运行一次试抓，返回 (状态, 超时次数)。状态：'done' 正常结束，'estop' 急停，'error' 程序出错退出。"""
+def run_child(cmd: list[str], log_path: Path, keys: Keys, quiet: bool,
+              marks: tuple[str, ...] = ()) -> tuple[str, int]:
+    """运行一次试抓，返回 (状态, 超时次数)。状态：'done' 正常结束，'estop' 急停，'error' 程序出错退出。
+    marks：日志里必须出现的行（除了读数保护），缺了也记成 error。"""
     with log_path.open("w") as log:
         p = subprocess.Popen(cmd, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT,
                              env={**os.environ, "PYTHONUNBUFFERED": "1"})
@@ -230,6 +259,8 @@ def run_child(cmd: list[str], log_path: Path, keys: Keys, quiet: bool) -> tuple[
     if p.returncode != 0 or "Rollout finished" not in text:
         return "error", slow
     if not keys.scripted and GUARD_MARK not in text:  # 读数保护没生效：结果不可信，也说明命令被改坏了
+        return "error", slow
+    if not keys.scripted and any(mk not in text for mk in marks):
         return "error", slow
     return "done", slow
 
@@ -273,7 +304,8 @@ def run_trial(args, keys: Keys, m: Model, i: int, header: str, prompt: str, base
         rec_dir = m.rec_root / tag
         n_rollouts[0] += 1
         cmd = fake_rollout(n_rollouts[0]) if args.selftest else rollout_cmd(args, m, rec_dir, tag)
-        status, slow = run_child(cmd, m.out_dir / f"{tag}.log", keys, args.quiet)
+        status, slow = run_child(cmd, m.out_dir / f"{tag}.log", keys, args.quiet,
+                                 marks=(MERGE_MARK,) if m.use_peft else ())
         seconds = round((datetime.now() - started).total_seconds(), 1)
         print(f"   结束：{status}，用时 {seconds}s，控制循环超时 {slow} 次", flush=True)
         keys.drain()  # 试抓过程中按的键不算
@@ -295,7 +327,7 @@ def run_trial(args, keys: Keys, m: Model, i: int, header: str, prompt: str, base
             say("Align the leader with the arm, press T to bring it back, then R to redo, or S or F to score",
                 args.quiet)
         else:
-            if slow >= SLOW_WARN * max(args.duration, 25.0) / 25.0:
+            if slow >= SLOW_WARN * max(args.duration, 25.0) / 25.0 + m.expected_slow:
                 notes.append(f"控制循环超时 {slow} 次")
                 say(f"Warning: the control loop was slow {slow} times. Consider redo", args.quiet)
             say("Success or fail? Press S or F. R to redo", args.quiet)
