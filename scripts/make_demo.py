@@ -307,7 +307,7 @@ def make_mp4() -> None:
         lambda: grid_section([2, 4, 8, 18], "π0.5 on random placements", [
             "Box placed anywhere on the table at any angle, instead of the 20 fixed test spots.",
             "12 of 15 flat random placements ended in the bin.",
-            "Trial 18 needed three grasps.",
+            "In trial 18 the gripper half-closed on the box for several seconds, reopened, and grasped again.",
         ], {}, 20.5, 1.5, 2),
         lambda: grid_section([9, 5], "Where π0.5 failed", [
             "3 of the 15 flat random placements failed, and both trials with distractor objects.",

@@ -1,0 +1,1720 @@
+session,policy,trial,t_s,interval_ms
+pi05_12k_smoke,"pi0.5, synchronous",6,0.000,559.2
+pi05_12k_smoke,"pi0.5, synchronous",6,0.559,12.2
+pi05_12k_smoke,"pi0.5, synchronous",6,0.571,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,0.638,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,0.705,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,0.772,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,0.839,65.8
+pi05_12k_smoke,"pi0.5, synchronous",6,0.904,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,0.972,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,1.039,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,1.105,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,1.173,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,1.239,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,1.306,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,1.373,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,1.440,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,1.507,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,1.573,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,1.640,66.0
+pi05_12k_smoke,"pi0.5, synchronous",6,1.706,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,1.774,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,1.840,67.6
+pi05_12k_smoke,"pi0.5, synchronous",6,1.908,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,1.974,65.7
+pi05_12k_smoke,"pi0.5, synchronous",6,2.040,67.7
+pi05_12k_smoke,"pi0.5, synchronous",6,2.108,66.0
+pi05_12k_smoke,"pi0.5, synchronous",6,2.174,69.7
+pi05_12k_smoke,"pi0.5, synchronous",6,2.244,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,2.310,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,2.377,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,2.443,290.8
+pi05_12k_smoke,"pi0.5, synchronous",6,2.734,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,2.801,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,2.868,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,2.935,65.5
+pi05_12k_smoke,"pi0.5, synchronous",6,3.000,68.3
+pi05_12k_smoke,"pi0.5, synchronous",6,3.069,65.5
+pi05_12k_smoke,"pi0.5, synchronous",6,3.134,67.8
+pi05_12k_smoke,"pi0.5, synchronous",6,3.202,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,3.268,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,3.335,65.8
+pi05_12k_smoke,"pi0.5, synchronous",6,3.401,67.8
+pi05_12k_smoke,"pi0.5, synchronous",6,3.469,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,3.536,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,3.602,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,3.669,66.0
+pi05_12k_smoke,"pi0.5, synchronous",6,3.735,67.7
+pi05_12k_smoke,"pi0.5, synchronous",6,3.803,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,3.869,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,3.936,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,4.003,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,4.070,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,4.136,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,4.203,67.8
+pi05_12k_smoke,"pi0.5, synchronous",6,4.271,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,4.337,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,4.404,65.5
+pi05_12k_smoke,"pi0.5, synchronous",6,4.470,67.7
+pi05_12k_smoke,"pi0.5, synchronous",6,4.537,65.8
+pi05_12k_smoke,"pi0.5, synchronous",6,4.603,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,4.670,295.7
+pi05_12k_smoke,"pi0.5, synchronous",6,4.966,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,5.032,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,5.099,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,5.166,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,5.232,67.8
+pi05_12k_smoke,"pi0.5, synchronous",6,5.300,65.8
+pi05_12k_smoke,"pi0.5, synchronous",6,5.366,67.5
+pi05_12k_smoke,"pi0.5, synchronous",6,5.434,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,5.500,67.6
+pi05_12k_smoke,"pi0.5, synchronous",6,5.567,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,5.634,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,5.700,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,5.768,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,5.834,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,5.900,67.9
+pi05_12k_smoke,"pi0.5, synchronous",6,5.968,65.8
+pi05_12k_smoke,"pi0.5, synchronous",6,6.034,67.8
+pi05_12k_smoke,"pi0.5, synchronous",6,6.102,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,6.168,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,6.234,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,6.301,68.0
+pi05_12k_smoke,"pi0.5, synchronous",6,6.369,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,6.436,65.6
+pi05_12k_smoke,"pi0.5, synchronous",6,6.501,67.8
+pi05_12k_smoke,"pi0.5, synchronous",6,6.569,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,6.636,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,6.702,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,6.769,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,6.836,65.4
+pi05_12k_smoke,"pi0.5, synchronous",6,6.902,282.3
+pi05_12k_smoke,"pi0.5, synchronous",6,7.184,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,7.251,65.9
+pi05_12k_smoke,"pi0.5, synchronous",6,7.317,67.5
+pi05_12k_smoke,"pi0.5, synchronous",6,7.384,65.9
+pi05_12k_smoke,"pi0.5, synchronous",6,7.450,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,7.517,67.6
+pi05_12k_smoke,"pi0.5, synchronous",6,7.585,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,7.651,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,7.717,67.8
+pi05_12k_smoke,"pi0.5, synchronous",6,7.785,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,7.851,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,7.918,67.7
+pi05_12k_smoke,"pi0.5, synchronous",6,7.986,66.0
+pi05_12k_smoke,"pi0.5, synchronous",6,8.052,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,8.118,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,8.185,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,8.252,67.5
+pi05_12k_smoke,"pi0.5, synchronous",6,8.319,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,8.386,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,8.453,65.9
+pi05_12k_smoke,"pi0.5, synchronous",6,8.519,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,8.586,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,8.653,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,8.720,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,8.787,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,8.854,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,8.921,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,8.987,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,9.054,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,9.121,290.5
+pi05_12k_smoke,"pi0.5, synchronous",6,9.411,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,9.477,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,9.544,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,9.611,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,9.678,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,9.745,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,9.811,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,9.878,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,9.945,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,10.012,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,10.078,68.2
+pi05_12k_smoke,"pi0.5, synchronous",6,10.146,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,10.213,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,10.279,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,10.345,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,10.412,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,10.479,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,10.546,67.6
+pi05_12k_smoke,"pi0.5, synchronous",6,10.613,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,10.680,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,10.747,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,10.813,67.6
+pi05_12k_smoke,"pi0.5, synchronous",6,10.881,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,10.947,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,11.014,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,11.081,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,11.148,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,11.214,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,11.280,67.9
+pi05_12k_smoke,"pi0.5, synchronous",6,11.348,279.6
+pi05_12k_smoke,"pi0.5, synchronous",6,11.628,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,11.694,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,11.761,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,11.828,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,11.894,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,11.961,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,12.028,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,12.095,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,12.162,68.1
+pi05_12k_smoke,"pi0.5, synchronous",6,12.230,66.0
+pi05_12k_smoke,"pi0.5, synchronous",6,12.296,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,12.362,67.5
+pi05_12k_smoke,"pi0.5, synchronous",6,12.430,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,12.496,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,12.563,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,12.629,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,12.696,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,12.763,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,12.830,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,12.897,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,12.963,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,13.031,65.6
+pi05_12k_smoke,"pi0.5, synchronous",6,13.097,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,13.163,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,13.230,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,13.297,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,13.365,65.7
+pi05_12k_smoke,"pi0.5, synchronous",6,13.431,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,13.498,67.8
+pi05_12k_smoke,"pi0.5, synchronous",6,13.565,275.6
+pi05_12k_smoke,"pi0.5, synchronous",6,13.841,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,13.908,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,13.975,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,14.042,65.9
+pi05_12k_smoke,"pi0.5, synchronous",6,14.107,67.8
+pi05_12k_smoke,"pi0.5, synchronous",6,14.175,66.0
+pi05_12k_smoke,"pi0.5, synchronous",6,14.241,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,14.308,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,14.375,67.5
+pi05_12k_smoke,"pi0.5, synchronous",6,14.442,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,14.509,67.5
+pi05_12k_smoke,"pi0.5, synchronous",6,14.576,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,14.643,67.5
+pi05_12k_smoke,"pi0.5, synchronous",6,14.710,65.6
+pi05_12k_smoke,"pi0.5, synchronous",6,14.776,67.7
+pi05_12k_smoke,"pi0.5, synchronous",6,14.843,66.0
+pi05_12k_smoke,"pi0.5, synchronous",6,14.909,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,14.976,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,15.043,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,15.111,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,15.177,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,15.243,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,15.310,68.0
+pi05_12k_smoke,"pi0.5, synchronous",6,15.378,65.4
+pi05_12k_smoke,"pi0.5, synchronous",6,15.443,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,15.511,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,15.577,67.6
+pi05_12k_smoke,"pi0.5, synchronous",6,15.645,65.8
+pi05_12k_smoke,"pi0.5, synchronous",6,15.711,67.7
+pi05_12k_smoke,"pi0.5, synchronous",6,15.778,274.5
+pi05_12k_smoke,"pi0.5, synchronous",6,16.053,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,16.119,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,16.186,68.1
+pi05_12k_smoke,"pi0.5, synchronous",6,16.254,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,16.320,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,16.387,65.8
+pi05_12k_smoke,"pi0.5, synchronous",6,16.453,68.0
+pi05_12k_smoke,"pi0.5, synchronous",6,16.521,65.6
+pi05_12k_smoke,"pi0.5, synchronous",6,16.587,67.9
+pi05_12k_smoke,"pi0.5, synchronous",6,16.654,65.6
+pi05_12k_smoke,"pi0.5, synchronous",6,16.720,67.8
+pi05_12k_smoke,"pi0.5, synchronous",6,16.788,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,16.855,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,16.921,65.8
+pi05_12k_smoke,"pi0.5, synchronous",6,16.987,67.7
+pi05_12k_smoke,"pi0.5, synchronous",6,17.055,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,17.122,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,17.189,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,17.255,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,17.322,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,17.389,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,17.456,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,17.522,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,17.590,65.9
+pi05_12k_smoke,"pi0.5, synchronous",6,17.655,67.7
+pi05_12k_smoke,"pi0.5, synchronous",6,17.723,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,17.790,67.6
+pi05_12k_smoke,"pi0.5, synchronous",6,17.857,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,17.924,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,17.990,296.8
+pi05_12k_smoke,"pi0.5, synchronous",6,18.287,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,18.354,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,18.420,67.8
+pi05_12k_smoke,"pi0.5, synchronous",6,18.488,66.0
+pi05_12k_smoke,"pi0.5, synchronous",6,18.554,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,18.620,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,18.688,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,18.754,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,18.820,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,18.888,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,18.954,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,19.021,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,19.088,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,19.154,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,19.221,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,19.288,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,19.355,65.9
+pi05_12k_smoke,"pi0.5, synchronous",6,19.421,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,19.488,67.7
+pi05_12k_smoke,"pi0.5, synchronous",6,19.556,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,19.622,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,19.689,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,19.756,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,19.822,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,19.889,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,19.957,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,20.023,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,20.090,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,20.157,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,20.224,276.9
+pi05_12k_smoke,"pi0.5, synchronous",6,20.501,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,20.567,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,20.634,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,20.701,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,20.768,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,20.835,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,20.901,67.5
+pi05_12k_smoke,"pi0.5, synchronous",6,20.969,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,21.036,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,21.102,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,21.168,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,21.236,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,21.302,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,21.369,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,21.436,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,21.502,67.7
+pi05_12k_smoke,"pi0.5, synchronous",6,21.570,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,21.636,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,21.703,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,21.769,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,21.837,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,21.903,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,21.971,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,22.037,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,22.104,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,22.171,65.9
+pi05_12k_smoke,"pi0.5, synchronous",6,22.237,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,22.304,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,22.370,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,22.438,299.0
+pi05_12k_smoke,"pi0.5, synchronous",6,22.736,66.0
+pi05_12k_smoke,"pi0.5, synchronous",6,22.802,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,22.869,67.6
+pi05_12k_smoke,"pi0.5, synchronous",6,22.937,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,23.003,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,23.070,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,23.136,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,23.204,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,23.271,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,23.337,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,23.404,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,23.471,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,23.537,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,23.604,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,23.672,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,23.738,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,23.804,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,23.871,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,23.938,67.8
+pi05_12k_smoke,"pi0.5, synchronous",6,24.006,65.8
+pi05_12k_smoke,"pi0.5, synchronous",6,24.071,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,24.138,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,24.205,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,24.272,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,24.338,67.5
+pi05_12k_smoke,"pi0.5, synchronous",6,24.406,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,24.473,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,24.540,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,24.607,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,24.673,278.8
+pi05_12k_smoke,"pi0.5, synchronous",6,24.952,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,25.019,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,25.085,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,25.153,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,25.219,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,25.286,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,25.353,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,25.420,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,25.487,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,25.554,65.7
+pi05_12k_smoke,"pi0.5, synchronous",6,25.620,68.0
+pi05_12k_smoke,"pi0.5, synchronous",6,25.688,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,25.754,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,25.821,65.8
+pi05_12k_smoke,"pi0.5, synchronous",6,25.887,67.6
+pi05_12k_smoke,"pi0.5, synchronous",6,25.954,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,26.021,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,26.088,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,26.155,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,26.221,67.5
+pi05_12k_smoke,"pi0.5, synchronous",6,26.288,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,26.355,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,26.421,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,26.488,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,26.555,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,26.622,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,26.689,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,26.755,67.5
+pi05_12k_smoke,"pi0.5, synchronous",6,26.823,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,26.890,280.7
+pi05_12k_smoke,"pi0.5, synchronous",6,27.170,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,27.237,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,27.303,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,27.370,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,27.437,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,27.503,67.5
+pi05_12k_smoke,"pi0.5, synchronous",6,27.571,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,27.637,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,27.703,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,27.770,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,27.838,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,27.904,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,27.971,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,28.038,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,28.105,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,28.172,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,28.238,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,28.305,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,28.372,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,28.439,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,28.506,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,28.572,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,28.639,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,28.706,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,28.773,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,28.840,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,28.907,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,28.974,65.6
+pi05_12k_smoke,"pi0.5, synchronous",6,29.040,67.6
+pi05_12k_smoke,"pi0.5, synchronous",6,29.107,276.8
+pi05_12k_smoke,"pi0.5, synchronous",6,29.384,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,29.451,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,29.517,68.1
+pi05_12k_smoke,"pi0.5, synchronous",6,29.585,65.7
+pi05_12k_smoke,"pi0.5, synchronous",6,29.651,68.1
+pi05_12k_smoke,"pi0.5, synchronous",6,29.719,65.3
+pi05_12k_smoke,"pi0.5, synchronous",6,29.784,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,29.852,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,29.918,67.9
+pi05_12k_smoke,"pi0.5, synchronous",6,29.986,65.9
+pi05_12k_smoke,"pi0.5, synchronous",6,30.052,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,30.119,67.9
+pi05_12k_smoke,"pi0.5, synchronous",6,30.186,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,30.253,65.8
+pi05_12k_smoke,"pi0.5, synchronous",6,30.319,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,30.386,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,30.453,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,30.520,65.9
+pi05_12k_smoke,"pi0.5, synchronous",6,30.586,67.7
+pi05_12k_smoke,"pi0.5, synchronous",6,30.653,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,30.720,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,30.787,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,30.853,67.7
+pi05_12k_smoke,"pi0.5, synchronous",6,30.921,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,30.987,66.0
+pi05_12k_smoke,"pi0.5, synchronous",6,31.053,67.5
+pi05_12k_smoke,"pi0.5, synchronous",6,31.121,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,31.187,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,31.254,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,31.321,300.2
+pi05_12k_smoke,"pi0.5, synchronous",6,31.621,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,31.688,65.9
+pi05_12k_smoke,"pi0.5, synchronous",6,31.754,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,31.821,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,31.888,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,31.954,67.7
+pi05_12k_smoke,"pi0.5, synchronous",6,32.022,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,32.088,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,32.155,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,32.222,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,32.289,67.9
+pi05_12k_smoke,"pi0.5, synchronous",6,32.357,65.8
+pi05_12k_smoke,"pi0.5, synchronous",6,32.423,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,32.490,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,32.556,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,32.624,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,32.690,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,32.757,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,32.824,67.6
+pi05_12k_smoke,"pi0.5, synchronous",6,32.891,65.9
+pi05_12k_smoke,"pi0.5, synchronous",6,32.957,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,33.024,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,33.090,68.0
+pi05_12k_smoke,"pi0.5, synchronous",6,33.158,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,33.225,65.8
+pi05_12k_smoke,"pi0.5, synchronous",6,33.291,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,33.358,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,33.425,65.9
+pi05_12k_smoke,"pi0.5, synchronous",6,33.491,67.7
+pi05_12k_smoke,"pi0.5, synchronous",6,33.559,299.4
+pi05_12k_smoke,"pi0.5, synchronous",6,33.858,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,33.925,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,33.992,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,34.058,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,34.124,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,34.192,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,34.258,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,34.325,67.5
+pi05_12k_smoke,"pi0.5, synchronous",6,34.392,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,34.459,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,34.525,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,34.592,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,34.660,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,34.726,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,34.792,67.6
+pi05_12k_smoke,"pi0.5, synchronous",6,34.860,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,34.927,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,34.993,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,35.059,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,35.127,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,35.193,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,35.261,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,35.328,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,35.395,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,35.461,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,35.527,67.1
+pi05_12k_smoke,"pi0.5, synchronous",6,35.594,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,35.661,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,35.728,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,35.794,287.6
+pi05_12k_smoke,"pi0.5, synchronous",6,36.082,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,36.148,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,36.215,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,36.282,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,36.349,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,36.416,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,36.482,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,36.549,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,36.617,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,36.683,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,36.749,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,36.816,67.9
+pi05_12k_smoke,"pi0.5, synchronous",6,36.884,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,36.951,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,37.017,67.3
+pi05_12k_smoke,"pi0.5, synchronous",6,37.085,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,37.151,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,37.218,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,37.285,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,37.352,66.2
+pi05_12k_smoke,"pi0.5, synchronous",6,37.418,67.9
+pi05_12k_smoke,"pi0.5, synchronous",6,37.486,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,37.553,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,37.619,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,37.685,68.1
+pi05_12k_smoke,"pi0.5, synchronous",6,37.753,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,37.820,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,37.886,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,37.953,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,38.020,299.6
+pi05_12k_smoke,"pi0.5, synchronous",6,38.320,65.9
+pi05_12k_smoke,"pi0.5, synchronous",6,38.386,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,38.453,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,38.520,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,38.586,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,38.653,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,38.720,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,38.786,66.5
+pi05_12k_smoke,"pi0.5, synchronous",6,38.853,67.7
+pi05_12k_smoke,"pi0.5, synchronous",6,38.921,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,38.987,66.8
+pi05_12k_smoke,"pi0.5, synchronous",6,39.054,66.4
+pi05_12k_smoke,"pi0.5, synchronous",6,39.120,67.4
+pi05_12k_smoke,"pi0.5, synchronous",6,39.187,67.2
+pi05_12k_smoke,"pi0.5, synchronous",6,39.255,66.3
+pi05_12k_smoke,"pi0.5, synchronous",6,39.321,66.6
+pi05_12k_smoke,"pi0.5, synchronous",6,39.388,67.7
+pi05_12k_smoke,"pi0.5, synchronous",6,39.455,66.7
+pi05_12k_smoke,"pi0.5, synchronous",6,39.522,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,39.588,67.0
+pi05_12k_smoke,"pi0.5, synchronous",6,39.655,66.9
+pi05_12k_smoke,"pi0.5, synchronous",6,39.722,66.1
+pi05_12k_smoke,"pi0.5, synchronous",6,39.788,67.9
+pi05_12k_smoke,"pi0.5, synchronous",6,39.856,65.9
+pi05_12k_smoke,"pi0.5, synchronous",6,39.922,67.4
+act102_100k_1118,"ACT, 102 demos",6,0.000,312.6
+act102_100k_1118,"ACT, 102 demos",6,0.313,62.2
+act102_100k_1118,"ACT, 102 demos",6,0.375,67.3
+act102_100k_1118,"ACT, 102 demos",6,0.442,65.8
+act102_100k_1118,"ACT, 102 demos",6,0.508,67.6
+act102_100k_1118,"ACT, 102 demos",6,0.576,65.7
+act102_100k_1118,"ACT, 102 demos",6,0.641,67.9
+act102_100k_1118,"ACT, 102 demos",6,0.709,67.0
+act102_100k_1118,"ACT, 102 demos",6,0.776,65.9
+act102_100k_1118,"ACT, 102 demos",6,0.842,67.5
+act102_100k_1118,"ACT, 102 demos",6,0.909,67.3
+act102_100k_1118,"ACT, 102 demos",6,0.977,66.8
+act102_100k_1118,"ACT, 102 demos",6,1.044,66.4
+act102_100k_1118,"ACT, 102 demos",6,1.110,66.8
+act102_100k_1118,"ACT, 102 demos",6,1.177,67.3
+act102_100k_1118,"ACT, 102 demos",6,1.244,66.8
+act102_100k_1118,"ACT, 102 demos",6,1.311,65.8
+act102_100k_1118,"ACT, 102 demos",6,1.377,67.8
+act102_100k_1118,"ACT, 102 demos",6,1.444,65.9
+act102_100k_1118,"ACT, 102 demos",6,1.510,66.9
+act102_100k_1118,"ACT, 102 demos",6,1.577,66.4
+act102_100k_1118,"ACT, 102 demos",6,1.644,67.9
+act102_100k_1118,"ACT, 102 demos",6,1.712,67.0
+act102_100k_1118,"ACT, 102 demos",6,1.779,66.2
+act102_100k_1118,"ACT, 102 demos",6,1.845,67.0
+act102_100k_1118,"ACT, 102 demos",6,1.912,67.2
+act102_100k_1118,"ACT, 102 demos",6,1.979,66.4
+act102_100k_1118,"ACT, 102 demos",6,2.045,67.2
+act102_100k_1118,"ACT, 102 demos",6,2.113,66.2
+act102_100k_1118,"ACT, 102 demos",6,2.179,67.2
+act102_100k_1118,"ACT, 102 demos",6,2.246,70.5
+act102_100k_1118,"ACT, 102 demos",6,2.317,67.4
+act102_100k_1118,"ACT, 102 demos",6,2.384,66.9
+act102_100k_1118,"ACT, 102 demos",6,2.451,66.0
+act102_100k_1118,"ACT, 102 demos",6,2.517,67.0
+act102_100k_1118,"ACT, 102 demos",6,2.584,66.6
+act102_100k_1118,"ACT, 102 demos",6,2.650,66.1
+act102_100k_1118,"ACT, 102 demos",6,2.716,67.4
+act102_100k_1118,"ACT, 102 demos",6,2.784,66.2
+act102_100k_1118,"ACT, 102 demos",6,2.850,68.0
+act102_100k_1118,"ACT, 102 demos",6,2.918,66.7
+act102_100k_1118,"ACT, 102 demos",6,2.985,66.2
+act102_100k_1118,"ACT, 102 demos",6,3.051,67.7
+act102_100k_1118,"ACT, 102 demos",6,3.119,65.9
+act102_100k_1118,"ACT, 102 demos",6,3.185,67.2
+act102_100k_1118,"ACT, 102 demos",6,3.252,66.4
+act102_100k_1118,"ACT, 102 demos",6,3.318,67.4
+act102_100k_1118,"ACT, 102 demos",6,3.386,66.4
+act102_100k_1118,"ACT, 102 demos",6,3.452,66.2
+act102_100k_1118,"ACT, 102 demos",6,3.518,67.2
+act102_100k_1118,"ACT, 102 demos",6,3.585,66.4
+act102_100k_1118,"ACT, 102 demos",6,3.652,66.9
+act102_100k_1118,"ACT, 102 demos",6,3.719,67.2
+act102_100k_1118,"ACT, 102 demos",6,3.786,67.0
+act102_100k_1118,"ACT, 102 demos",6,3.853,65.8
+act102_100k_1118,"ACT, 102 demos",6,3.919,67.3
+act102_100k_1118,"ACT, 102 demos",6,3.986,66.3
+act102_100k_1118,"ACT, 102 demos",6,4.052,67.1
+act102_100k_1118,"ACT, 102 demos",6,4.119,67.5
+act102_100k_1118,"ACT, 102 demos",6,4.187,66.0
+act102_100k_1118,"ACT, 102 demos",6,4.253,67.8
+act102_100k_1118,"ACT, 102 demos",6,4.321,66.1
+act102_100k_1118,"ACT, 102 demos",6,4.387,66.8
+act102_100k_1118,"ACT, 102 demos",6,4.454,66.9
+act102_100k_1118,"ACT, 102 demos",6,4.521,66.5
+act102_100k_1118,"ACT, 102 demos",6,4.587,66.6
+act102_100k_1118,"ACT, 102 demos",6,4.654,67.0
+act102_100k_1118,"ACT, 102 demos",6,4.721,67.4
+act102_100k_1118,"ACT, 102 demos",6,4.788,66.5
+act102_100k_1118,"ACT, 102 demos",6,4.854,67.0
+act102_100k_1118,"ACT, 102 demos",6,4.921,65.7
+act102_100k_1118,"ACT, 102 demos",6,4.987,67.7
+act102_100k_1118,"ACT, 102 demos",6,5.055,67.5
+act102_100k_1118,"ACT, 102 demos",6,5.122,66.1
+act102_100k_1118,"ACT, 102 demos",6,5.189,66.5
+act102_100k_1118,"ACT, 102 demos",6,5.255,66.6
+act102_100k_1118,"ACT, 102 demos",6,5.322,67.6
+act102_100k_1118,"ACT, 102 demos",6,5.389,66.5
+act102_100k_1118,"ACT, 102 demos",6,5.456,67.3
+act102_100k_1118,"ACT, 102 demos",6,5.523,66.9
+act102_100k_1118,"ACT, 102 demos",6,5.590,66.9
+act102_100k_1118,"ACT, 102 demos",6,5.657,66.8
+act102_100k_1118,"ACT, 102 demos",6,5.724,66.0
+act102_100k_1118,"ACT, 102 demos",6,5.790,67.1
+act102_100k_1118,"ACT, 102 demos",6,5.857,67.4
+act102_100k_1118,"ACT, 102 demos",6,5.924,66.1
+act102_100k_1118,"ACT, 102 demos",6,5.990,67.4
+act102_100k_1118,"ACT, 102 demos",6,6.058,66.3
+act102_100k_1118,"ACT, 102 demos",6,6.124,67.1
+act102_100k_1118,"ACT, 102 demos",6,6.191,66.4
+act102_100k_1118,"ACT, 102 demos",6,6.257,67.4
+act102_100k_1118,"ACT, 102 demos",6,6.325,66.8
+act102_100k_1118,"ACT, 102 demos",6,6.392,66.1
+act102_100k_1118,"ACT, 102 demos",6,6.458,67.2
+act102_100k_1118,"ACT, 102 demos",6,6.525,66.6
+act102_100k_1118,"ACT, 102 demos",6,6.591,66.9
+act102_100k_1118,"ACT, 102 demos",6,6.658,67.1
+act102_100k_1118,"ACT, 102 demos",6,6.726,67.1
+act102_100k_1118,"ACT, 102 demos",6,6.793,66.0
+act102_100k_1118,"ACT, 102 demos",6,6.859,66.9
+act102_100k_1118,"ACT, 102 demos",6,6.926,67.4
+act102_100k_1118,"ACT, 102 demos",6,6.993,66.8
+act102_100k_1118,"ACT, 102 demos",6,7.060,65.7
+act102_100k_1118,"ACT, 102 demos",6,7.125,67.7
+act102_100k_1118,"ACT, 102 demos",6,7.193,66.1
+act102_100k_1118,"ACT, 102 demos",6,7.259,67.8
+act102_100k_1118,"ACT, 102 demos",6,7.327,66.7
+act102_100k_1118,"ACT, 102 demos",6,7.394,66.0
+act102_100k_1118,"ACT, 102 demos",6,7.460,67.4
+act102_100k_1118,"ACT, 102 demos",6,7.527,67.0
+act102_100k_1118,"ACT, 102 demos",6,7.594,65.8
+act102_100k_1118,"ACT, 102 demos",6,7.660,67.0
+act102_100k_1118,"ACT, 102 demos",6,7.727,66.6
+act102_100k_1118,"ACT, 102 demos",6,7.793,67.0
+act102_100k_1118,"ACT, 102 demos",6,7.861,66.6
+act102_100k_1118,"ACT, 102 demos",6,7.927,67.1
+act102_100k_1118,"ACT, 102 demos",6,7.994,67.6
+act102_100k_1118,"ACT, 102 demos",6,8.062,66.3
+act102_100k_1118,"ACT, 102 demos",6,8.128,66.9
+act102_100k_1118,"ACT, 102 demos",6,8.195,67.0
+act102_100k_1118,"ACT, 102 demos",6,8.262,66.1
+act102_100k_1118,"ACT, 102 demos",6,8.328,67.4
+act102_100k_1118,"ACT, 102 demos",6,8.396,67.0
+act102_100k_1118,"ACT, 102 demos",6,8.463,67.0
+act102_100k_1118,"ACT, 102 demos",6,8.530,66.0
+act102_100k_1118,"ACT, 102 demos",6,8.595,66.9
+act102_100k_1118,"ACT, 102 demos",6,8.662,67.2
+act102_100k_1118,"ACT, 102 demos",6,8.730,66.6
+act102_100k_1118,"ACT, 102 demos",6,8.796,66.6
+act102_100k_1118,"ACT, 102 demos",6,8.863,67.4
+act102_100k_1118,"ACT, 102 demos",6,8.930,66.3
+act102_100k_1118,"ACT, 102 demos",6,8.996,67.1
+act102_100k_1118,"ACT, 102 demos",6,9.064,66.2
+act102_100k_1118,"ACT, 102 demos",6,9.130,68.1
+act102_100k_1118,"ACT, 102 demos",6,9.198,65.5
+act102_100k_1118,"ACT, 102 demos",6,9.263,67.4
+act102_100k_1118,"ACT, 102 demos",6,9.331,66.2
+act102_100k_1118,"ACT, 102 demos",6,9.397,67.1
+act102_100k_1118,"ACT, 102 demos",6,9.464,67.3
+act102_100k_1118,"ACT, 102 demos",6,9.531,66.9
+act102_100k_1118,"ACT, 102 demos",6,9.598,65.8
+act102_100k_1118,"ACT, 102 demos",6,9.664,67.6
+act102_100k_1118,"ACT, 102 demos",6,9.732,66.4
+act102_100k_1118,"ACT, 102 demos",6,9.798,66.6
+act102_100k_1118,"ACT, 102 demos",6,9.865,66.7
+act102_100k_1118,"ACT, 102 demos",6,9.931,67.4
+act102_100k_1118,"ACT, 102 demos",6,9.999,65.9
+act102_100k_1118,"ACT, 102 demos",6,10.065,68.1
+act102_100k_1118,"ACT, 102 demos",6,10.133,65.4
+act102_100k_1118,"ACT, 102 demos",6,10.198,67.8
+act102_100k_1118,"ACT, 102 demos",6,10.266,67.5
+act102_100k_1118,"ACT, 102 demos",6,10.334,67.2
+act102_100k_1118,"ACT, 102 demos",6,10.401,66.3
+act102_100k_1118,"ACT, 102 demos",6,10.467,67.1
+act102_100k_1118,"ACT, 102 demos",6,10.534,66.8
+act102_100k_1118,"ACT, 102 demos",6,10.601,66.7
+act102_100k_1118,"ACT, 102 demos",6,10.668,66.1
+act102_100k_1118,"ACT, 102 demos",6,10.734,67.6
+act102_100k_1118,"ACT, 102 demos",6,10.801,66.9
+act102_100k_1118,"ACT, 102 demos",6,10.868,67.3
+act102_100k_1118,"ACT, 102 demos",6,10.935,67.2
+act102_100k_1118,"ACT, 102 demos",6,11.003,66.3
+act102_100k_1118,"ACT, 102 demos",6,11.069,66.5
+act102_100k_1118,"ACT, 102 demos",6,11.136,67.3
+act102_100k_1118,"ACT, 102 demos",6,11.203,66.5
+act102_100k_1118,"ACT, 102 demos",6,11.269,67.3
+act102_100k_1118,"ACT, 102 demos",6,11.337,67.0
+act102_100k_1118,"ACT, 102 demos",6,11.404,66.5
+act102_100k_1118,"ACT, 102 demos",6,11.470,66.5
+act102_100k_1118,"ACT, 102 demos",6,11.537,67.1
+act102_100k_1118,"ACT, 102 demos",6,11.604,67.0
+act102_100k_1118,"ACT, 102 demos",6,11.671,66.6
+act102_100k_1118,"ACT, 102 demos",6,11.737,67.3
+act102_100k_1118,"ACT, 102 demos",6,11.805,66.2
+act102_100k_1118,"ACT, 102 demos",6,11.871,66.9
+act102_100k_1118,"ACT, 102 demos",6,11.938,67.0
+act102_100k_1118,"ACT, 102 demos",6,12.005,66.3
+act102_100k_1118,"ACT, 102 demos",6,12.071,67.2
+act102_100k_1118,"ACT, 102 demos",6,12.138,66.5
+act102_100k_1118,"ACT, 102 demos",6,12.205,66.8
+act102_100k_1118,"ACT, 102 demos",6,12.271,66.7
+act102_100k_1118,"ACT, 102 demos",6,12.338,66.6
+act102_100k_1118,"ACT, 102 demos",6,12.405,66.9
+act102_100k_1118,"ACT, 102 demos",6,12.472,67.2
+act102_100k_1118,"ACT, 102 demos",6,12.539,66.4
+act102_100k_1118,"ACT, 102 demos",6,12.605,67.5
+act102_100k_1118,"ACT, 102 demos",6,12.673,66.2
+act102_100k_1118,"ACT, 102 demos",6,12.739,67.7
+act102_100k_1118,"ACT, 102 demos",6,12.807,66.7
+act102_100k_1118,"ACT, 102 demos",6,12.873,66.4
+act102_100k_1118,"ACT, 102 demos",6,12.940,67.2
+act102_100k_1118,"ACT, 102 demos",6,13.007,66.3
+act102_100k_1118,"ACT, 102 demos",6,13.073,66.2
+act102_100k_1118,"ACT, 102 demos",6,13.139,68.2
+act102_100k_1118,"ACT, 102 demos",6,13.208,66.5
+act102_100k_1118,"ACT, 102 demos",6,13.274,66.2
+act102_100k_1118,"ACT, 102 demos",6,13.340,67.2
+act102_100k_1118,"ACT, 102 demos",6,13.408,66.5
+act102_100k_1118,"ACT, 102 demos",6,13.474,67.3
+act102_100k_1118,"ACT, 102 demos",6,13.541,66.1
+act102_100k_1118,"ACT, 102 demos",6,13.607,67.2
+act102_100k_1118,"ACT, 102 demos",6,13.675,66.3
+act102_100k_1118,"ACT, 102 demos",6,13.741,66.3
+act102_100k_1118,"ACT, 102 demos",6,13.807,67.3
+act102_100k_1118,"ACT, 102 demos",6,13.875,66.5
+act102_100k_1118,"ACT, 102 demos",6,13.941,67.1
+act102_100k_1118,"ACT, 102 demos",6,14.008,66.4
+act102_100k_1118,"ACT, 102 demos",6,14.075,67.8
+act102_100k_1118,"ACT, 102 demos",6,14.142,66.6
+act102_100k_1118,"ACT, 102 demos",6,14.209,66.2
+act102_100k_1118,"ACT, 102 demos",6,14.275,66.6
+act102_100k_1118,"ACT, 102 demos",6,14.342,67.4
+act102_100k_1118,"ACT, 102 demos",6,14.409,66.0
+act102_100k_1118,"ACT, 102 demos",6,14.475,67.2
+act102_100k_1118,"ACT, 102 demos",6,14.542,66.4
+act102_100k_1118,"ACT, 102 demos",6,14.609,67.9
+act102_100k_1118,"ACT, 102 demos",6,14.677,65.8
+act102_100k_1118,"ACT, 102 demos",6,14.742,67.3
+act102_100k_1118,"ACT, 102 demos",6,14.810,66.6
+act102_100k_1118,"ACT, 102 demos",6,14.876,66.8
+act102_100k_1118,"ACT, 102 demos",6,14.943,67.3
+act102_100k_1118,"ACT, 102 demos",6,15.011,66.7
+act102_100k_1118,"ACT, 102 demos",6,15.077,65.9
+act102_100k_1118,"ACT, 102 demos",6,15.143,67.3
+act102_100k_1118,"ACT, 102 demos",6,15.210,67.0
+act102_100k_1118,"ACT, 102 demos",6,15.277,67.1
+act102_100k_1118,"ACT, 102 demos",6,15.345,66.6
+act102_100k_1118,"ACT, 102 demos",6,15.411,67.3
+act102_100k_1118,"ACT, 102 demos",6,15.478,66.3
+act102_100k_1118,"ACT, 102 demos",6,15.545,67.2
+act102_100k_1118,"ACT, 102 demos",6,15.612,66.9
+act102_100k_1118,"ACT, 102 demos",6,15.679,66.7
+act102_100k_1118,"ACT, 102 demos",6,15.745,66.3
+act102_100k_1118,"ACT, 102 demos",6,15.812,67.6
+act102_100k_1118,"ACT, 102 demos",6,15.879,66.7
+act102_100k_1118,"ACT, 102 demos",6,15.946,66.9
+act102_100k_1118,"ACT, 102 demos",6,16.013,67.0
+act102_100k_1118,"ACT, 102 demos",6,16.080,66.1
+act102_100k_1118,"ACT, 102 demos",6,16.146,66.3
+act102_100k_1118,"ACT, 102 demos",6,16.212,67.0
+act102_100k_1118,"ACT, 102 demos",6,16.279,68.2
+act102_100k_1118,"ACT, 102 demos",6,16.348,65.7
+act102_100k_1118,"ACT, 102 demos",6,16.413,67.0
+act102_100k_1118,"ACT, 102 demos",6,16.480,67.0
+act102_100k_1118,"ACT, 102 demos",6,16.547,66.1
+act102_100k_1118,"ACT, 102 demos",6,16.613,68.5
+act102_100k_1118,"ACT, 102 demos",6,16.682,65.9
+act102_100k_1118,"ACT, 102 demos",6,16.748,66.5
+act102_100k_1118,"ACT, 102 demos",6,16.814,67.1
+act102_100k_1118,"ACT, 102 demos",6,16.881,66.5
+act102_100k_1118,"ACT, 102 demos",6,16.948,66.8
+act102_100k_1118,"ACT, 102 demos",6,17.015,66.9
+act102_100k_1118,"ACT, 102 demos",6,17.082,67.5
+act102_100k_1118,"ACT, 102 demos",6,17.149,66.0
+act102_100k_1118,"ACT, 102 demos",6,17.215,66.4
+act102_100k_1118,"ACT, 102 demos",6,17.282,67.5
+act102_100k_1118,"ACT, 102 demos",6,17.349,66.6
+act102_100k_1118,"ACT, 102 demos",6,17.416,66.4
+act102_100k_1118,"ACT, 102 demos",6,17.482,67.1
+act102_100k_1118,"ACT, 102 demos",6,17.549,66.6
+act102_100k_1118,"ACT, 102 demos",6,17.616,66.7
+act102_100k_1118,"ACT, 102 demos",6,17.682,67.0
+act102_100k_1118,"ACT, 102 demos",6,17.749,67.1
+act102_100k_1118,"ACT, 102 demos",6,17.817,67.0
+act102_100k_1118,"ACT, 102 demos",6,17.884,66.3
+act102_100k_1118,"ACT, 102 demos",6,17.950,67.2
+act102_100k_1118,"ACT, 102 demos",6,18.017,66.8
+act102_100k_1118,"ACT, 102 demos",6,18.084,66.2
+act102_100k_1118,"ACT, 102 demos",6,18.150,66.8
+act102_100k_1118,"ACT, 102 demos",6,18.217,66.9
+act102_100k_1118,"ACT, 102 demos",6,18.284,69.5
+act102_100k_1118,"ACT, 102 demos",6,18.353,66.2
+act102_100k_1118,"ACT, 102 demos",6,18.419,66.2
+act102_100k_1118,"ACT, 102 demos",6,18.486,67.8
+act102_100k_1118,"ACT, 102 demos",6,18.553,66.2
+act102_100k_1118,"ACT, 102 demos",6,18.620,67.0
+act102_100k_1118,"ACT, 102 demos",6,18.687,66.7
+act102_100k_1118,"ACT, 102 demos",6,18.753,67.6
+act102_100k_1118,"ACT, 102 demos",6,18.821,66.1
+act102_100k_1118,"ACT, 102 demos",6,18.887,67.4
+act102_100k_1118,"ACT, 102 demos",6,18.954,67.0
+act102_100k_1118,"ACT, 102 demos",6,19.021,66.4
+act102_100k_1118,"ACT, 102 demos",6,19.088,66.6
+act102_100k_1118,"ACT, 102 demos",6,19.154,66.8
+act102_100k_1118,"ACT, 102 demos",6,19.221,67.3
+act102_100k_1118,"ACT, 102 demos",6,19.288,66.3
+act102_100k_1118,"ACT, 102 demos",6,19.355,67.0
+act102_100k_1118,"ACT, 102 demos",6,19.422,66.4
+act102_100k_1118,"ACT, 102 demos",6,19.488,66.5
+act102_100k_1118,"ACT, 102 demos",6,19.555,67.3
+act102_100k_1118,"ACT, 102 demos",6,19.622,66.7
+act102_100k_1118,"ACT, 102 demos",6,19.689,66.9
+act102_100k_1118,"ACT, 102 demos",6,19.756,67.1
+act102_100k_1118,"ACT, 102 demos",6,19.823,66.3
+act102_100k_1118,"ACT, 102 demos",6,19.889,67.1
+act102_100k_1118,"ACT, 102 demos",6,19.956,66.6
+act102_100k_1118,"ACT, 102 demos",6,20.023,66.4
+act102_100k_1118,"ACT, 102 demos",6,20.089,67.7
+act102_100k_1118,"ACT, 102 demos",6,20.157,66.6
+act102_100k_1118,"ACT, 102 demos",6,20.223,67.1
+act102_100k_1118,"ACT, 102 demos",6,20.291,72.0
+act102_100k_1118,"ACT, 102 demos",6,20.363,66.0
+act102_100k_1118,"ACT, 102 demos",6,20.428,67.3
+act102_100k_1118,"ACT, 102 demos",6,20.496,66.4
+act102_100k_1118,"ACT, 102 demos",6,20.562,67.3
+act102_100k_1118,"ACT, 102 demos",6,20.630,66.2
+act102_100k_1118,"ACT, 102 demos",6,20.696,67.1
+act102_100k_1118,"ACT, 102 demos",6,20.763,67.1
+act102_100k_1118,"ACT, 102 demos",6,20.830,66.3
+act102_100k_1118,"ACT, 102 demos",6,20.896,67.3
+act102_100k_1118,"ACT, 102 demos",6,20.963,66.8
+act102_100k_1118,"ACT, 102 demos",6,21.030,66.6
+act102_100k_1118,"ACT, 102 demos",6,21.097,66.2
+act102_100k_1118,"ACT, 102 demos",6,21.163,67.2
+act102_100k_1118,"ACT, 102 demos",6,21.230,67.5
+act102_100k_1118,"ACT, 102 demos",6,21.298,66.6
+act102_100k_1118,"ACT, 102 demos",6,21.364,66.8
+act102_100k_1118,"ACT, 102 demos",6,21.431,67.0
+act102_100k_1118,"ACT, 102 demos",6,21.498,65.6
+act102_100k_1118,"ACT, 102 demos",6,21.564,67.4
+act102_100k_1118,"ACT, 102 demos",6,21.631,66.3
+act102_100k_1118,"ACT, 102 demos",6,21.698,67.3
+act102_100k_1118,"ACT, 102 demos",6,21.765,67.1
+act102_100k_1118,"ACT, 102 demos",6,21.832,66.3
+act102_100k_1118,"ACT, 102 demos",6,21.898,66.9
+act102_100k_1118,"ACT, 102 demos",6,21.965,67.5
+act102_100k_1118,"ACT, 102 demos",6,22.033,66.6
+act102_100k_1118,"ACT, 102 demos",6,22.099,67.0
+act102_100k_1118,"ACT, 102 demos",6,22.166,66.5
+act102_100k_1118,"ACT, 102 demos",6,22.233,67.3
+act102_100k_1118,"ACT, 102 demos",6,22.300,72.3
+act102_100k_1118,"ACT, 102 demos",6,22.372,66.1
+act102_100k_1118,"ACT, 102 demos",6,22.438,67.1
+act102_100k_1118,"ACT, 102 demos",6,22.506,66.2
+act102_100k_1118,"ACT, 102 demos",6,22.572,67.3
+act102_100k_1118,"ACT, 102 demos",6,22.639,67.0
+act102_100k_1118,"ACT, 102 demos",6,22.706,66.1
+act102_100k_1118,"ACT, 102 demos",6,22.772,66.8
+act102_100k_1118,"ACT, 102 demos",6,22.839,66.8
+act102_100k_1118,"ACT, 102 demos",6,22.906,67.1
+act102_100k_1118,"ACT, 102 demos",6,22.973,65.9
+act102_100k_1118,"ACT, 102 demos",6,23.039,67.3
+act102_100k_1118,"ACT, 102 demos",6,23.106,67.3
+act102_100k_1118,"ACT, 102 demos",6,23.173,66.5
+act102_100k_1118,"ACT, 102 demos",6,23.240,66.9
+act102_100k_1118,"ACT, 102 demos",6,23.307,66.9
+act102_100k_1118,"ACT, 102 demos",6,23.374,66.0
+act102_100k_1118,"ACT, 102 demos",6,23.440,67.2
+act102_100k_1118,"ACT, 102 demos",6,23.507,67.4
+act102_100k_1118,"ACT, 102 demos",6,23.574,66.2
+act102_100k_1118,"ACT, 102 demos",6,23.640,67.4
+act102_100k_1118,"ACT, 102 demos",6,23.708,65.9
+act102_100k_1118,"ACT, 102 demos",6,23.774,67.5
+act102_100k_1118,"ACT, 102 demos",6,23.841,66.9
+act102_100k_1118,"ACT, 102 demos",6,23.908,65.7
+act102_100k_1118,"ACT, 102 demos",6,23.974,66.9
+act102_100k_1118,"ACT, 102 demos",6,24.041,67.6
+act102_100k_1118,"ACT, 102 demos",6,24.108,66.4
+act102_100k_1118,"ACT, 102 demos",6,24.175,67.1
+act102_100k_1118,"ACT, 102 demos",6,24.242,66.5
+act102_100k_1118,"ACT, 102 demos",6,24.308,73.1
+act102_100k_1118,"ACT, 102 demos",6,24.381,66.6
+act102_100k_1118,"ACT, 102 demos",6,24.448,66.2
+act102_100k_1118,"ACT, 102 demos",6,24.514,67.3
+act102_100k_1118,"ACT, 102 demos",6,24.581,66.6
+act102_100k_1118,"ACT, 102 demos",6,24.648,67.4
+act102_100k_1118,"ACT, 102 demos",6,24.715,66.3
+act102_100k_1118,"ACT, 102 demos",6,24.782,66.6
+act102_100k_1118,"ACT, 102 demos",6,24.848,67.2
+act102_100k_1118,"ACT, 102 demos",6,24.916,66.4
+act102_100k_1118,"ACT, 102 demos",6,24.982,66.2
+act102_100k_1118,"ACT, 102 demos",6,25.048,67.8
+act102_100k_1118,"ACT, 102 demos",6,25.116,66.2
+act102_100k_1118,"ACT, 102 demos",6,25.182,67.1
+act102_100k_1118,"ACT, 102 demos",6,25.249,66.2
+act102_100k_1118,"ACT, 102 demos",6,25.316,68.4
+act102_100k_1118,"ACT, 102 demos",6,25.384,65.3
+act102_100k_1118,"ACT, 102 demos",6,25.449,67.5
+act102_100k_1118,"ACT, 102 demos",6,25.517,66.2
+act102_100k_1118,"ACT, 102 demos",6,25.583,67.3
+act102_100k_1118,"ACT, 102 demos",6,25.650,67.7
+act102_100k_1118,"ACT, 102 demos",6,25.718,66.1
+act102_100k_1118,"ACT, 102 demos",6,25.784,67.4
+act102_100k_1118,"ACT, 102 demos",6,25.851,66.3
+act102_100k_1118,"ACT, 102 demos",6,25.918,67.3
+act102_100k_1118,"ACT, 102 demos",6,25.985,66.3
+act102_100k_1118,"ACT, 102 demos",6,26.051,67.4
+act102_100k_1118,"ACT, 102 demos",6,26.119,66.3
+act102_100k_1118,"ACT, 102 demos",6,26.185,66.4
+act102_100k_1118,"ACT, 102 demos",6,26.251,67.3
+act102_100k_1118,"ACT, 102 demos",6,26.319,70.9
+act102_100k_1118,"ACT, 102 demos",6,26.390,67.3
+act102_100k_1118,"ACT, 102 demos",6,26.457,67.2
+act102_100k_1118,"ACT, 102 demos",6,26.524,66.4
+act102_100k_1118,"ACT, 102 demos",6,26.590,66.8
+act102_100k_1118,"ACT, 102 demos",6,26.657,67.3
+act102_100k_1118,"ACT, 102 demos",6,26.725,66.5
+act102_100k_1118,"ACT, 102 demos",6,26.791,66.9
+act102_100k_1118,"ACT, 102 demos",6,26.858,66.1
+act102_100k_1118,"ACT, 102 demos",6,26.924,68.3
+act102_100k_1118,"ACT, 102 demos",6,26.992,66.3
+act102_100k_1118,"ACT, 102 demos",6,27.059,66.2
+act102_100k_1118,"ACT, 102 demos",6,27.125,67.3
+act102_100k_1118,"ACT, 102 demos",6,27.192,66.5
+act102_100k_1118,"ACT, 102 demos",6,27.259,67.0
+act102_100k_1118,"ACT, 102 demos",6,27.326,66.9
+act102_100k_1118,"ACT, 102 demos",6,27.393,66.7
+act102_100k_1118,"ACT, 102 demos",6,27.459,67.2
+act102_100k_1118,"ACT, 102 demos",6,27.526,66.2
+act102_100k_1118,"ACT, 102 demos",6,27.593,67.1
+act102_100k_1118,"ACT, 102 demos",6,27.660,67.1
+act102_100k_1118,"ACT, 102 demos",6,27.727,66.2
+act102_100k_1118,"ACT, 102 demos",6,27.793,66.6
+act102_100k_1118,"ACT, 102 demos",6,27.860,67.8
+act102_100k_1118,"ACT, 102 demos",6,27.927,65.7
+act102_100k_1118,"ACT, 102 demos",6,27.993,67.0
+act102_100k_1118,"ACT, 102 demos",6,28.060,66.6
+act102_100k_1118,"ACT, 102 demos",6,28.127,67.1
+act102_100k_1118,"ACT, 102 demos",6,28.194,66.3
+act102_100k_1118,"ACT, 102 demos",6,28.260,68.0
+act102_100k_1118,"ACT, 102 demos",6,28.328,71.6
+act102_100k_1118,"ACT, 102 demos",6,28.400,66.8
+act102_100k_1118,"ACT, 102 demos",6,28.467,66.1
+act102_100k_1118,"ACT, 102 demos",6,28.533,67.0
+act102_100k_1118,"ACT, 102 demos",6,28.600,67.1
+act102_100k_1118,"ACT, 102 demos",6,28.667,65.9
+act102_100k_1118,"ACT, 102 demos",6,28.733,66.8
+act102_100k_1118,"ACT, 102 demos",6,28.799,67.1
+act102_100k_1118,"ACT, 102 demos",6,28.867,67.0
+act102_100k_1118,"ACT, 102 demos",6,28.934,67.3
+act102_100k_1118,"ACT, 102 demos",6,29.001,65.9
+act102_100k_1118,"ACT, 102 demos",6,29.067,66.7
+act102_100k_1118,"ACT, 102 demos",6,29.134,67.7
+act102_100k_1118,"ACT, 102 demos",6,29.201,66.8
+act102_100k_1118,"ACT, 102 demos",6,29.268,66.0
+act102_100k_1118,"ACT, 102 demos",6,29.334,67.8
+act102_100k_1118,"ACT, 102 demos",6,29.402,65.9
+act102_100k_1118,"ACT, 102 demos",6,29.468,66.8
+act102_100k_1118,"ACT, 102 demos",6,29.535,66.8
+act102_100k_1118,"ACT, 102 demos",6,29.601,66.4
+act102_100k_1118,"ACT, 102 demos",6,29.668,66.5
+act102_100k_1118,"ACT, 102 demos",6,29.734,67.6
+act102_100k_1118,"ACT, 102 demos",6,29.802,66.2
+act102_100k_1118,"ACT, 102 demos",6,29.868,67.5
+act102_100k_1118,"ACT, 102 demos",6,29.936,67.0
+act102_100k_1118,"ACT, 102 demos",6,30.003,66.9
+act102_100k_1118,"ACT, 102 demos",6,30.069,66.3
+act102_100k_1118,"ACT, 102 demos",6,30.136,66.8
+act102_100k_1118,"ACT, 102 demos",6,30.203,66.4
+act102_100k_1118,"ACT, 102 demos",6,30.269,68.0
+act102_100k_1118,"ACT, 102 demos",6,30.337,72.3
+act102_100k_1118,"ACT, 102 demos",6,30.409,66.0
+act102_100k_1118,"ACT, 102 demos",6,30.475,67.3
+act102_100k_1118,"ACT, 102 demos",6,30.543,66.3
+act102_100k_1118,"ACT, 102 demos",6,30.609,66.2
+act102_100k_1118,"ACT, 102 demos",6,30.675,67.3
+act102_100k_1118,"ACT, 102 demos",6,30.742,66.2
+act102_100k_1118,"ACT, 102 demos",6,30.808,68.0
+act102_100k_1118,"ACT, 102 demos",6,30.877,66.1
+act102_100k_1118,"ACT, 102 demos",6,30.943,67.0
+act102_100k_1118,"ACT, 102 demos",6,31.010,67.2
+act102_100k_1118,"ACT, 102 demos",6,31.077,66.0
+act102_100k_1118,"ACT, 102 demos",6,31.143,67.6
+act102_100k_1118,"ACT, 102 demos",6,31.210,66.7
+act102_100k_1118,"ACT, 102 demos",6,31.277,66.7
+act102_100k_1118,"ACT, 102 demos",6,31.344,66.4
+act102_100k_1118,"ACT, 102 demos",6,31.410,67.0
+act102_100k_1118,"ACT, 102 demos",6,31.477,67.2
+act102_100k_1118,"ACT, 102 demos",6,31.544,66.6
+act102_100k_1118,"ACT, 102 demos",6,31.611,67.5
+act102_100k_1118,"ACT, 102 demos",6,31.678,66.0
+act102_100k_1118,"ACT, 102 demos",6,31.744,67.1
+act102_100k_1118,"ACT, 102 demos",6,31.812,65.7
+act102_100k_1118,"ACT, 102 demos",6,31.877,67.5
+act102_100k_1118,"ACT, 102 demos",6,31.945,66.9
+act102_100k_1118,"ACT, 102 demos",6,32.012,67.0
+act102_100k_1118,"ACT, 102 demos",6,32.079,66.7
+act102_100k_1118,"ACT, 102 demos",6,32.145,66.5
+act102_100k_1118,"ACT, 102 demos",6,32.212,66.6
+act102_100k_1118,"ACT, 102 demos",6,32.279,67.1
+act102_100k_1118,"ACT, 102 demos",6,32.346,66.6
+act102_100k_1118,"ACT, 102 demos",6,32.412,66.8
+act102_100k_1118,"ACT, 102 demos",6,32.479,67.0
+act102_100k_1118,"ACT, 102 demos",6,32.546,67.1
+act102_100k_1118,"ACT, 102 demos",6,32.613,65.9
+act102_100k_1118,"ACT, 102 demos",6,32.679,66.9
+act102_100k_1118,"ACT, 102 demos",6,32.746,67.0
+act102_100k_1118,"ACT, 102 demos",6,32.813,66.8
+act102_100k_1118,"ACT, 102 demos",6,32.880,66.9
+act102_100k_1118,"ACT, 102 demos",6,32.947,67.8
+act102_100k_1118,"ACT, 102 demos",6,33.014,66.4
+act102_100k_1118,"ACT, 102 demos",6,33.081,66.9
+act102_100k_1118,"ACT, 102 demos",6,33.148,67.0
+act102_100k_1118,"ACT, 102 demos",6,33.215,66.1
+act102_100k_1118,"ACT, 102 demos",6,33.281,66.6
+act102_100k_1118,"ACT, 102 demos",6,33.347,67.1
+act102_100k_1118,"ACT, 102 demos",6,33.414,66.3
+act102_100k_1118,"ACT, 102 demos",6,33.481,67.0
+act102_100k_1118,"ACT, 102 demos",6,33.548,67.7
+act102_100k_1118,"ACT, 102 demos",6,33.615,65.7
+act102_100k_1118,"ACT, 102 demos",6,33.681,67.6
+act102_100k_1118,"ACT, 102 demos",6,33.749,66.0
+act102_100k_1118,"ACT, 102 demos",6,33.815,67.7
+act102_100k_1118,"ACT, 102 demos",6,33.883,66.1
+act102_100k_1118,"ACT, 102 demos",6,33.949,66.4
+act102_100k_1118,"ACT, 102 demos",6,34.015,68.0
+act102_100k_1118,"ACT, 102 demos",6,34.083,66.6
+act102_100k_1118,"ACT, 102 demos",6,34.150,67.0
+act102_100k_1118,"ACT, 102 demos",6,34.217,66.4
+act102_100k_1118,"ACT, 102 demos",6,34.283,67.3
+act102_100k_1118,"ACT, 102 demos",6,34.350,65.9
+act102_100k_1118,"ACT, 102 demos",6,34.416,67.5
+act102_100k_1118,"ACT, 102 demos",6,34.484,66.9
+act102_100k_1118,"ACT, 102 demos",6,34.551,66.5
+act102_100k_1118,"ACT, 102 demos",6,34.617,66.3
+act102_100k_1118,"ACT, 102 demos",6,34.683,67.4
+act102_100k_1118,"ACT, 102 demos",6,34.751,66.1
+act102_100k_1118,"ACT, 102 demos",6,34.817,67.2
+act102_100k_1118,"ACT, 102 demos",6,34.884,67.7
+act102_100k_1118,"ACT, 102 demos",6,34.952,66.4
+act102_100k_1118,"ACT, 102 demos",6,35.018,66.0
+act102_100k_1118,"ACT, 102 demos",6,35.084,67.7
+act102_100k_1118,"ACT, 102 demos",6,35.152,66.1
+act102_100k_1118,"ACT, 102 demos",6,35.218,67.5
+act102_100k_1118,"ACT, 102 demos",6,35.285,66.2
+act102_100k_1118,"ACT, 102 demos",6,35.352,67.3
+act102_100k_1118,"ACT, 102 demos",6,35.419,66.2
+act102_100k_1118,"ACT, 102 demos",6,35.485,67.6
+act102_100k_1118,"ACT, 102 demos",6,35.553,65.8
+act102_100k_1118,"ACT, 102 demos",6,35.619,67.1
+act102_100k_1118,"ACT, 102 demos",6,35.686,67.3
+act102_100k_1118,"ACT, 102 demos",6,35.753,66.2
+act102_100k_1118,"ACT, 102 demos",6,35.819,67.4
+act102_100k_1118,"ACT, 102 demos",6,35.887,66.3
+act102_100k_1118,"ACT, 102 demos",6,35.953,66.4
+act102_100k_1118,"ACT, 102 demos",6,36.019,67.4
+act102_100k_1118,"ACT, 102 demos",6,36.087,66.5
+act102_100k_1118,"ACT, 102 demos",6,36.153,66.9
+act102_100k_1118,"ACT, 102 demos",6,36.220,66.6
+act102_100k_1118,"ACT, 102 demos",6,36.287,67.1
+act102_100k_1118,"ACT, 102 demos",6,36.354,66.7
+act102_100k_1118,"ACT, 102 demos",6,36.420,67.5
+act102_100k_1118,"ACT, 102 demos",6,36.488,67.1
+act102_100k_1118,"ACT, 102 demos",6,36.555,66.9
+act102_100k_1118,"ACT, 102 demos",6,36.622,66.1
+act102_100k_1118,"ACT, 102 demos",6,36.688,66.8
+act102_100k_1118,"ACT, 102 demos",6,36.755,67.0
+act102_100k_1118,"ACT, 102 demos",6,36.822,66.2
+act102_100k_1118,"ACT, 102 demos",6,36.888,67.6
+act102_100k_1118,"ACT, 102 demos",6,36.956,66.4
+act102_100k_1118,"ACT, 102 demos",6,37.022,66.6
+act102_100k_1118,"ACT, 102 demos",6,37.089,67.7
+act102_100k_1118,"ACT, 102 demos",6,37.156,65.9
+act102_100k_1118,"ACT, 102 demos",6,37.222,67.7
+act102_100k_1118,"ACT, 102 demos",6,37.290,66.0
+act102_100k_1118,"ACT, 102 demos",6,37.356,67.2
+act102_100k_1118,"ACT, 102 demos",6,37.423,66.1
+act102_100k_1118,"ACT, 102 demos",6,37.489,68.0
+act102_100k_1118,"ACT, 102 demos",6,37.557,66.5
+act102_100k_1118,"ACT, 102 demos",6,37.624,66.8
+act102_100k_1118,"ACT, 102 demos",6,37.691,66.6
+act102_100k_1118,"ACT, 102 demos",6,37.757,66.6
+act102_100k_1118,"ACT, 102 demos",6,37.824,67.1
+act102_100k_1118,"ACT, 102 demos",6,37.891,66.3
+act102_100k_1118,"ACT, 102 demos",6,37.957,66.3
+act102_100k_1118,"ACT, 102 demos",6,38.023,67.1
+act102_100k_1118,"ACT, 102 demos",6,38.091,67.5
+act102_100k_1118,"ACT, 102 demos",6,38.158,66.1
+act102_100k_1118,"ACT, 102 demos",6,38.224,66.8
+act102_100k_1118,"ACT, 102 demos",6,38.291,67.4
+act102_100k_1118,"ACT, 102 demos",6,38.358,66.2
+act102_100k_1118,"ACT, 102 demos",6,38.425,67.4
+act102_100k_1118,"ACT, 102 demos",6,38.492,66.9
+act102_100k_1118,"ACT, 102 demos",6,38.559,66.4
+act102_100k_1118,"ACT, 102 demos",6,38.625,66.3
+act102_100k_1118,"ACT, 102 demos",6,38.692,67.0
+act102_100k_1118,"ACT, 102 demos",6,38.759,67.5
+act102_100k_1118,"ACT, 102 demos",6,38.826,66.3
+act102_100k_1118,"ACT, 102 demos",6,38.892,66.5
+act102_100k_1118,"ACT, 102 demos",6,38.959,67.4
+act102_100k_1118,"ACT, 102 demos",6,39.026,66.0
+act102_100k_1118,"ACT, 102 demos",6,39.092,67.4
+act102_100k_1118,"ACT, 102 demos",6,39.160,66.1
+act102_100k_1118,"ACT, 102 demos",6,39.226,68.1
+act102_100k_1118,"ACT, 102 demos",6,39.294,66.3
+act102_100k_1118,"ACT, 102 demos",6,39.360,66.5
+act102_100k_1118,"ACT, 102 demos",6,39.427,67.3
+act102_100k_1118,"ACT, 102 demos",6,39.494,66.5
+act102_100k_1118,"ACT, 102 demos",6,39.560,66.5
+act102_100k_1118,"ACT, 102 demos",6,39.627,67.4
+act102_100k_1118,"ACT, 102 demos",6,39.694,66.5
+act102_100k_1118,"ACT, 102 demos",6,39.761,66.9
+act102_100k_1118,"ACT, 102 demos",6,39.828,67.2
+act102_100k_1118,"ACT, 102 demos",6,39.895,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,0.000,120.8
+pi05_12k_rtc,"pi0.5, RTC",6,0.121,67.6
+pi05_12k_rtc,"pi0.5, RTC",6,0.188,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,0.256,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,0.322,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,0.389,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,0.455,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,0.522,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,0.590,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,0.656,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,0.723,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,0.790,66.1
+pi05_12k_rtc,"pi0.5, RTC",6,0.856,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,0.923,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,0.990,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,1.057,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,1.123,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,1.190,66.1
+pi05_12k_rtc,"pi0.5, RTC",6,1.256,67.6
+pi05_12k_rtc,"pi0.5, RTC",6,1.324,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,1.391,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,1.458,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,1.524,65.9
+pi05_12k_rtc,"pi0.5, RTC",6,1.590,67.8
+pi05_12k_rtc,"pi0.5, RTC",6,1.658,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,1.724,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,1.791,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,1.858,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,1.925,65.8
+pi05_12k_rtc,"pi0.5, RTC",6,1.991,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,2.058,67.5
+pi05_12k_rtc,"pi0.5, RTC",6,2.126,66.1
+pi05_12k_rtc,"pi0.5, RTC",6,2.192,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,2.259,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,2.325,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,2.392,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,2.459,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,2.526,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,2.592,67.5
+pi05_12k_rtc,"pi0.5, RTC",6,2.660,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,2.726,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,2.793,66.0
+pi05_12k_rtc,"pi0.5, RTC",6,2.860,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,2.926,67.5
+pi05_12k_rtc,"pi0.5, RTC",6,2.994,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,3.061,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,3.127,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,3.194,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,3.260,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,3.328,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,3.394,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,3.461,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,3.528,65.6
+pi05_12k_rtc,"pi0.5, RTC",6,3.593,68.2
+pi05_12k_rtc,"pi0.5, RTC",6,3.662,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,3.728,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,3.795,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,3.862,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,3.929,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,3.995,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,4.062,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,4.128,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,4.196,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,4.262,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,4.329,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,4.395,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,4.462,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,4.529,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,4.596,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,4.662,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,4.729,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,4.796,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,4.863,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,4.930,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,4.997,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,5.064,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,5.130,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,5.198,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,5.264,65.8
+pi05_12k_rtc,"pi0.5, RTC",6,5.330,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,5.397,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,5.463,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,5.530,68.0
+pi05_12k_rtc,"pi0.5, RTC",6,5.598,66.1
+pi05_12k_rtc,"pi0.5, RTC",6,5.664,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,5.731,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,5.798,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,5.865,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,5.932,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,5.999,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,6.065,67.5
+pi05_12k_rtc,"pi0.5, RTC",6,6.133,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,6.200,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,6.266,65.9
+pi05_12k_rtc,"pi0.5, RTC",6,6.332,67.7
+pi05_12k_rtc,"pi0.5, RTC",6,6.400,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,6.466,67.6
+pi05_12k_rtc,"pi0.5, RTC",6,6.534,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,6.601,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,6.667,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,6.734,66.1
+pi05_12k_rtc,"pi0.5, RTC",6,6.800,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,6.867,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,6.934,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,7.001,65.9
+pi05_12k_rtc,"pi0.5, RTC",6,7.067,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,7.134,66.1
+pi05_12k_rtc,"pi0.5, RTC",6,7.200,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,7.267,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,7.334,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,7.401,65.5
+pi05_12k_rtc,"pi0.5, RTC",6,7.467,67.7
+pi05_12k_rtc,"pi0.5, RTC",6,7.535,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,7.601,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,7.668,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,7.735,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,7.802,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,7.869,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,7.935,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,8.002,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,8.069,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,8.135,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,8.203,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,8.270,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,8.336,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,8.403,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,8.470,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,8.537,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,8.604,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,8.671,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,8.738,66.0
+pi05_12k_rtc,"pi0.5, RTC",6,8.803,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,8.870,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,8.937,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,9.004,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,9.071,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,9.137,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,9.205,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,9.271,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,9.338,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,9.405,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,9.472,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,9.538,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,9.605,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,9.672,67.6
+pi05_12k_rtc,"pi0.5, RTC",6,9.739,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,9.806,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,9.873,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,9.940,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,10.006,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,10.072,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,10.139,68.1
+pi05_12k_rtc,"pi0.5, RTC",6,10.207,65.5
+pi05_12k_rtc,"pi0.5, RTC",6,10.273,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,10.340,68.3
+pi05_12k_rtc,"pi0.5, RTC",6,10.408,65.2
+pi05_12k_rtc,"pi0.5, RTC",6,10.473,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,10.540,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,10.606,67.6
+pi05_12k_rtc,"pi0.5, RTC",6,10.674,65.8
+pi05_12k_rtc,"pi0.5, RTC",6,10.740,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,10.807,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,10.874,67.6
+pi05_12k_rtc,"pi0.5, RTC",6,10.941,66.1
+pi05_12k_rtc,"pi0.5, RTC",6,11.007,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,11.074,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,11.141,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,11.208,66.0
+pi05_12k_rtc,"pi0.5, RTC",6,11.274,67.5
+pi05_12k_rtc,"pi0.5, RTC",6,11.341,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,11.408,67.7
+pi05_12k_rtc,"pi0.5, RTC",6,11.476,65.9
+pi05_12k_rtc,"pi0.5, RTC",6,11.541,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,11.608,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,11.675,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,11.742,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,11.809,65.6
+pi05_12k_rtc,"pi0.5, RTC",6,11.875,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,11.942,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,12.010,65.8
+pi05_12k_rtc,"pi0.5, RTC",6,12.075,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,12.142,67.8
+pi05_12k_rtc,"pi0.5, RTC",6,12.210,65.9
+pi05_12k_rtc,"pi0.5, RTC",6,12.276,67.6
+pi05_12k_rtc,"pi0.5, RTC",6,12.343,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,12.410,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,12.476,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,12.543,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,12.610,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,12.677,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,12.743,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,12.810,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,12.876,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,12.944,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,13.011,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,13.077,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,13.144,65.9
+pi05_12k_rtc,"pi0.5, RTC",6,13.210,67.8
+pi05_12k_rtc,"pi0.5, RTC",6,13.278,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,13.345,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,13.412,65.9
+pi05_12k_rtc,"pi0.5, RTC",6,13.477,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,13.544,67.6
+pi05_12k_rtc,"pi0.5, RTC",6,13.612,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,13.678,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,13.745,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,13.812,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,13.879,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,13.945,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,14.012,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,14.079,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,14.146,65.8
+pi05_12k_rtc,"pi0.5, RTC",6,14.212,67.8
+pi05_12k_rtc,"pi0.5, RTC",6,14.279,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,14.346,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,14.413,65.7
+pi05_12k_rtc,"pi0.5, RTC",6,14.479,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,14.546,67.7
+pi05_12k_rtc,"pi0.5, RTC",6,14.613,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,14.680,66.0
+pi05_12k_rtc,"pi0.5, RTC",6,14.746,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,14.813,67.7
+pi05_12k_rtc,"pi0.5, RTC",6,14.880,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,14.947,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,15.013,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,15.080,66.1
+pi05_12k_rtc,"pi0.5, RTC",6,15.146,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,15.214,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,15.280,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,15.348,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,15.414,65.8
+pi05_12k_rtc,"pi0.5, RTC",6,15.480,67.9
+pi05_12k_rtc,"pi0.5, RTC",6,15.548,65.7
+pi05_12k_rtc,"pi0.5, RTC",6,15.614,67.9
+pi05_12k_rtc,"pi0.5, RTC",6,15.682,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,15.748,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,15.815,65.8
+pi05_12k_rtc,"pi0.5, RTC",6,15.881,67.7
+pi05_12k_rtc,"pi0.5, RTC",6,15.949,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,16.015,66.0
+pi05_12k_rtc,"pi0.5, RTC",6,16.081,67.6
+pi05_12k_rtc,"pi0.5, RTC",6,16.149,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,16.216,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,16.282,65.4
+pi05_12k_rtc,"pi0.5, RTC",6,16.348,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,16.415,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,16.482,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,16.549,67.7
+pi05_12k_rtc,"pi0.5, RTC",6,16.616,66.1
+pi05_12k_rtc,"pi0.5, RTC",6,16.682,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,16.749,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,16.816,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,16.883,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,16.950,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,17.016,65.9
+pi05_12k_rtc,"pi0.5, RTC",6,17.082,67.7
+pi05_12k_rtc,"pi0.5, RTC",6,17.150,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,17.217,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,17.284,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,17.350,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,17.417,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,17.484,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,17.551,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,17.617,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,17.684,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,17.751,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,17.818,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,17.885,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,17.951,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,18.018,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,18.084,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,18.152,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,18.218,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,18.285,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,18.352,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,18.419,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,18.485,67.5
+pi05_12k_rtc,"pi0.5, RTC",6,18.553,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,18.619,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,18.686,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,18.753,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,18.819,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,18.886,65.7
+pi05_12k_rtc,"pi0.5, RTC",6,18.952,67.8
+pi05_12k_rtc,"pi0.5, RTC",6,19.020,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,19.086,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,19.154,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,19.220,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,19.287,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,19.354,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,19.421,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,19.487,66.0
+pi05_12k_rtc,"pi0.5, RTC",6,19.553,67.8
+pi05_12k_rtc,"pi0.5, RTC",6,19.621,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,19.688,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,19.754,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,19.821,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,19.888,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,19.954,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,20.021,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,20.087,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,20.154,67.6
+pi05_12k_rtc,"pi0.5, RTC",6,20.221,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,20.289,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,20.355,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,20.422,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,20.489,65.5
+pi05_12k_rtc,"pi0.5, RTC",6,20.554,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,20.621,67.5
+pi05_12k_rtc,"pi0.5, RTC",6,20.689,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,20.756,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,20.822,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,20.889,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,20.956,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,21.022,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,21.089,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,21.156,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,21.223,65.9
+pi05_12k_rtc,"pi0.5, RTC",6,21.289,67.8
+pi05_12k_rtc,"pi0.5, RTC",6,21.357,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,21.423,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,21.489,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,21.557,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,21.624,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,21.690,66.0
+pi05_12k_rtc,"pi0.5, RTC",6,21.756,67.7
+pi05_12k_rtc,"pi0.5, RTC",6,21.824,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,21.890,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,21.957,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,22.024,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,22.090,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,22.157,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,22.224,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,22.291,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,22.358,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,22.425,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,22.491,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,22.558,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,22.625,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,22.692,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,22.758,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,22.825,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,22.892,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,22.959,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,23.025,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,23.092,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,23.159,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,23.225,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,23.292,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,23.359,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,23.426,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,23.493,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,23.559,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,23.627,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,23.693,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,23.760,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,23.827,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,23.893,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,23.960,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,24.028,65.7
+pi05_12k_rtc,"pi0.5, RTC",6,24.093,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,24.161,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,24.227,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,24.294,67.6
+pi05_12k_rtc,"pi0.5, RTC",6,24.362,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,24.428,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,24.495,66.1
+pi05_12k_rtc,"pi0.5, RTC",6,24.561,67.9
+pi05_12k_rtc,"pi0.5, RTC",6,24.629,66.0
+pi05_12k_rtc,"pi0.5, RTC",6,24.695,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,24.762,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,24.829,67.6
+pi05_12k_rtc,"pi0.5, RTC",6,24.896,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,24.963,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,25.030,67.5
+pi05_12k_rtc,"pi0.5, RTC",6,25.097,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,25.164,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,25.231,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,25.297,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,25.364,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,25.430,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,25.497,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,25.564,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,25.631,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,25.698,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,25.765,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,25.831,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,25.898,66.0
+pi05_12k_rtc,"pi0.5, RTC",6,25.965,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,26.031,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,26.098,67.8
+pi05_12k_rtc,"pi0.5, RTC",6,26.166,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,26.232,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,26.299,65.8
+pi05_12k_rtc,"pi0.5, RTC",6,26.365,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,26.432,67.5
+pi05_12k_rtc,"pi0.5, RTC",6,26.499,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,26.567,65.4
+pi05_12k_rtc,"pi0.5, RTC",6,26.632,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,26.699,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,26.765,67.9
+pi05_12k_rtc,"pi0.5, RTC",6,26.833,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,26.901,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,26.967,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,27.033,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,27.100,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,27.167,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,27.235,66.0
+pi05_12k_rtc,"pi0.5, RTC",6,27.300,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,27.368,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,27.434,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,27.501,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,27.568,67.5
+pi05_12k_rtc,"pi0.5, RTC",6,27.635,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,27.702,65.8
+pi05_12k_rtc,"pi0.5, RTC",6,27.768,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,27.834,67.8
+pi05_12k_rtc,"pi0.5, RTC",6,27.902,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,27.968,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,28.035,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,28.102,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,28.169,67.5
+pi05_12k_rtc,"pi0.5, RTC",6,28.236,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,28.302,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,28.369,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,28.436,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,28.502,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,28.570,65.8
+pi05_12k_rtc,"pi0.5, RTC",6,28.635,67.7
+pi05_12k_rtc,"pi0.5, RTC",6,28.703,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,28.770,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,28.837,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,28.904,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,28.970,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,29.037,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,29.104,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,29.171,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,29.238,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,29.305,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,29.371,66.1
+pi05_12k_rtc,"pi0.5, RTC",6,29.438,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,29.504,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,29.571,67.6
+pi05_12k_rtc,"pi0.5, RTC",6,29.639,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,29.705,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,29.772,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,29.839,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,29.906,65.5
+pi05_12k_rtc,"pi0.5, RTC",6,29.972,67.7
+pi05_12k_rtc,"pi0.5, RTC",6,30.039,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,30.106,66.1
+pi05_12k_rtc,"pi0.5, RTC",6,30.172,67.5
+pi05_12k_rtc,"pi0.5, RTC",6,30.240,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,30.306,67.5
+pi05_12k_rtc,"pi0.5, RTC",6,30.374,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,30.440,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,30.506,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,30.573,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,30.640,65.7
+pi05_12k_rtc,"pi0.5, RTC",6,30.706,68.3
+pi05_12k_rtc,"pi0.5, RTC",6,30.774,65.5
+pi05_12k_rtc,"pi0.5, RTC",6,30.839,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,30.907,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,30.973,67.8
+pi05_12k_rtc,"pi0.5, RTC",6,31.041,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,31.108,65.6
+pi05_12k_rtc,"pi0.5, RTC",6,31.173,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,31.240,67.7
+pi05_12k_rtc,"pi0.5, RTC",6,31.308,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,31.375,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,31.441,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,31.508,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,31.574,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,31.641,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,31.708,67.2
+pi05_12k_rtc,"pi0.5, RTC",6,31.775,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,31.841,67.5
+pi05_12k_rtc,"pi0.5, RTC",6,31.909,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,31.976,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,32.042,66.1
+pi05_12k_rtc,"pi0.5, RTC",6,32.108,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,32.175,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,32.242,67.8
+pi05_12k_rtc,"pi0.5, RTC",6,32.310,65.7
+pi05_12k_rtc,"pi0.5, RTC",6,32.376,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,32.443,65.9
+pi05_12k_rtc,"pi0.5, RTC",6,32.509,67.8
+pi05_12k_rtc,"pi0.5, RTC",6,32.576,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,32.643,66.1
+pi05_12k_rtc,"pi0.5, RTC",6,32.709,68.0
+pi05_12k_rtc,"pi0.5, RTC",6,32.777,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,32.844,66.0
+pi05_12k_rtc,"pi0.5, RTC",6,32.910,67.6
+pi05_12k_rtc,"pi0.5, RTC",6,32.977,65.9
+pi05_12k_rtc,"pi0.5, RTC",6,33.043,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,33.110,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,33.177,67.5
+pi05_12k_rtc,"pi0.5, RTC",6,33.244,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,33.311,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,33.378,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,33.445,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,33.511,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,33.578,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,33.645,66.1
+pi05_12k_rtc,"pi0.5, RTC",6,33.711,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,33.778,65.9
+pi05_12k_rtc,"pi0.5, RTC",6,33.844,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,33.911,67.9
+pi05_12k_rtc,"pi0.5, RTC",6,33.979,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,34.045,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,34.112,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,34.179,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,34.246,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,34.312,65.7
+pi05_12k_rtc,"pi0.5, RTC",6,34.378,67.5
+pi05_12k_rtc,"pi0.5, RTC",6,34.445,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,34.512,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,34.579,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,34.646,67.7
+pi05_12k_rtc,"pi0.5, RTC",6,34.713,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,34.780,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,34.847,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,34.913,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,34.980,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,35.046,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,35.113,67.7
+pi05_12k_rtc,"pi0.5, RTC",6,35.181,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,35.247,66.3
+pi05_12k_rtc,"pi0.5, RTC",6,35.313,67.5
+pi05_12k_rtc,"pi0.5, RTC",6,35.381,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,35.448,67.4
+pi05_12k_rtc,"pi0.5, RTC",6,35.515,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,35.581,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,35.648,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,35.715,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,35.781,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,35.848,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,35.915,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,35.981,67.3
+pi05_12k_rtc,"pi0.5, RTC",6,36.048,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,36.115,67.6
+pi05_12k_rtc,"pi0.5, RTC",6,36.182,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,36.249,66.1
+pi05_12k_rtc,"pi0.5, RTC",6,36.315,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,36.382,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,36.449,65.9
+pi05_12k_rtc,"pi0.5, RTC",6,36.515,67.7
+pi05_12k_rtc,"pi0.5, RTC",6,36.583,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,36.650,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,36.716,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,36.783,66.6
+pi05_12k_rtc,"pi0.5, RTC",6,36.850,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,36.916,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,36.983,65.7
+pi05_12k_rtc,"pi0.5, RTC",6,37.049,67.8
+pi05_12k_rtc,"pi0.5, RTC",6,37.117,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,37.183,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,37.250,65.8
+pi05_12k_rtc,"pi0.5, RTC",6,37.316,67.7
+pi05_12k_rtc,"pi0.5, RTC",6,37.384,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,37.450,66.0
+pi05_12k_rtc,"pi0.5, RTC",6,37.516,67.7
+pi05_12k_rtc,"pi0.5, RTC",6,37.584,66.9
+pi05_12k_rtc,"pi0.5, RTC",6,37.651,65.9
+pi05_12k_rtc,"pi0.5, RTC",6,37.717,67.6
+pi05_12k_rtc,"pi0.5, RTC",6,37.785,66.1
+pi05_12k_rtc,"pi0.5, RTC",6,37.851,66.4
+pi05_12k_rtc,"pi0.5, RTC",6,37.917,67.8
+pi05_12k_rtc,"pi0.5, RTC",6,37.985,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,38.051,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,38.118,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,38.185,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,38.251,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,38.318,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,38.385,66.8
+pi05_12k_rtc,"pi0.5, RTC",6,38.452,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,38.518,67.0
+pi05_12k_rtc,"pi0.5, RTC",6,38.585,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,38.651,67.9
+pi05_12k_rtc,"pi0.5, RTC",6,38.719,65.5
+pi05_12k_rtc,"pi0.5, RTC",6,38.785,67.9
+pi05_12k_rtc,"pi0.5, RTC",6,38.853,66.5
+pi05_12k_rtc,"pi0.5, RTC",6,38.919,66.2
+pi05_12k_rtc,"pi0.5, RTC",6,38.985,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,39.052,67.7
+pi05_12k_rtc,"pi0.5, RTC",6,39.120,65.9
+pi05_12k_rtc,"pi0.5, RTC",6,39.186,66.7
+pi05_12k_rtc,"pi0.5, RTC",6,39.252,67.1
+pi05_12k_rtc,"pi0.5, RTC",6,39.319,67.3

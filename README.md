@@ -1,46 +1,242 @@
 # nexarm-imitation
 
-在 NexArm 主从臂上做模仿学习：用遥操作采集"抓药盒放进收纳盒"的示教数据，训练 ACT、微调 π0.5，
-在真机上用同样的条件评测两者的成功率和推理延迟。
+Imitation learning on a NexArm leader–follower arm: 102 teleoperated
+demonstrations of one task ("pick up the medicine box and put it in the bin"),
+ACT trained on them, π0.5 (a pretrained vision-language-action model)
+LoRA-fine-tuned on the same data on a single 16 GB GPU, and both evaluated on
+the real arm under the same conditions.
 
-![同一个摆放位置，左 ACT、右 π0.5 RTC](docs/img/demo.gif)
+![ACT and π0.5 on the same placement, side by side](docs/img/demo.gif)
 
-20 个固定位置里的第 19 个，左边 ACT、右边 π0.5（RTC 异步推理），两个都用同样的 102 条示范，2 倍速，秒数是真实时间。
-这个位置只有 π0.5 成功。这样的位置一共 5 个：第 15 个 ACT 那次的录像里有操作者的手，没用；其余 3 个 π0.5 要 25–33 秒才放进。
-所以这是对 π0.5 比较有利的一个例子。20 个位置 40 秒内 ACT 12/20、π0.5 17/20。
-约 50 秒的完整演示视频（两个模型同位置对比、随机摆放、失败的例子、结果）用 `scripts/make_demo.py` 从评测录像生成。
+Fixed placement 19 of 20: ACT on the left, π0.5 with real-time chunking (RTC)
+on the right, 2× speed, clocks in real time. Only π0.5 succeeds here. This is a
+favourable example. Five placements had only π0.5 succeed: ACT's recording of
+placement 15 has the operator's hand in it, and on the other three π0.5 needed
+25–33 s. Over all 20 placements: ACT 12/20, π0.5 17/20. A 53 s video
+([scripts/make_demo.py](scripts/make_demo.py)) adds a placement both policies
+solve, random placements, two failures and the results.
 
-接在项目一 [nexarm-teleop-latency](https://github.com/lfulai223-wq/nexarm-teleop-latency) 后面：
-遥操作链路、串口驱动和延迟测量方法都来自那里。
+**Status:** complete as a second project: data collection, two policies, three
+real-robot evaluation sessions, a random-placement test and a demo video. It
+follows [nexarm-teleop-latency](https://github.com/lfulai223-wq/nexarm-teleop-latency),
+which measured and reduced the teleoperation latency of the same arm. See
+[what is not done](#limitations). Full write-up: [docs/report.md](docs/report.md).
 
-**状态：** 两批共录 109 条示范（可用 102 条）。ACT 用 45 条和 102 条各训练一个，同一天在 20 个固定位置交替评测：40 秒内成功 8/20 和 12/20（25 秒内 6 和 11），多出来的成功全在第二批补录的横放上。π0.5 用同样的 102 条在本机做 LoRA 微调，同一场评测里 40 秒内成功 17/20，102 条的 ACT 12/20（p = 0.18，20 个位置还不显著），差别全在横放；代价是每次重新预测 245 ms（ACT 9 ms），同步推理时每 2 秒停顿一次。换成 RTC 异步推理后同样 17/20，不再停顿，成功时松手中位数 9.9 秒（同步 15.3、ACT 12.2）。不用位置表、随机平放 15 次成功 12 次（位置和角度都在训练数据覆盖的范围内）；旁边加了别的盒子或者药盒立着放时都没夹起来。
-计划和进度见 [docs/roadmap.md](docs/roadmap.md)。
+## Results
 
-## 环境
+20 fixed placements, one 40 s trial each. The three policies ran back to back in
+one session (2026-11-18), with the same camera position:
 
-- 录制和训练用商家改版的 LeRobot（`nexarm_follower` / `nexarm_leader`），在它的虚拟环境里运行，
-  并装上项目一的包：`pip install -e ~/nexarm-teleop-latency`。
-- `scripts/make_print_sheets.py` 需要 matplotlib（项目一的环境里有）。
+| Policy | Box in the bin within 40 s | Within 25 s | Median time to release (successes) | Control rate |
+|---|---|---|---|---|
+| ACT, 102 demos | 12/20 | 10/20 | 12.2 s | 14.9 Hz |
+| π0.5, synchronous inference | 17/20 | 15/20 | 15.3 s | 13.4 Hz |
+| π0.5, RTC | 17/20 | 13/20 | 9.9 s | 15.0 Hz |
 
-## 文件
+Success within 40 s is the operator's call. The 25 s column and the release
+times come from the joint data: the moment the gripper opens with the base
+over the bin. That rule agreed with the operator on all 120 trials of the six
+fixed-placement sessions in this project.
 
-| 文件 | 用途 |
+- **π0.5 succeeds more often, but 20 placements cannot settle it.** Placement
+  by placement, synchronous π0.5 succeeded where ACT failed on 7 placements and
+  the reverse happened on 2 (exact sign test, p = 0.18). With RTC it is 5 to 0
+  (p = 0.06).
+- **The gap is in one orientation.** With the box lying horizontally in the
+  camera image, ACT managed 2/7, π0.5 7/7 (synchronous) and 5/7 (RTC).
+  Vertical and diagonal placements came out about the same for all three.
+- **π0.5 is slow to predict.** One 50-step action chunk takes 245 ms on the
+  RTX 5060 Ti (batch 1, with pre- and post-processing, LoRA merged into the
+  weights); ACT takes 9 ms. With synchronous inference the arm stalls for about
+  0.3 s every 2 s. RTC predicts the next chunk in a background thread: the
+  stalls disappear, the success count stays the same, and successful trials
+  finish sooner. Inference is no faster; RTC hides the 245 ms inside execution.
+
+![Box-in-bin count against time for ACT with 45 and 102 demos, and for ACT and π0.5](docs/img/success_vs_time.png)
+
+Each step is one placement whose box landed in the bin, at the moment the
+gripper opened over it. **Left:** ACT trained on 45 demos against ACT trained
+on 102, interleaved placement by placement, the operator not told which was
+running. The first evaluation had found every failure at the grasp and 0/7 on
+horizontal placements, so the second batch of demos added horizontal ones
+(about 4 → 26). All the extra successes are horizontal placements. Paired: 5
+placements to 1 within 40 s (p = 0.22), 5 to 0 within 25 s (p = 0.06).
+**Right:** the session in the table.
+
+![Frame-to-frame interval over one trial for each inference mode](docs/img/control_timing.png)
+
+Interval between recorded frames, one per control step. Synchronous π0.5
+stops for about 0.3 s each time it re-plans. Under RTC no interval in the whole
+session exceeded 131 ms. The first interval in each trace is warm-up.
+
+### Random placements
+
+18 more trials of π0.5 with RTC, with the box put anywhere in the start area at
+any angle instead of on the fixed placements:
+
+| Setup | Trials | In the bin | Failures |
+|---|---|---|---|
+| Box flat, random position and angle | 15 | 12 | Missed grasp (box on a marker sheet at the edge of the start area); box knocked against the bin's front wall, fell outside; released on the bin's rim |
+| Distractor objects next to it (a smaller box, a printed card) | 2 | 0 | Gripper never closed |
+| Box standing on its end | 1 | 0 | Never lifted |
+
+![Grasp positions on random placements against the training demos](docs/img/placement_coverage.png)
+
+Where π0.5 grasped, against the 100 training demos that contain a grasp. The
+joint angles at the first gripper close give the box's position (base angle)
+and orientation (gripper angle on the table; 0° and 180° are the same). Camera
+images could not be used: at the start pose the arm hides the box from the
+stand camera. All 16 random trials with a grasp fall inside the training
+coverage by a nearest-neighbour test on base, elbow and gripper angle; the
+nearest demo is within 7° of base angle and 20° of gripper angle. These
+placements test generalisation within the training coverage, not out of
+distribution. The scenes that were really new, distractors and a standing box,
+failed all three times.
+
+## How it works
+
+```
+leader arm ── teleoperation, 15 Hz ──▶ follower arm      stand camera 640×360 ─┐
+                                          │              wrist camera 640×480 ─┤
+                                          └── 6 joint positions ───────────────┴─▶ LeRobot dataset
+                                                                                    102 demos, 26,139 frames
+                         ┌──────────────────────────────────────────────────────────────┴───────┐
+                         ▼                                                                      ▼
+   ACT, 52 M parameters: ImageNet ResNet18 image encoder,          π0.5 (lerobot/pi05_base), 4.1 B parameters:
+   transformer predicts 30 actions (2 s) at a time                 LoRA, 28.7 M trainable (0.69%); flow matching
+                                                                   denoises 50 actions in 10 steps
+                         │                                                                      │
+                         └──────────────▶ real arm, 20 fixed placements, 40 s each ◀────────────┘
+```
+
+- **Setup.** NexArm leader and follower (5 joints plus a gripper, bus servos),
+  driven through the vendor's LeRobot fork. Two USB cameras on fixed exposure,
+  curtains drawn. Recording and control run at 15 Hz: at 20 Hz the stand camera
+  repeated 18% of frames, at 15 Hz none. ArUco markers on the desk are only
+  there to tell whether a camera has been knocked; a check script compares
+  their pixel positions with a reference before every session.
+- **Data.** Two batches, 109 recorded, 102 kept (29.0 minutes). The 7 deleted
+  had a skipped reset (operator in frame or arm idle), ended before the release,
+  or started with the box already in the gripper. The second batch was planned
+  from the first evaluation's failures, with a voice prompter announcing each
+  placement because reading a table at the robot had led to misplacements.
+- **ACT.** LeRobot's implementation with an action chunk of 30 steps. ACT's
+  default of 100 is about 2 s at 50 Hz but would be 6.7 s of open-loop motion
+  at 15 Hz. 100,000 steps at batch 8 in bf16, 3 h 27 min. Deployed as trained,
+  re-planning after each full chunk; temporal ensembling and re-planning every
+  10 steps looked worse in brief trials (two each) and were dropped.
+- **π0.5.** Peak memory was measured for five fine-tuning options first. Full
+  fine-tuning, and fine-tuning with only the vision encoder frozen, run out of
+  memory at batch 1. LoRA fits: rank 16 on every linear layer of the language
+  model and the action expert, the action and time projections fully trained,
+  the vision encoder frozen. Learning rate 2.5e-4 with cosine decay to 2.5e-5,
+  12,000 steps at batch 8, 14 h 47 min, 13.3 GB peak. For deployment the LoRA
+  is merged into the weights (373 → 245 ms per chunk), and building the model
+  skips random initialisation (load time 80 → 12 s, identical weights).
+- **RTC** is LeRobot's implementation. The work here was the settings (next
+  chunk requested when 20 actions remain, so it still re-plans about every
+  2 s) and a serial bug RTC exposed. The background inference holds Python's
+  GIL, so the vendor driver's 50 ms serial write timeout fired on writes that
+  had succeeded. Raising it to 0.5 s fixed it: no errors in the 22 runs since.
+- **Evaluation.** [scripts/eval_trials.py](scripts/eval_trials.py) runs each
+  trial as a separate recorded rollout. Voice prompts announce the placement,
+  keys score the trial, and errors are logged and the trial re-run. Two models
+  can be interleaved per placement, alternating which goes first.
+  [scripts/eval_stages.py](scripts/eval_stages.py) derives grasp and release
+  times from the joint data and runs the paired sign test.
+- **Safety.** Right after connecting, the follower's first servo reading is
+  often garbage (wrist and gripper at the ends of their range). LeRobot stores
+  that reading as the pose to return to after each trial, which would have
+  twisted the wrist into its end stop at the end of about half the trials.
+  [scripts/rollout_safe.py](scripts/rollout_safe.py) and
+  [scripts/record_safe.py](scripts/record_safe.py) wrap the LeRobot commands
+  and only start after two consistent good readings.
+
+## Repository layout
+
+| Path | Contents |
 |---|---|
-| `configs/record_pilot.yaml` | 试录 10 条的 LeRobot 录制配置，开头写了用法、按键和收尾方法 |
-| `configs/record_formal.yaml` | 正式录制配置，每批 50 条，第二批用 `--resume=true` 接着录 |
-| `configs/teleop_practice.yaml` | 录之前练手：只遥操作不录数据，控制频率和录制时一样 |
-| `configs/rollout_base.yaml` | 在真机上跑训练好的策略（`lerobot-rollout`），跑完回到起始姿势 |
-| `docs/recording_guide.md` | 录制操作步骤：每一步按什么键、听到什么语音、出意外怎么办 |
-| `scripts/check_setup.py` | 开工检查：设备、相机帧率和亮度、ArUco 码有没有偏、从臂读舵机是否正常、主从姿势差 |
-| `scripts/eval_trials.py` | 真机评测：20 个固定摆放逐次试抓，键盘记成功失败，每次录像，结果写进 CSV；两个模型对比时每个位置两个模型交替各测一次；`--free N` 不用位置表、操作者随机摆 |
-| `scripts/eval_stages.py` | 评测结果按关节数据逐次分析（什么时候夹住、什么时候松手），算限定秒数内的成功，两个模型逐个位置配对比较 |
-| `scripts/placement_coverage.py` | 用第一次合上夹爪时的关节读数量每次夹取的位置和朝向，和训练示范比，看评测时的摆放训练时见过没有 |
-| `scripts/make_demo.py` | 从评测录像剪演示视频（`outputs/demo/demo.mp4`）和 README 动图（`docs/img/demo.gif`），按每帧实际时间播放，支架相机裁掉房间 |
-| `scripts/record_safe.py` | `lerobot-record` 外面包一层：同样的从臂读数保护，加上多按的 → 和空的一条不会让录制崩溃；第二批起录制一律用它 |
-| `scripts/record_prompter.py` | 录制时跟着日志用语音报下一条摆在哪里、什么方向 |
-| `scripts/pi05_train_memory.py` | π0.5 各种微调方式在本机显卡上的峰值显存和每步耗时（合成输入，和 lerobot-train 一样的一步更新） |
-| `scripts/pi05_infer_latency.py` | π0.5 预测一个动作块要多久、占多少显存 |
-| `scripts/train_pi05.py` | 从 `lerobot/pi05_base` 微调 π0.5：lerobot-train 加一处步骤名兼容，参数和 lerobot-train 一样 |
-| `scripts/rollout_safe.py` | `lerobot-rollout` 外面包一层从臂读数保护（连上后的第一次读数经常是坏的），上真机一律用它 |
-| `scripts/align_camera.py` | 支架相机被碰歪后，语音报和基准差几个像素，边听边调回去 |
-| `scripts/make_print_sheets.py` | 生成 ArUco 码和标定棋盘格的 A4 打印文件 |
+| [configs/](configs/) | LeRobot recording, practice teleoperation and rollout configs |
+| [scripts/check_setup.py](scripts/check_setup.py) | Pre-session check: devices, camera rate and brightness, ArUco offsets, follower readings, leader–follower pose |
+| [scripts/align_camera.py](scripts/align_camera.py) | Voice feedback for putting a knocked camera back |
+| [scripts/record_safe.py](scripts/record_safe.py), [scripts/record_prompter.py](scripts/record_prompter.py) | Recording with the servo-reading guard; voice prompt for each placement |
+| [scripts/pi05_train_memory.py](scripts/pi05_train_memory.py), [scripts/pi05_infer_latency.py](scripts/pi05_infer_latency.py) | π0.5 memory and time per fine-tuning option; prediction time |
+| [scripts/train_pi05.py](scripts/train_pi05.py) | `lerobot-train` plus one processor-name alias needed to start from `lerobot/pi05_base` |
+| [scripts/rollout_safe.py](scripts/rollout_safe.py) | `lerobot-rollout` with the servo-reading guard, LoRA merge, faster loading and per-frame timestamps |
+| [scripts/eval_trials.py](scripts/eval_trials.py), [scripts/eval_stages.py](scripts/eval_stages.py) | Real-robot evaluation; joint-data analysis and paired comparison |
+| [scripts/placement_coverage.py](scripts/placement_coverage.py) | Grasp position and orientation per trial, against the training demos |
+| [scripts/export_results.py](scripts/export_results.py), [scripts/make_figures.py](scripts/make_figures.py), [scripts/make_demo.py](scripts/make_demo.py) | Result tables, figures, demo video and GIF |
+| [results/](results/) | Every scored trial, the frame intervals and the grasp positions behind the numbers above |
+| [docs/report.md](docs/report.md) | Full write-up |
+| [docs/roadmap.md](docs/roadmap.md) | Plan and day-by-day log, including dead ends (Chinese) |
+| [docs/recording_guide.md](docs/recording_guide.md) | Recording procedure (Chinese) |
+
+The dataset, checkpoints and trial videos are not published because the camera
+images show the room; [results/](results/) has the numbers.
+
+## Running it
+
+Everything except the figures runs in the environment of the vendor's LeRobot
+fork (0.5.2, with `nexarm_follower` and `nexarm_leader`), with project 1
+installed for the serial driver used by the setup check
+(`pip install -e ~/nexarm-teleop-latency`). The figures need only numpy and
+matplotlib.
+
+```bash
+V=<vendor LeRobot venv>/bin/python
+$V scripts/check_setup.py                       # before every session
+$V scripts/record_safe.py --config_path=configs/record_formal.yaml \
+    --resume=true --dataset.num_episodes=56 --dataset.episode_time_s=25
+
+ACCELERATE_MIXED_PRECISION=bf16 $V -m lerobot.scripts.lerobot_train \
+    --dataset.repo_id=local/nexarm_medbox_bin_clean_v2 --dataset.root=data/formal_clean_v2 \
+    --policy.type=act --policy.chunk_size=30 --policy.n_action_steps=30 --policy.push_to_hub=false \
+    --batch_size=8 --steps=100000 --save_freq=25000 --seed=1000 --output_dir=outputs/train/act_medbox_102ep
+$V scripts/train_pi05.py ...                    # full command in docs/roadmap.md, 2026-11-17
+
+$V scripts/eval_trials.py --duration 40 --rtc \
+    --name pi05_12k_rtc --policy outputs/train/pi05_lora_102ep/checkpoints/012000/pretrained_model
+$V scripts/eval_stages.py act102_100k_1118 pi05_12k_rtc --cut 25
+$V scripts/export_results.py
+python scripts/make_figures.py
+```
+
+`ACCELERATE_MIXED_PRECISION` is set because in this LeRobot version
+`--policy.use_amp` only affects inference. The keys and voice prompts for
+recording are in [docs/recording_guide.md](docs/recording_guide.md).
+
+**Safety.** The follower moves under a learned policy. Keep hands out of its
+workspace during a trial. `Esc` stops a trial at once and leaves the arm
+holding its position.
+
+## Limitations
+
+- **Small samples.** 20 placements per policy. The direction is the same in
+  every session, but no comparison reaches p < 0.05.
+- **π0.5 against ACT was neither interleaved nor blind.** The three policies
+  ran in consecutive blocks of one session, and synchronous π0.5 is
+  recognisable by its stalls. Only the 45- against 102-demo ACT comparison
+  was interleaved and blind.
+- **One task, one object, one fixed scene.** The random placements stayed
+  inside the training coverage. Distractors and a standing box were tried
+  three times in all, and failed each time.
+- **The camera moved between days** (knocked or re-plugged; 0.2° of rotation
+  on Nov 17, 1.35° on Nov 18), so comparisons are made within one session.
+- **Two operator interventions.** In ACT's trial on fixed placement 15 the
+  operator laid a fallen box flat while the arm was running; ACT still failed,
+  so this can only have helped ACT. In random trial 17 the operator took the
+  box back out of the bin after the success. Neither changes a score.
+- **The joint-data rule has a blind spot.** It sees where the gripper opens,
+  not whether the box is still in it or where it falls. It would have passed
+  two random-placement failures: one box had already fallen out of the
+  gripper, the other was released on the rim and dropped outside. The
+  operator's judgement is the score throughout.
+- **Latency figures are per-prediction timings and frame intervals.**
+  Camera-to-motion delay was not measured; with a static box it does not
+  decide the outcome.
+- **The π0.5 recipe differs from OpenPI's LoRA recipe**, which also trains the
+  vision encoder; that does not fit in 16 GB here. The vendor's RTC guidance
+  does not backpropagate through the network, unlike the RTC paper, and skips
+  one action at each chunk switch.
+- ACT and π0.5 predict chunks of different lengths (30 and 50); both re-plan
+  about every 30 steps.
