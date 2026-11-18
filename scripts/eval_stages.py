@@ -5,7 +5,7 @@
     $V scripts/eval_stages.py act45_100k_ab act102_100k_ab --cut 25       # 两个模型交替测，加逐个位置的配对比较
 
 判定和 2026-11-16 在基线 20 次上验证过的一样（和操作者的判断 20 次全部一致）：
-夹爪读数比开头张开时大 250 以上算合上；合上→张开的那一刻底座关节在 1509–1692
+夹爪读数比开头张开时（前 5 帧最小值）大 250 以上算合上；合上→张开的那一刻底座关节在 1509–1692
 （训练数据里松手时底座关节在 1559–1642，两头各放宽 50）算放进了收纳盒。
 每次 40 秒的评测报两个数：--cut 秒内放进（数据判定）和整次成功（操作者判定）。
 """
@@ -56,7 +56,7 @@ def analyse(name: str, cut: float) -> dict[int, dict[str, bool]]:
         s = np.stack(df["observation.state"].to_numpy())
         g, j1 = s[:, 5], s[:, 0]
         t = frame_times(d, len(df))
-        closed = g > g[:5].mean() + CLOSE_DELTA
+        closed = g > g[:5].min() + CLOSE_DELTA  # 开头张开时的读数；取最小，药盒就在爪下、一开始就合上时也对（2026-11-18 随机第 17 次）
         on = np.flatnonzero(np.diff(closed.astype(int)) == 1) + 1
         off = np.flatnonzero(np.diff(closed.astype(int)) == -1) + 1
         rel = [i for i in off if ZONE[0] <= j1[i] <= ZONE[1]]

@@ -40,6 +40,12 @@
     $V scripts/eval_trials.py --duration 40 --rtc \\
         --name pi05_12k_rtc --policy outputs/train/pi05_lora_102ep/checkpoints/012000/pretrained_model
 
+随机摆放（--free N，2026-11-18 起）：不用位置表，每次由操作者换一个新位置、新角度随便摆，共 N 次，只测一个模型。
+CSV 的位置、方向两列记"随机"，实际摆在哪、转了多少度，事后从录像第一帧量。
+
+    $V scripts/eval_trials.py --duration 40 --rtc --free 20 \\
+        --name pi05_12k_rtc_free --policy outputs/train/pi05_lora_102ep/checkpoints/012000/pretrained_model
+
 开始前：跑过 scripts/check_setup.py；从臂停在起始姿势。位置表见 TRIALS 和 docs/recording_guide.md。
 结果：outputs/eval/<name>/results.csv；每次的日志在同一目录；录像在 data/rollouts/<name>/<trialNN_时间>/。
 逐次的阶段分析和两个模型的配对比较：scripts/eval_stages.py。
@@ -85,6 +91,11 @@ TRIALS = [
 SPOKEN = {"左上": "top left", "右上": "top right", "右下": "bottom right", "左下": "bottom left",
           "正中": "center", "中偏左": "center left", "中偏右": "center right",
           "横放": "horizontal", "竖放": "vertical", "斜放": "diagonal", "往另一边斜": "other diagonal"}
+FREE = ("随机", "随机")  # --free 时每一次的位置、方向
+
+
+def trial_list(args) -> list[tuple[str, str]]:
+    return [FREE] * args.free if args.free else TRIALS
 
 FIELDS = ["trial", "position", "orientation", "result", "started", "seconds", "slow_steps", "note",
           "recording", "policy"]
@@ -300,11 +311,11 @@ def teleop(keys: Keys, log_dir: Path, quiet: bool, selftest: bool) -> None:
     say("Teleop off", quiet)
 
 
-def run_trial(args, keys: Keys, m: Model, i: int, header: str, prompt: str, base: Path,
-              n_rollouts: list[int]) -> bool:
-    """在第 i 个摆放位置用模型 m 试抓，判了成功或失败就返回 True；在开始提示时按 Esc 返回 False。
+def run_trial(args, keys: Keys, m: Model, i: int, place: tuple[str, str], header: str, prompt: str,
+              base: Path, n_rollouts: list[int]) -> bool:
+    """在第 i 个摆放位置 place（位置, 方向）用模型 m 试抓，判了成功或失败就返回 True；在开始提示时按 Esc 返回 False。
     重做、程序出错都在这里面重来，不换位置也不换模型。"""
-    pos, ori = TRIALS[i - 1]
+    pos, ori = place
     while True:
         print(header, flush=True)
         keys.drain()
@@ -394,23 +405,27 @@ def run_eval(args, keys: Keys, base: Path = ROOT) -> None:
             if new_csv:
                 m.writer.writeheader()
 
+        trials = trial_list(args)
         stopped = False
-        for i in range(args.start, len(TRIALS) + 1):
-            pos, ori = TRIALS[i - 1]
+        for i in range(args.start, len(trials) + 1):
+            pos, ori = trials[i - 1]
             order = models if i % 2 == 1 else models[::-1]  # 交替测：单数次先 A，双数次先 B
             for k, m in enumerate(order):
                 if i in done[m.name]:
                     continue
                 if ab:
-                    header = f"\n== 第 {i}/{len(TRIALS)} 次，第 {k + 1} 轮（{m.name}）：{pos}，{ori}"
+                    header = f"\n== 第 {i}/{len(trials)} 次，第 {k + 1} 轮（{m.name}）：{pos}，{ori}"
                     prompt = (f"Trial {i}, first run. {SPOKEN[pos]}, {SPOKEN[ori]}. Press right arrow to start"
                               if k == 0 else
                               f"Trial {i}, second run. Same place: {SPOKEN[pos]}, {SPOKEN[ori]}. "
                               "Press right arrow to start")
+                elif args.free:
+                    header = f"\n== 第 {i}/{len(trials)} 次：随机摆放"
+                    prompt = f"Trial {i}. Put the box somewhere new, at any angle. Press right arrow to start"
                 else:
-                    header = f"\n== 第 {i}/{len(TRIALS)} 次：{pos}，{ori}"
+                    header = f"\n== 第 {i}/{len(trials)} 次：{pos}，{ori}"
                     prompt = f"Trial {i}. {SPOKEN[pos]}, {SPOKEN[ori]}. Press right arrow to start"
-                if not run_trial(args, keys, m, i, header, prompt, base, n_rollouts):
+                if not run_trial(args, keys, m, i, (pos, ori), header, prompt, base, n_rollouts):
                     say("Evaluation stopped", args.quiet)
                     stopped = True
                     break
@@ -423,9 +438,9 @@ def run_eval(args, keys: Keys, base: Path = ROOT) -> None:
         ok = sum(r["result"] == "success" for r in rows)
         counts.append((len(rows), ok))
         print(f"\n{m.name}：已记录 {len(rows)} 次，成功 {ok} 次。结果：{m.csv_path}", flush=True)
-    if not args.selftest and all(n == len(TRIALS) for n, _ in counts):
+    if not args.selftest and all(n == len(trials) for n, _ in counts):
         if ab:
-            say(f"Done. All {2 * len(TRIALS)} runs are scored", args.quiet)
+            say(f"Done. All {2 * len(trials)} runs are scored", args.quiet)
         else:
             say(f"Done. {counts[0][1]} out of {counts[0][0]} succeeded", args.quiet)
 
@@ -438,7 +453,7 @@ def selftest() -> None:
 
         def ns(**kw):
             d = dict(policy=None, name=None, policy_b=None, name_b=None, duration=0.0, ensemble=None,
-                     n_action_steps=None, rtc=False, start=1, quiet=True, selftest=True)
+                     n_action_steps=None, rtc=False, free=None, start=1, quiet=True, selftest=True)
             return argparse.Namespace(**{**d, **kw})
 
         def rows(name: str) -> list[dict[str, str]]:
@@ -487,6 +502,12 @@ def selftest() -> None:
             print(f"拒绝了：{e}", flush=True)
         else:
             raise AssertionError("换了模型却没有拒绝")
+
+        print("\n== 自测 5：随机摆放 3 次（不用位置表，测完 3 次自己结束）", flush=True)
+        run_eval(ns(name="free", policy="pf", free=3), Keys(scripted=[
+            "start", "success", "start", "redo", "start", "fail", "start", "success"]), base)
+        expect("free", [(1, "success"), (2, "redo"), (2, "fail"), (3, "success")])
+        assert all((r["position"], r["orientation"]) == FREE for r in rows("free"))
     print("\n自测全部通过", flush=True)
 
 
@@ -503,6 +524,8 @@ def main() -> None:
                     help="每个动作块执行几步就重新推理（训练时是 30，即 2 秒）；不用重新训练")
     ap.add_argument("--rtc", action="store_true",
                     help="RTC 异步推理（只用于 π0.5 这类流匹配模型）：后台预测、机械臂不停顿，设置见 inference_overrides")
+    ap.add_argument("--free", type=int, default=None, metavar="N",
+                    help="随机摆放 N 次：不用位置表，每次操作者自己换位置和角度（只测一个模型）")
     ap.add_argument("--start", type=int, default=1,
                     help="从第几次开始（只测一个模型时，中途退出后接着测用；交替测时判过的会自动跳过）")
     ap.add_argument("--quiet", action="store_true", help="不出声，只打印")
@@ -522,6 +545,8 @@ def main() -> None:
         ap.error("--ensemble 和 --n-action-steps 只能选一个")
     if args.rtc and (args.ensemble is not None or args.n_action_steps is not None):
         ap.error("--rtc 时每块执行多少步由队列决定（剩 20 步就预测下一块），不能再给 --ensemble 或 --n-action-steps")
+    if args.free is not None and (args.free < 1 or args.policy_b):
+        ap.error("--free 要大于 0，而且只能测一个模型（随机摆的位置没法给第二个模型原样再摆一次）")
     run_eval(args, Keys())
 
 
