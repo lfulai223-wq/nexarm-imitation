@@ -35,6 +35,10 @@
 π0.5（LoRA 微调，2026-11-18 起）：rollout_safe.py 加载时跳过随机初始化、把 LoRA 合并进权重，
 日志里没有合并的记录就记 error。π0.5 每次重新预测约 0.25 秒，超过一个控制周期，必然超时一次，
 提醒门槛会自动加上这些次数（按 时长 × 15 / 每块执行步数 算）。--n-action-steps 对两个模型都生效，ACT 训练时就是 30。
+加 --rtc 用 RTC 异步推理（只能用于 π0.5）：后台预测、不停顿，参数见 inference_overrides。
+
+    $V scripts/eval_trials.py --duration 40 --rtc \\
+        --name pi05_12k_rtc --policy outputs/train/pi05_lora_102ep/checkpoints/012000/pretrained_model
 
 开始前：跑过 scripts/check_setup.py；从臂停在起始姿势。位置表见 TRIALS 和 docs/recording_guide.md。
 结果：outputs/eval/<name>/results.csv；每次的日志在同一目录；录像在 data/rollouts/<name>/<trialNN_时间>/。
@@ -196,10 +200,12 @@ def policy_info(policy: str, base: Path) -> dict:
 
 
 def make_model(name: str, policy: str, args, base: Path) -> Model:
-    label = " ".join([policy, f"--duration={args.duration:g}"] + policy_overrides(args))
+    label = " ".join([policy, f"--duration={args.duration:g}"] + policy_overrides(args) + inference_overrides(args))
     info = policy_info(policy, base)
+    if args.rtc and info and info.get("type") not in FLOW_POLICIES:
+        raise SystemExit(f"--rtc 只能用于流匹配的模型（{', '.join(FLOW_POLICIES)}），{policy} 是 {info.get('type')}")
     expected_slow = 0
-    if info.get("type") == "pi05":  # 重新预测一个动作块约 0.25 秒（控制周期 67 ms），每次重新预测超时一次
+    if info.get("type") == "pi05" and not args.rtc:  # 同步推理：重新预测一个动作块约 0.25 秒，每次重新预测超时一次
         n_steps = args.n_action_steps or info.get("n_action_steps") or 50
         expected_slow = math.ceil(args.duration * 15 / n_steps)
     m = Model(name, policy, label, base / "outputs" / "eval" / name, base / "data" / "rollouts" / name,
@@ -215,7 +221,20 @@ def rollout_cmd(args, m: Model, rec_dir: Path, tag: str) -> list[str]:
             f"--policy.path={m.policy}", f"--duration={args.duration}", "--play_sounds=false",
             "--strategy.type=sentry", f"--dataset.repo_id=local/rollout_{m.name}_{tag}",
             f"--dataset.root={rec_dir}", f"--dataset.single_task={TASK}", "--dataset.fps=15",
-            "--dataset.push_to_hub=false", "--dataset.video=true"] + policy_overrides(args)
+            "--dataset.push_to_hub=false", "--dataset.video=true"] + policy_overrides(args) + inference_overrides(args)
+
+
+FLOW_POLICIES = ("pi05", "pi0", "smolvla")  # LeRobot 的 RTC 只支持这些流匹配模型
+
+
+def inference_overrides(args) -> list[str]:
+    """RTC 异步推理（实时分块）：后台线程预测下一块，机械臂不停顿；新的一块开头按上一块还没执行完的动作引导，衔接平滑。
+    队列剩 20 步时开始预测下一块：动作块 50 步，所以每执行约 30 步（2 秒）看一次新画面，和同步推理、ACT 的节奏一样。
+    execution_horizon 10、max_guidance_weight 10、EXP 是 LeRobot RTC 文档的建议值。"""
+    if not args.rtc:
+        return []
+    return ["--inference.type=rtc", "--inference.rtc.execution_horizon=10", "--inference.rtc.max_guidance_weight=10.0",
+            "--inference.rtc.prefix_attention_schedule=EXP", "--inference.queue_threshold=20"]
 
 
 def policy_overrides(args) -> list[str]:
@@ -419,7 +438,7 @@ def selftest() -> None:
 
         def ns(**kw):
             d = dict(policy=None, name=None, policy_b=None, name_b=None, duration=0.0, ensemble=None,
-                     n_action_steps=None, start=1, quiet=True, selftest=True)
+                     n_action_steps=None, rtc=False, start=1, quiet=True, selftest=True)
             return argparse.Namespace(**{**d, **kw})
 
         def rows(name: str) -> list[dict[str, str]]:
@@ -482,6 +501,8 @@ def main() -> None:
                     help="ACT 时间集成系数（如 0.01）：每一步都重新推理并加权平均；不用重新训练")
     ap.add_argument("--n-action-steps", type=int, default=None,
                     help="每个动作块执行几步就重新推理（训练时是 30，即 2 秒）；不用重新训练")
+    ap.add_argument("--rtc", action="store_true",
+                    help="RTC 异步推理（只用于 π0.5 这类流匹配模型）：后台预测、机械臂不停顿，设置见 inference_overrides")
     ap.add_argument("--start", type=int, default=1,
                     help="从第几次开始（只测一个模型时，中途退出后接着测用；交替测时判过的会自动跳过）")
     ap.add_argument("--quiet", action="store_true", help="不出声，只打印")
@@ -499,6 +520,8 @@ def main() -> None:
         ap.error("两个模型的名字不能一样，不然结果会写进同一个 CSV")
     if args.ensemble is not None and args.n_action_steps is not None:
         ap.error("--ensemble 和 --n-action-steps 只能选一个")
+    if args.rtc and (args.ensemble is not None or args.n_action_steps is not None):
+        ap.error("--rtc 时每块执行多少步由队列决定（剩 20 步就预测下一块），不能再给 --ensemble 或 --n-action-steps")
     run_eval(args, Keys())
 
 

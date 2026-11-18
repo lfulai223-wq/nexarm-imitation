@@ -33,6 +33,10 @@ MAX_JUMP = 300       # 和上一个好读数相差超过这么多，要再读一
 AGREE = 50           # 两次读数相差在这以内算一致
 RETRIES = 4
 FIRST_READ_TIMEOUT_S = 2.0
+# 串口写超时：商家驱动是 50 ms。pyserial 写完几个字节后会检查是否已超时；RTC 后台线程推理时会占住 Python 全局锁，
+# 主线程写完一拿回锁就可能已过 50 ms，于是报 SerialTimeoutException（写其实已经成功）。2026-11-18 RTC 评测前 11 次里 4 次，
+# 都在控制循环开始的第一秒，预热模型后仍有。放宽到 0.5 秒只影响这个检查；读超时不变，同步推理没有这个问题。
+WRITE_TIMEOUT_S = 0.5
 
 logger = logging.getLogger("rollout_safe")
 
@@ -99,6 +103,7 @@ def install() -> None:
 
     def connect(self, *args, **kwargs):
         orig_connect(self, *args, **kwargs)
+        self.bus._serial.write_timeout = WRITE_TIMEOUT_S
         guard = GuardedReads(self.bus.read_positions)
         p = guard.first_good()
         self.bus.read_positions = guard
@@ -123,9 +128,43 @@ def install_pi05_fast_load() -> None:
 
     def from_pretrained(cls, *args, **kwargs):
         with no_init_weights():
-            return orig(cls, *args, **kwargs)
+            policy = orig(cls, *args, **kwargs)
+        _warmup_pi05(policy)
+        return policy
 
     PI05Policy.from_pretrained = classmethod(from_pretrained)
+
+
+def _warmup_pi05(policy) -> None:
+    """连机械臂之前先用假输入推理两次，把第一次推理的冷启动（CUDA 内核加载、cuBLAS 初始化等）做掉。
+
+    为什么（2026-11-18 RTC 评测时发现）：RTC 在后台线程推理，主循环同时在读写从臂串口。第一次推理冷启动时
+    长时间占住 Python 的全局锁，主循环拿不到锁；商家驱动串口写超时只有 50 ms，pyserial 写完一检查已经超时，
+    报 SerialTimeoutException。前 8 次里出现 3 次，都在控制循环开始的第一秒。同步推理时推理和串口在同一个线程，没有这个问题。
+    顺便把求导引擎也启动一下（RTC 的引导项用 torch.autograd.grad）。"""
+    import torch
+
+    from lerobot.configs.types import FeatureType
+
+    dev = next(policy.parameters()).device
+    if dev.type != "cuda":
+        return
+    cfg = policy.config
+    batch = {k: (torch.rand if ft.type is FeatureType.VISUAL else torch.zeros)(1, *ft.shape, device=dev)
+             for k, ft in cfg.input_features.items() if ft.type in (FeatureType.VISUAL, FeatureType.STATE)}
+    n = cfg.tokenizer_max_length
+    mask = torch.zeros(1, n, dtype=torch.bool, device=dev)
+    mask[:, :30] = True
+    batch["observation.language.tokens"] = torch.zeros(1, n, dtype=torch.long, device=dev)
+    batch["observation.language.attention_mask"] = mask
+    t = time.perf_counter()
+    with torch.no_grad():
+        for _ in range(2):
+            policy.predict_action_chunk(batch)
+    x = torch.zeros(1, device=dev, requires_grad=True)
+    torch.autograd.grad((x * 2).sum(), x)
+    torch.cuda.synchronize()
+    logger.info("π0.5 预热完成（%.1f 秒）", time.perf_counter() - t)
 
 
 def install_lora_merge() -> None:
