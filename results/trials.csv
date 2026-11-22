@@ -1,139 +1,179 @@
-session,policy,date,time_limit_s,placements,trial,position,orientation,operator_result,first_close_s,gripper_closes,release_over_bin_s,frames,median_frame_interval_ms,max_frame_interval_ms,frame_intervals_over_150ms,timing_source
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,1,top-left,horizontal,fail,7.53,2,,371,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,2,top-right,horizontal,fail,9.73,1,,370,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,3,bottom-right,horizontal,fail,8.00,2,,370,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,4,bottom-left,horizontal,fail,11.40,1,,371,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,5,center,horizontal,fail,11.87,4,,371,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,6,top-left,vertical,success,5.60,1,8.87,371,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,7,top-right,vertical,fail,7.93,4,,370,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,8,bottom-right,vertical,success,9.87,1,14.07,371,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,9,bottom-left,vertical,fail,,0,,371,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,10,center,vertical,fail,1.67,5,,371,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,11,top-left,diagonal,success,5.20,1,8.53,371,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,12,top-right,diagonal,fail,,0,,371,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,13,bottom-right,diagonal,fail,11.27,1,,371,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,14,bottom-left,diagonal,success,6.00,2,9.93,371,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,15,center,diagonal,fail,7.13,2,,371,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,16,center-left,horizontal,fail,8.73,4,,370,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,17,center-right,horizontal,fail,,0,,371,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,18,center-left,vertical,success,5.00,1,8.40,371,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,19,center-right,vertical,fail,7.73,1,,371,66.7,67,0,frame_index/15
-act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,20,center,diagonal-mirrored,success,5.93,1,9.73,371,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,1,top-left,horizontal,fail,11.87,9,,595,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,2,top-right,horizontal,fail,7.87,2,,595,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,3,bottom-right,horizontal,fail,13.87,1,,594,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,4,bottom-left,horizontal,fail,,0,,595,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,5,center,horizontal,fail,11.80,2,,595,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,6,top-left,vertical,success,5.40,2,15.20,595,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,7,top-right,vertical,fail,10.00,9,,594,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,8,bottom-right,vertical,success,7.20,1,11.33,594,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,9,bottom-left,vertical,success,6.87,1,10.20,595,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,10,center,vertical,success,4.00,3,21.93,595,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,11,top-left,diagonal,success,7.33,5,34.67,595,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,12,top-right,diagonal,fail,,0,,595,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,13,bottom-right,diagonal,fail,6.00,1,,595,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,14,bottom-left,diagonal,fail,6.00,7,,594,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,15,center,diagonal,success,5.27,4,25.27,595,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,16,center-left,horizontal,fail,13.73,3,,595,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,17,center-right,horizontal,fail,24.00,1,,595,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,18,center-left,vertical,success,5.33,1,8.80,594,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,19,center-right,vertical,fail,7.60,4,,595,66.7,67,0,frame_index/15
-act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,20,center,diagonal-mirrored,success,5.87,3,20.07,594,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,1,top-left,horizontal,fail,7.93,4,,595,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,2,top-right,horizontal,success,9.80,3,26.07,595,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,3,bottom-right,horizontal,fail,16.00,2,,595,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,4,bottom-left,horizontal,success,9.93,1,14.07,594,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,5,center,horizontal,success,7.40,1,11.33,594,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,6,top-left,vertical,success,5.73,1,8.20,594,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,7,top-right,vertical,fail,7.53,2,,595,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,8,bottom-right,vertical,success,7.53,1,10.80,595,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,9,bottom-left,vertical,success,6.87,1,10.07,595,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,10,center,vertical,success,5.47,2,14.40,595,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,11,top-left,diagonal,success,8.47,1,11.40,595,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,12,top-right,diagonal,fail,,0,,594,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,13,bottom-right,diagonal,fail,,0,,594,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,14,bottom-left,diagonal,success,7.07,1,9.93,594,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,15,center,diagonal,fail,7.53,1,,595,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,16,center-left,horizontal,fail,13.40,3,,595,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,17,center-right,horizontal,success,9.87,1,14.07,595,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,18,center-left,vertical,success,5.40,1,8.40,595,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,19,center-right,vertical,fail,9.73,3,,594,66.7,67,0,frame_index/15
-act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,20,center,diagonal-mirrored,success,5.53,1,9.13,594,66.7,67,0,frame_index/15
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,1,top-left,horizontal,success,15.52,2,20.11,536,66.8,561,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,2,top-right,horizontal,success,22.32,1,25.96,536,66.8,469,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,3,bottom-right,horizontal,success,9.56,1,12.79,536,66.8,570,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,4,bottom-left,horizontal,success,12.79,1,17.95,536,66.8,463,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,5,center,horizontal,success,16.22,1,22.03,536,66.8,498,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,6,top-left,vertical,success,4.97,4,20.77,537,66.8,559,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,7,top-right,vertical,success,6.12,3,29.37,537,66.8,513,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,8,bottom-right,vertical,success,9.76,1,14.67,536,66.8,560,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,9,bottom-left,vertical,fail,6.77,3,,536,66.8,553,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,10,center,vertical,success,0.61,1,4.57,536,66.8,466,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,11,top-left,diagonal,success,6.83,1,10.96,535,66.8,547,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,12,top-right,diagonal,fail,13.35,1,,537,66.9,538,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,13,bottom-right,diagonal,fail,7.38,2,,535,66.8,544,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,14,bottom-left,diagonal,success,6.59,5,18.27,537,66.9,529,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,15,center,diagonal,success,6.01,3,18.33,536,66.8,498,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,16,center-left,horizontal,success,11.10,1,15.35,535,66.8,553,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,17,center-right,horizontal,success,9.86,1,14.94,535,66.9,476,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,18,center-left,vertical,success,8.18,1,12.32,536,66.8,484,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,19,center-right,vertical,success,7.20,1,12.19,536,66.8,496,18,frame_times
-pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,20,center,diagonal-mirrored,success,9.39,1,14.19,536,66.9,516,18,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,1,top-left,horizontal,fail,8.40,4,,594,66.8,369,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,2,top-right,horizontal,fail,,0,,595,66.8,324,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,3,bottom-right,horizontal,fail,,0,,595,66.8,328,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,4,bottom-left,horizontal,fail,11.49,1,,595,66.8,375,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,5,center,horizontal,success,10.17,6,36.86,594,66.8,400,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,6,top-left,vertical,success,5.86,1,9.00,595,66.8,313,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,7,top-right,vertical,success,5.87,1,8.94,595,66.9,327,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,8,bottom-right,vertical,success,7.93,2,25.39,595,66.8,370,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,9,bottom-left,vertical,success,6.87,1,9.88,595,66.9,382,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,10,center,vertical,success,5.67,1,8.68,595,66.8,323,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,11,top-left,diagonal,success,11.44,2,20.53,594,66.8,384,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,12,top-right,diagonal,fail,7.49,3,,595,66.8,337,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,13,bottom-right,diagonal,success,9.04,3,22.35,594,66.9,406,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,14,bottom-left,diagonal,success,6.27,1,9.68,595,66.8,379,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,15,center,diagonal,fail,7.95,4,,595,66.8,318,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,16,center-left,horizontal,fail,11.37,6,,595,66.8,397,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,17,center-right,horizontal,success,9.61,1,14.56,595,66.8,380,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,18,center-left,vertical,success,5.41,1,8.49,595,66.8,330,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,19,center-right,vertical,fail,6.29,3,,595,66.8,345,1,frame_times
-act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,20,center,diagonal-mirrored,success,6.22,2,16.11,595,66.8,395,1,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,1,top-left,horizontal,success,21.50,1,25.31,589,66.8,124,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,2,top-right,horizontal,success,7.88,3,33.12,591,66.8,117,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,3,bottom-right,horizontal,fail,5.75,2,,590,66.8,117,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,4,bottom-left,horizontal,fail,7.08,6,,590,66.8,121,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,5,center,horizontal,success,12.40,2,32.77,590,66.8,113,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,6,top-left,vertical,success,5.13,1,7.47,590,66.8,121,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,7,top-right,vertical,success,6.61,1,9.49,590,66.8,116,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,8,bottom-right,vertical,success,4.18,1,7.39,590,66.8,109,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,9,bottom-left,vertical,success,8.83,3,15.57,594,66.8,125,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,10,center,vertical,success,4.06,3,7.93,594,66.8,118,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,11,top-left,diagonal,success,6.53,1,9.87,594,66.8,120,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,12,top-right,diagonal,fail,5.35,7,,594,66.8,117,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,13,bottom-right,diagonal,success,7.27,1,10.54,594,66.8,128,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,14,bottom-left,diagonal,success,5.61,1,8.61,594,66.8,131,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,15,center,diagonal,success,4.74,1,7.95,594,66.8,111,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,16,center-left,horizontal,success,25.91,1,30.39,594,66.8,109,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,17,center-right,horizontal,success,8.07,1,14.88,594,66.8,120,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,18,center-left,vertical,success,4.35,1,7.29,594,66.8,129,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,19,center-right,vertical,success,4.53,1,8.74,594,66.8,121,0,frame_times
-pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,20,center,diagonal-mirrored,success,9.94,1,13.81,594,66.8,120,0,frame_times
-pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,1,random,random,success,7.86,2,11.60,594,66.8,115,0,frame_times
-pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,2,random,random,success,5.82,1,9.69,594,66.8,129,0,frame_times
-pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,3,random,random,fail,4.73,2,,594,66.8,122,0,frame_times
-pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,4,random,random,success,9.03,1,12.90,594,66.8,122,0,frame_times
-pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,5,random,random,fail,7.62,4,9.82,594,66.8,118,0,frame_times
-pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,6,random,random,success,10.36,1,15.11,594,66.8,137,0,frame_times
-pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,7,random,random,success,5.22,1,8.62,594,66.8,128,0,frame_times
-pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,8,random,random,success,5.86,1,9.53,594,66.8,112,0,frame_times
-pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,9,random,random,fail,,0,,594,66.8,123,0,frame_times
-pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,10,random,random,fail,,0,,593,66.8,134,0,frame_times
-pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,11,random,random,success,10.57,1,14.05,594,66.8,129,0,frame_times
-pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,12,random,random,fail,10.09,1,14.03,594,66.8,122,0,frame_times
-pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,13,random,random,success,8.49,1,13.10,594,66.8,123,0,frame_times
-pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,14,random,random,success,6.55,4,11.02,594,66.8,113,0,frame_times
-pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,15,random,random,success,4.34,1,7.48,594,66.8,124,0,frame_times
-pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,16,random,random,fail,12.49,1,,593,66.8,130,0,frame_times
-pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,17,random,random,success,0.20,2,3.74,593,66.8,128,0,frame_times
-pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,18,random,random,success,7.29,3,18.97,594,66.8,120,0,frame_times
+session,policy,date,time_limit_s,placements,trial,position,orientation,operator_result,first_close_s,gripper_closes,release_over_bin_s,hand_in_frame_s,frames,median_frame_interval_ms,max_frame_interval_ms,frame_intervals_over_150ms,timing_source
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,1,top-left,horizontal,fail,7.53,2,,,371,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,2,top-right,horizontal,fail,9.73,1,,,370,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,3,bottom-right,horizontal,fail,8.00,2,,,370,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,4,bottom-left,horizontal,fail,11.40,1,,,371,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,5,center,horizontal,fail,11.87,4,,,371,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,6,top-left,vertical,success,5.60,1,8.87,,371,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,7,top-right,vertical,fail,7.93,4,,,370,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,8,bottom-right,vertical,success,9.87,1,14.07,,371,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,9,bottom-left,vertical,fail,,0,,,371,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,10,center,vertical,fail,1.67,5,,,371,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,11,top-left,diagonal,success,5.20,1,8.53,,371,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,12,top-right,diagonal,fail,,0,,,371,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,13,bottom-right,diagonal,fail,11.27,1,,,371,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,14,bottom-left,diagonal,success,6.00,2,9.93,,371,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,15,center,diagonal,fail,7.13,2,,,371,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,16,center-left,horizontal,fail,8.73,4,,,370,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,17,center-right,horizontal,fail,,0,,,371,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,18,center-left,vertical,success,5.00,1,8.40,,371,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,19,center-right,vertical,fail,7.73,1,,,371,66.7,67,0,frame_index/15
+act45_100k,"ACT, 45 demos",2026-11-16,25,fixed,20,center,diagonal-mirrored,success,5.93,1,9.73,,371,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,1,top-left,horizontal,fail,11.87,9,,,595,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,2,top-right,horizontal,fail,7.87,2,,,595,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,3,bottom-right,horizontal,fail,13.87,1,,,594,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,4,bottom-left,horizontal,fail,,0,,,595,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,5,center,horizontal,fail,11.80,2,,,595,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,6,top-left,vertical,success,5.40,2,15.20,,595,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,7,top-right,vertical,fail,10.00,9,,,594,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,8,bottom-right,vertical,success,7.20,1,11.33,,594,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,9,bottom-left,vertical,success,6.87,1,10.20,,595,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,10,center,vertical,success,4.00,3,21.93,,595,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,11,top-left,diagonal,success,7.33,5,34.67,,595,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,12,top-right,diagonal,fail,,0,,,595,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,13,bottom-right,diagonal,fail,6.00,1,,,595,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,14,bottom-left,diagonal,fail,6.00,7,,,594,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,15,center,diagonal,success,5.27,4,25.27,,595,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,16,center-left,horizontal,fail,13.73,3,,,595,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,17,center-right,horizontal,fail,24.00,1,,,595,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,18,center-left,vertical,success,5.33,1,8.80,,594,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,19,center-right,vertical,fail,7.60,4,,,595,66.7,67,0,frame_index/15
+act45_100k_ab,"ACT, 45 demos",2026-11-17,40,fixed,20,center,diagonal-mirrored,success,5.87,3,20.07,,594,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,1,top-left,horizontal,fail,7.93,4,,,595,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,2,top-right,horizontal,success,9.80,3,26.07,,595,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,3,bottom-right,horizontal,fail,16.00,2,,,595,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,4,bottom-left,horizontal,success,9.93,1,14.07,,594,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,5,center,horizontal,success,7.40,1,11.33,,594,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,6,top-left,vertical,success,5.73,1,8.20,,594,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,7,top-right,vertical,fail,7.53,2,,,595,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,8,bottom-right,vertical,success,7.53,1,10.80,,595,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,9,bottom-left,vertical,success,6.87,1,10.07,,595,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,10,center,vertical,success,5.47,2,14.40,,595,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,11,top-left,diagonal,success,8.47,1,11.40,,595,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,12,top-right,diagonal,fail,,0,,,594,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,13,bottom-right,diagonal,fail,,0,,,594,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,14,bottom-left,diagonal,success,7.07,1,9.93,,594,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,15,center,diagonal,fail,7.53,1,,,595,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,16,center-left,horizontal,fail,13.40,3,,,595,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,17,center-right,horizontal,success,9.87,1,14.07,,595,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,18,center-left,vertical,success,5.40,1,8.40,,595,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,19,center-right,vertical,fail,9.73,3,,,594,66.7,67,0,frame_index/15
+act102_100k_ab,"ACT, 102 demos",2026-11-17,40,fixed,20,center,diagonal-mirrored,success,5.53,1,9.13,,594,66.7,67,0,frame_index/15
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,1,top-left,horizontal,success,15.52,2,20.11,,536,66.8,561,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,2,top-right,horizontal,success,22.32,1,25.96,,536,66.8,469,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,3,bottom-right,horizontal,success,9.56,1,12.79,,536,66.8,570,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,4,bottom-left,horizontal,success,12.79,1,17.95,,536,66.8,463,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,5,center,horizontal,success,16.22,1,22.03,,536,66.8,498,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,6,top-left,vertical,success,4.97,4,20.77,,537,66.8,559,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,7,top-right,vertical,success,6.12,3,29.37,,537,66.8,513,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,8,bottom-right,vertical,success,9.76,1,14.67,,536,66.8,560,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,9,bottom-left,vertical,fail,6.77,3,,,536,66.8,553,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,10,center,vertical,success,0.61,1,4.57,,536,66.8,466,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,11,top-left,diagonal,success,6.83,1,10.96,,535,66.8,547,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,12,top-right,diagonal,fail,13.35,1,,,537,66.9,538,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,13,bottom-right,diagonal,fail,7.38,2,,,535,66.8,544,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,14,bottom-left,diagonal,success,6.59,5,18.27,,537,66.9,529,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,15,center,diagonal,success,6.01,3,18.33,,536,66.8,498,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,16,center-left,horizontal,success,11.10,1,15.35,,535,66.8,553,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,17,center-right,horizontal,success,9.86,1,14.94,,535,66.9,476,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,18,center-left,vertical,success,8.18,1,12.32,,536,66.8,484,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,19,center-right,vertical,success,7.20,1,12.19,,536,66.8,496,18,frame_times
+pi05_12k_smoke,"pi0.5, synchronous",2026-11-18,40,fixed,20,center,diagonal-mirrored,success,9.39,1,14.19,,536,66.9,516,18,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,1,top-left,horizontal,fail,8.40,4,,,594,66.8,369,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,2,top-right,horizontal,fail,,0,,,595,66.8,324,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,3,bottom-right,horizontal,fail,,0,,,595,66.8,328,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,4,bottom-left,horizontal,fail,11.49,1,,,595,66.8,375,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,5,center,horizontal,success,10.17,6,36.86,,594,66.8,400,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,6,top-left,vertical,success,5.86,1,9.00,,595,66.8,313,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,7,top-right,vertical,success,5.87,1,8.94,,595,66.9,327,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,8,bottom-right,vertical,success,7.93,2,25.39,,595,66.8,370,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,9,bottom-left,vertical,success,6.87,1,9.88,,595,66.9,382,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,10,center,vertical,success,5.67,1,8.68,,595,66.8,323,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,11,top-left,diagonal,success,11.44,2,20.53,,594,66.8,384,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,12,top-right,diagonal,fail,7.49,3,,,595,66.8,337,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,13,bottom-right,diagonal,fail,9.04,3,,13.1,594,66.9,406,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,14,bottom-left,diagonal,success,6.27,1,9.68,,595,66.8,379,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,15,center,diagonal,fail,7.95,4,,11.7,595,66.8,318,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,16,center-left,horizontal,fail,11.37,6,,,595,66.8,397,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,17,center-right,horizontal,success,9.61,1,14.56,,595,66.8,380,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,18,center-left,vertical,success,5.41,1,8.49,,595,66.8,330,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,19,center-right,vertical,fail,6.29,3,,,595,66.8,345,1,frame_times
+act102_100k_1118,"ACT, 102 demos",2026-11-18,40,fixed,20,center,diagonal-mirrored,success,6.22,2,16.11,,595,66.8,395,1,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,1,top-left,horizontal,success,21.50,1,25.31,,589,66.8,124,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,2,top-right,horizontal,success,7.88,3,33.12,,591,66.8,117,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,3,bottom-right,horizontal,fail,5.75,2,,,590,66.8,117,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,4,bottom-left,horizontal,fail,7.08,6,,11.1,590,66.8,121,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,5,center,horizontal,fail,12.40,2,,14.5,590,66.8,113,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,6,top-left,vertical,success,5.13,1,7.47,,590,66.8,121,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,7,top-right,vertical,success,6.61,1,9.49,,590,66.8,116,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,8,bottom-right,vertical,success,4.18,1,7.39,,590,66.8,109,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,9,bottom-left,vertical,success,8.83,3,15.57,,594,66.8,125,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,10,center,vertical,success,4.06,3,7.93,,594,66.8,118,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,11,top-left,diagonal,success,6.53,1,9.87,,594,66.8,120,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,12,top-right,diagonal,fail,5.35,7,,27.7,594,66.8,117,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,13,bottom-right,diagonal,success,7.27,1,10.54,,594,66.8,128,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,14,bottom-left,diagonal,success,5.61,1,8.61,,594,66.8,131,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,15,center,diagonal,success,4.74,1,7.95,,594,66.8,111,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,16,center-left,horizontal,success,25.91,1,30.39,,594,66.8,109,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,17,center-right,horizontal,success,8.07,1,14.88,,594,66.8,120,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,18,center-left,vertical,success,4.35,1,7.29,,594,66.8,129,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,19,center-right,vertical,success,4.53,1,8.74,,594,66.8,121,0,frame_times
+pi05_12k_rtc,"pi0.5, RTC",2026-11-18,40,fixed,20,center,diagonal-mirrored,success,9.94,1,13.81,,594,66.8,120,0,frame_times
+pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,1,random,random,success,7.86,2,11.60,,594,66.8,115,0,frame_times
+pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,2,random,random,success,5.82,1,9.69,,594,66.8,129,0,frame_times
+pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,3,random,random,fail,4.73,2,,,594,66.8,122,0,frame_times
+pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,4,random,random,success,9.03,1,12.90,,594,66.8,122,0,frame_times
+pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,5,random,random,fail,7.62,4,9.82,,594,66.8,118,0,frame_times
+pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,6,random,random,success,10.36,1,15.11,,594,66.8,137,0,frame_times
+pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,7,random,random,success,5.22,1,8.62,,594,66.8,128,0,frame_times
+pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,8,random,random,success,5.86,1,9.53,,594,66.8,112,0,frame_times
+pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,9,random,random,fail,,0,,,594,66.8,123,0,frame_times
+pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,10,random,random,fail,,0,,34.7,593,66.8,134,0,frame_times
+pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,11,random,random,success,10.57,1,14.05,,594,66.8,129,0,frame_times
+pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,12,random,random,fail,10.09,1,14.03,,594,66.8,122,0,frame_times
+pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,13,random,random,success,8.49,1,13.10,,594,66.8,123,0,frame_times
+pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,14,random,random,success,6.55,4,11.02,,594,66.8,113,0,frame_times
+pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,15,random,random,success,4.34,1,7.48,,594,66.8,124,0,frame_times
+pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,16,random,random,fail,12.49,1,,,593,66.8,130,0,frame_times
+pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,17,random,random,success,0.20,2,3.74,16.1,593,66.8,128,0,frame_times
+pi05_12k_rtc_free,"pi0.5, RTC",2026-11-18,40,random,18,random,random,success,7.29,3,18.97,,594,66.8,120,0,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,1,top edge middle,horizontal,fail,7.15,5,,,595,66.8,390,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,2,right edge middle,vertical,success,5.90,3,27.31,,594,66.8,399,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,3,bottom edge middle,diagonal,success,8.76,1,12.24,,595,66.9,340,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,4,left edge middle,horizontal,success,8.16,1,11.98,,594,66.8,338,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,5,center toward top-right,diagonal-mirrored,fail,19.99,1,,,594,66.8,330,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,6,right edge middle,horizontal,fail,9.64,2,,12.0,595,66.8,393,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,7,center toward bottom-left,vertical,success,5.15,1,8.43,,594,66.8,381,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,8,top edge middle,diagonal,success,5.67,1,8.88,,595,66.8,381,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,9,center toward bottom-right,horizontal,success,7.83,1,12.04,,595,66.8,336,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,10,left edge middle,vertical,success,5.16,1,8.24,,594,66.8,345,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,11,bottom edge middle,horizontal,success,8.38,1,12.59,,592,66.8,554,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,12,center toward top-left,vertical,success,5.94,1,9.36,,595,66.8,328,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,13,right edge middle,diagonal,success,9.23,1,12.90,,595,66.8,334,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,14,center toward top-right,horizontal,fail,12.17,4,,,594,66.8,392,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,15,top edge middle,vertical,success,5.66,2,8.80,,595,66.9,372,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,16,left edge middle,diagonal,success,6.98,1,10.40,,594,66.9,348,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,17,center toward bottom-right,vertical,fail,7.96,1,,,595,66.9,331,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,18,center toward bottom-left,diagonal,fail,6.15,5,,,595,66.9,333,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,19,bottom edge middle,vertical,success,1.46,6,39.13,,594,66.8,327,1,frame_times
+act102_100k_r2,"ACT, 102 demos",2026-11-22,40,fixed2,20,center toward top-left,horizontal,fail,10.35,6,,,595,66.8,328,1,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,1,top edge middle,horizontal,fail,11.82,2,,14.1,593,66.8,123,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,2,right edge middle,vertical,success,0.32,8,36.59,,594,66.8,122,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,3,bottom edge middle,diagonal,fail,5.67,4,,15.0,593,66.8,121,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,4,left edge middle,horizontal,success,28.66,1,32.20,,594,66.8,137,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,5,center toward top-right,diagonal-mirrored,fail,,0,,,593,66.8,124,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,6,right edge middle,horizontal,success,8.95,1,13.70,,594,66.8,120,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,7,center toward bottom-left,vertical,success,3.36,1,6.90,,594,66.8,139,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,8,top edge middle,diagonal,fail,6.07,8,,9.0,593,66.8,124,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,9,center toward bottom-right,horizontal,success,7.96,1,13.04,,593,66.8,147,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,10,left edge middle,vertical,success,3.96,1,6.83,,594,66.8,135,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,11,bottom edge middle,horizontal,fail,15.98,4,,18.0,594,66.8,132,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,12,center toward top-left,vertical,success,10.56,1,13.43,,593,66.8,134,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,13,right edge middle,diagonal,success,10.90,1,14.17,,594,66.8,126,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,14,center toward top-right,horizontal,fail,13.77,8,,15.9,594,66.8,125,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,15,top edge middle,vertical,success,6.81,1,9.88,,593,66.8,125,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,16,left edge middle,diagonal,success,9.24,1,12.44,,593,66.8,149,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,17,center toward bottom-right,vertical,success,10.69,1,14.43,,592,66.8,126,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,18,center toward bottom-left,diagonal,success,5.33,1,7.60,,594,66.8,118,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,19,bottom edge middle,vertical,success,0.19,1,3.33,,594,66.8,122,0,frame_times
+pi05_12k_rtc_r2,"pi0.5, RTC",2026-11-22,40,fixed2,20,center toward top-left,horizontal,fail,7.95,3,,14.3,594,66.8,126,0,frame_times

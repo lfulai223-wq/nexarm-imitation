@@ -20,6 +20,7 @@
     Esc  试抓进行中：急停（立即结束程序，从臂停在原地保持力矩）；遥操作中：关遥操作；空闲时：退出
 
 只有语音提示之后按的键才算：试抓过程中按的 s / f 会被丢掉，免得提前误判。
+试抓过程中手不要伸进去：药盒掉了、歪了也不摆回去，等它跑完按 f。有人手帮过的按失败算（2026-11-22 定）。
 
     V=~/nexarm-teleop-latency/vendor-nexarm/finsh/.venv/bin/python
     $V scripts/eval_trials.py --name act45_100k \\
@@ -351,6 +352,8 @@ def run_trial(args, keys: Keys, m: Model, i: int, place: tuple[str, str], header
             teleop(keys, m.out_dir, args.quiet, args.selftest)
             continue
 
+        # 试抓过程中不碰药盒：掉了、歪了也不摆回去，有人帮过就按失败算（2026-11-22 复查录像后定）
+        say("Running. Hands off until it stops", args.quiet)
         started = datetime.now()
         tag = f"trial{i:02d}_{started:%H%M%S}"
         while (m.rec_root / tag).exists() or (m.out_dir / f"{tag}.log").exists():  # 同一秒内重开时别撞名

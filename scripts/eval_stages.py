@@ -8,6 +8,8 @@
 夹爪读数比开头张开时（前 5 帧最小值）大 250 以上算合上；合上→张开的那一刻底座关节在 1509–1692
 （训练数据里松手时底座关节在 1559–1642，两头各放宽 50）算放进了收纳盒。
 每次 40 秒的评测报两个数：--cut 秒内放进（数据判定）和整次成功（操作者判定）。
+有人手伸进画面动过药盒的（results/operator_interventions.csv，2026-11-22 复查录像得出），
+只算人手进画面之前的松手：有人帮过就不算模型自己完成（本人定）。
 """
 
 from __future__ import annotations
@@ -22,6 +24,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent
 FPS = 15
+INTERVENTIONS = ROOT / "results" / "operator_interventions.csv"
 ZONE = (1509, 1692)  # 松手时底座关节（j1）的范围
 CLOSE_DELTA = 250  # 夹爪读数比开头大这么多算合上
 
@@ -39,8 +42,17 @@ def frame_times(rec_dir: Path, n: int) -> np.ndarray:
     return np.arange(n) / FPS
 
 
+def hand_times() -> dict[tuple[str, int], float]:
+    """{(评测名, 第几次): 人手第一次进画面的秒数}。"""
+    if not INTERVENTIONS.exists():
+        return {}
+    with INTERVENTIONS.open(newline="") as f:
+        return {(r["session"], int(r["trial"])): float(r["hand_in_frame_s"]) for r in csv.DictReader(f)}
+
+
 def analyse(name: str, cut: float) -> dict[int, dict[str, bool]]:
     """打印每次的阶段，返回 {第几次: {"op": 操作者判成功, "data": cut 秒内数据判定放进}}。"""
+    hands = hand_times()
     with (ROOT / "outputs" / "eval" / name / "results.csv").open(newline="") as f:
         rows = [r for r in csv.DictReader(f) if r["result"] in ("success", "fail")]
     print(f"== {name}")
@@ -59,10 +71,13 @@ def analyse(name: str, cut: float) -> dict[int, dict[str, bool]]:
         closed = g > g[:5].min() + CLOSE_DELTA  # 开头张开时的读数；取最小，药盒就在爪下、一开始就合上时也对（2026-11-18 随机第 17 次）
         on = np.flatnonzero(np.diff(closed.astype(int)) == 1) + 1
         off = np.flatnonzero(np.diff(closed.astype(int)) == -1) + 1
-        rel = [i for i in off if ZONE[0] <= j1[i] <= ZONE[1]]
+        hand = hands.get((name, int(r["trial"])))
+        rel = [i for i in off if ZONE[0] <= j1[i] <= ZONE[1] and (hand is None or t[i] < hand)]
         t_rel = float(t[rel[0]]) if rel else None
         n_rel += t_rel is not None
         stage = ("放进收纳盒" if rel else
+                 f"{hand:.0f} 秒有人手动过药盒，之后的松手不算" if hand is not None and any(
+                     ZONE[0] <= j1[i] <= ZONE[1] for i in off) else
                  "夹住后没送到" if any(ZONE[0] <= x <= ZONE[1] for x in j1[closed]) else
                  (f"合上 {len(on)} 次没夹起来" if len(on) else "夹爪没合上"))
         print(f"{r['trial']:>2} {r['position']}{r['orientation']:<5} 操作者:{r['result']:<7} 帧 {len(df):>3}"

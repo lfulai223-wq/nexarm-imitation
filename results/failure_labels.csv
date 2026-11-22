@@ -53,3 +53,19 @@ pi05_12k_rtc_free,9,unseen_condition,,high,distractor box and a printed card nex
 pi05_12k_rtc_free,10,unseen_condition,,high,distractor box next to it; never closed
 pi05_12k_rtc_free,12,lost_after_lift,1,high,grasped one end; released on the bin rim and the box fell outside
 pi05_12k_rtc_free,16,unseen_condition,,high,box standing on end; never lifted
+act102_100k_r2,1,aligned_no_grasp,,medium,"box centred between the fingers, wrist 12 degrees off; four closes, never lifted"
+act102_100k_r2,5,wrong_place,,high,closed once at 19.7 s far to the left of the box; the wrist camera shows only the table
+act102_100k_r2,14,offset,,medium,"box off to the right, its left edge under the gripper centre; four closes, box stayed on the table"
+act102_100k_r2,17,offset,,medium,left finger came down on the box; stayed closed 20 s and rose without it
+act102_100k_r2,18,aligned_no_grasp,,low,"box between the fingers, tilted roughly 20-30 degrees; four closes, box stayed on the table"
+act102_100k_r2,20,offset,,medium,"box toward the right finger, gripper centre near its left edge; four closes, never lifted"
+pi05_12k_rtc_r2,1,lost_after_lift,,medium,lifted a little; the box twisted out of the fingers within 1.5 s and fell; operator re-placed it at 14 s; one more close failed
+pi05_12k_rtc_r2,5,orientation,,medium,"hovered beside the box at a diagonal, never closed"
+pi05_12k_rtc_r2,8,aligned_no_grasp,,medium,box centred and upright in the wrist camera but did not come up; the arm went to the bin empty; operator re-placed it at 9 s; seven more short closes failed
+pi05_12k_rtc_r2,11,lost_after_lift,1,low,"box came up tilted, as if held near one end, and slipped back within 2 s; operator re-placed it at 18 s; two more closes failed"
+pi05_12k_rtc_r2,14,lost_after_lift,1,medium,closed on the barcode end; lifted it by that end and dropped it within 2 s; operator reached in at about 16 s; five more closes failed
+pi05_12k_rtc_r2,20,lost_after_lift,1,high,grasped the barcode end; the box slipped and stood up on the table; operator re-placed it at 14 s
+act102_100k_1118,13,lost_after_lift,,medium,"box centred and upright, came up a little and slipped out within 1 s; operator put it back at 13 s and the next grasp reached the bin (scored fail, 2026-11-22)"
+pi05_12k_rtc,5,lost_after_lift,1,medium,"closed on the barcode end, lifted it and dropped it; operator put it back at 14.5 s and the next grasp reached the bin (scored fail, 2026-11-22)"
+act102_100k_r2,6,aligned_no_grasp,,medium,"box centred and upright in the wrist camera but did not come up; operator put it back at 12 s and 23 s, then it reached the bin (scored fail)"
+pi05_12k_rtc_r2,3,orientation,,low,"box about 30 degrees across the fingers; three closes in 15 s, none lifted it; operator put it back at 15 s, then it reached the bin (scored fail)"

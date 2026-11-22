@@ -1,0 +1,15 @@
+session,trial,hand_in_frame_s,operator_call,scored,note
+act102_100k_1118,13,13.1,success,fail,put the box back under the gripper; released over the bin at 22.4 s
+act102_100k_1118,15,11.7,fail,fail,laid the fallen box flat
+pi05_12k_rtc,4,11.1,fail,fail,put the box back twice
+pi05_12k_rtc,5,14.5,success,fail,put the box back; released over the bin at 32.8 s
+pi05_12k_rtc,12,27.7,fail,fail,touched the box after it was dropped
+pi05_12k_rtc_free,10,34.7,fail,fail,reached in near the box and distractor
+pi05_12k_rtc_free,17,16.1,success,success,reached into the bin after the box was delivered at 3.8 s; success stands
+act102_100k_r2,6,12.0,success,fail,put the box back twice (12 s and 23 s); released over the bin at 32.7 s
+pi05_12k_rtc_r2,1,14.1,fail,fail,put the dropped box back
+pi05_12k_rtc_r2,3,15.0,success,fail,put the box back; released over the bin at 27.5 s
+pi05_12k_rtc_r2,8,9.0,fail,fail,put the box back
+pi05_12k_rtc_r2,11,18.0,fail,fail,put the dropped box back
+pi05_12k_rtc_r2,14,15.9,fail,fail,reached in to the dropped box
+pi05_12k_rtc_r2,20,14.3,fail,fail,set the box flat again after it stood up

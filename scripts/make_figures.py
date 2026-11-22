@@ -66,23 +66,27 @@ def cumulative(ax, t: list[float], n: int, color: str, label: str, dashed: bool 
 
 def success_vs_time() -> None:
     trials = read("trials.csv")
-    fig, axes = plt.subplots(1, 2, figsize=(11, 3.9), sharey=True, constrained_layout=True)
+    fig, axes = plt.subplots(1, 3, figsize=(15, 4.1), sharey=True, constrained_layout=True)
     ax = axes[0]
     cumulative(ax, *releases(trials, "act45_100k_ab"), REFERENCE, "ACT, 45 demos", dashed=True)
     cumulative(ax, *releases(trials, "act102_100k_ab"), COLOR["act102"], "ACT, 102 demos")
-    ax.set_title("More demonstrations (ACT, Nov 17, interleaved)")
+    ax.set_title("More demonstrations\n(ACT, Nov 17, interleaved)")
     ax.set_ylabel("Placements with the box in the bin (of 20)")
     ax = axes[1]
     cumulative(ax, *releases(trials, "act102_100k_1118"), COLOR["act102"], "ACT, 102 demos")
     cumulative(ax, *releases(trials, "pi05_12k_smoke"), COLOR["sync"], "π0.5, synchronous")
     cumulative(ax, *releases(trials, "pi05_12k_rtc"), COLOR["rtc"], "π0.5, RTC")
-    ax.set_title("ACT vs π0.5, same 102 demos (Nov 18, same session)")
+    ax.set_title("ACT vs π0.5, placement set 1\n(Nov 18, back to back)")
+    ax = axes[2]
+    cumulative(ax, *releases(trials, "act102_100k_r2"), COLOR["act102"], "ACT, 102 demos")
+    cumulative(ax, *releases(trials, "pi05_12k_rtc_r2"), COLOR["rtc"], "π0.5, RTC")
+    ax.set_title("ACT vs π0.5, placement set 2\n(Nov 22, interleaved)")
     for ax in axes:
         ax.set_xlim(0, 40)
         ax.set_ylim(0, 20.5)
         ax.set_yticks([0, 5, 10, 15, 20])
         ax.set_xlabel("Seconds since the policy started")
-        ax.legend(loc="upper left", handlelength=2.4)
+        ax.legend(loc="upper left", handlelength=2.4, fontsize=9)
     fig.savefig(OUT / "success_vs_time.png", dpi=150)
     plt.close(fig)
 

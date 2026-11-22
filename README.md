@@ -8,60 +8,81 @@ the real arm under the same conditions.
 
 ![ACT and π0.5 on the same placement, side by side](docs/img/demo.gif)
 
-Fixed placement 19 of 20: ACT on the left, π0.5 with real-time chunking (RTC)
-on the right, 2× speed, clocks in real time. Only π0.5 succeeds here. This is a
-favourable example. Five placements had only π0.5 succeed: ACT's recording of
-placement 15 has the operator's hand in it, and on the other three π0.5 needed
-25–33 s. Over all 20 placements: ACT 12/20, π0.5 17/20. A 53 s video
+Fixed placement 19 of the first set: ACT on the left, π0.5 with real-time
+chunking (RTC) on the right, 2× speed, clocks in real time. Only π0.5 succeeds
+here, and that makes it a favourable example: over both sets of 20 placements,
+π0.5 with RTC put the box in the bin 29 times and ACT 24 times, and on the
+second set they tied at 13. A 53 s video
 ([scripts/make_demo.py](scripts/make_demo.py)) adds a placement both policies
-solve, random placements, two failures and the results.
+solve, random placements, two failures and the first set's results.
 
-**Status:** complete as a second project: data collection, two policies, three
-real-robot evaluation sessions, a random-placement test and a demo video. It
-follows [nexarm-teleop-latency](https://github.com/lfulai223-wq/nexarm-teleop-latency),
+**Status:** first round complete: data collection, two policies, three
+real-robot evaluation sessions, a random-placement test and a demo video.
+Second round under way: a second set of 20 placements with the two policies
+interleaved (done, 2026-11-22), a review of every failure (done), then
+robustness tests. The project follows
+[nexarm-teleop-latency](https://github.com/lfulai223-wq/nexarm-teleop-latency),
 which measured and reduced the teleoperation latency of the same arm. See
 [what is not done](#limitations). Full write-up: [docs/report.md](docs/report.md).
 
 ## Results
 
-20 fixed placements, one 40 s trial each. The three policies ran back to back in
-one session (2026-11-18), with the same camera position:
+Two sets of 20 fixed placements, one 40 s trial per policy and placement, with
+the same camera position on both days. On the first set the three policies ran
+back to back (2026-11-18); on the second, ACT and π0.5 with RTC took turns
+placement by placement (2026-11-22).
 
-| Policy | Box in the bin within 40 s | Within 25 s | Median time to release (successes) | Control rate |
-|---|---|---|---|---|
-| ACT, 102 demos | 12/20 | 10/20 | 12.2 s | 14.9 Hz |
-| π0.5, synchronous inference | 17/20 | 15/20 | 15.3 s | 13.4 Hz |
-| π0.5, RTC | 17/20 | 13/20 | 9.9 s | 15.0 Hz |
+| Policy | Set 1: box in the bin within 40 s | Within 25 s | Set 2: within 40 s | Within 25 s | Median time to release, set 1 / set 2 | Control rate, set 1 |
+|---|---|---|---|---|---|---|
+| ACT, 102 demos | 11/20 | 9/20 | 13/20 | 11/20 | 9.9 s / 12.0 s | 14.9 Hz |
+| π0.5, synchronous inference | 17/20 | 15/20 | – | – | 15.3 s | 13.4 Hz |
+| π0.5, RTC | 16/20 | 13/20 | 13/20 | 11/20 | 9.7 s / 13.0 s | 15.0 Hz |
 
-Success within 40 s is the operator's call. The 25 s column and the release
-times come from the joint data: the moment the gripper opens with the base
-over the bin. That rule agreed with the operator on all 120 trials of the six
-fixed-placement sessions in this project.
+Success within 40 s is the operator's call, corrected after a video review:
+in four trials the operator had put a dropped box back under the gripper
+during the run and the policy then succeeded, and those count as failures
+([results/operator_interventions.csv](results/operator_interventions.csv)).
+The 25 s column and the release times come from the joint data: the moment the
+gripper opens with the base over the bin, ignoring anything after a hand
+entered the frame. That rule agreed with the operator's own calls on all 160
+fixed-placement trials in this project.
 
-- **π0.5 succeeds more often, but 20 placements cannot settle it.** Placement
-  by placement, synchronous π0.5 succeeded where ACT failed on 7 placements and
-  the reverse happened on 2 (exact sign test, p = 0.18). With RTC it is 5 to 0
-  (p = 0.06).
-- **The gap is in one orientation.** With the box lying horizontally in the
-  camera image, ACT managed 2/7, π0.5 7/7 (synchronous) and 5/7 (RTC).
-  Vertical and diagonal placements came out about the same for all three.
+- **No clear winner on success.** On set 1, placement by placement, π0.5
+  succeeded where ACT failed 7 times to 1 synchronously (exact sign test,
+  p = 0.07) and 6 to 1 with RTC (p = 0.12). On set 2, interleaved, it was 3 to
+  3. Both sets together, RTC against ACT: 9 to 4 within 40 s (p = 0.27) and
+  8 to 4 within 25 s (p = 0.39). The set-1 gap did not carry over to new
+  placements, and 20 pairs cannot say whether that is the placements, the
+  interleaving or chance.
+- **Horizontal placements.** Most of the set-1 gap was the box lying
+  horizontally in the camera image: ACT 2/7, π0.5 7/7 synchronous and 4/7 with
+  RTC. On set 2 both managed 3/7, and three of the four placements both failed
+  were horizontal.
+- **They fail differently.** ACT with 102 demos failed at the grasp in 20 of
+  its 24 failures: closing off-centre on the box, or centred without lifting
+  it. π0.5 with RTC failed after lifting the box in 7 of 11, and in 7 of 11 it
+  had grasped the box by one end. The joint data shows a firm grip:
+  commanded minus measured gripper position was at least 10 counts after the
+  first close in 72 of 87 grasps that carried the box straight to the bin, and
+  in none of the 57 failures where the gripper closed.
 - **π0.5 is slow to predict.** One 50-step action chunk takes 245 ms on the
   RTX 5060 Ti (batch 1, with pre- and post-processing, LoRA merged into the
   weights); ACT takes 9 ms. With synchronous inference the arm stalls for about
   0.3 s every 2 s. RTC predicts the next chunk in a background thread: the
-  stalls disappear, the success count stays the same, and successful trials
-  finish sooner. Inference is no faster; RTC hides the 245 ms inside execution.
+  stalls disappear, successes stay about the same (16/20 against 17/20) and
+  finish as quickly as ACT's. Inference is no faster; RTC hides the 245 ms
+  inside execution.
 
 ![Box-in-bin count against time for ACT with 45 and 102 demos, and for ACT and π0.5](docs/img/success_vs_time.png)
 
 Each step is one placement whose box landed in the bin, at the moment the
 gripper opened over it. **Left:** ACT trained on 45 demos against ACT trained
-on 102, interleaved placement by placement, the operator not told which was
-running. The first evaluation had found every failure at the grasp and 0/7 on
+on 102 (Nov 17), interleaved placement by placement, the operator not told
+which was running. The first evaluation had found every failure at the grasp and 0/7 on
 horizontal placements, so the second batch of demos added horizontal ones
 (about 4 → 26). All the extra successes are horizontal placements. Paired: 5
 placements to 1 within 40 s (p = 0.22), 5 to 0 within 25 s (p = 0.06).
-**Right:** the session in the table.
+**Middle and right:** the two placement sets in the table.
 
 ![Frame-to-frame interval over one trial for each inference mode](docs/img/control_timing.png)
 
@@ -106,7 +127,7 @@ leader arm ── teleoperation, 15 Hz ──▶ follower arm      stand camera 
    transformer predicts 30 actions (2 s) at a time                 LoRA, 28.7 M trainable (0.69%); flow matching
                                                                    denoises 50 actions in 10 steps
                          │                                                                      │
-                         └──────────────▶ real arm, 20 fixed placements, 40 s each ◀────────────┘
+                         └──────────────▶ real arm, 40 fixed placements, 40 s each ◀────────────┘
 ```
 
 - **Setup.** NexArm leader and follower (5 joints plus a gripper, bus servos),
@@ -137,13 +158,18 @@ leader arm ── teleoperation, 15 Hz ──▶ follower arm      stand camera 
   chunk requested when 20 actions remain, so it still re-plans about every
   2 s) and a serial bug RTC exposed. The background inference holds Python's
   GIL, so the vendor driver's 50 ms serial write timeout fired on writes that
-  had succeeded. Raising it to 0.5 s fixed it: no errors in the 22 runs since.
+  had succeeded. Raising it to 0.5 s fixed it: no errors in the 62 runs since,
+  42 of them with RTC.
 - **Evaluation.** [scripts/eval_trials.py](scripts/eval_trials.py) runs each
   trial as a separate recorded rollout. Voice prompts announce the placement,
   keys score the trial, and errors are logged and the trial re-run. Two models
-  can be interleaved per placement, alternating which goes first.
+  can be interleaved per placement, alternating which goes first; RTC applies
+  only to the flow-matching model, so ACT and π0.5 with RTC can be interleaved.
+  Since 2026-11-22 each run starts with a spoken "hands off" reminder.
   [scripts/eval_stages.py](scripts/eval_stages.py) derives grasp and release
   times from the joint data and runs the paired sign test.
+  [scripts/failure_review.py](scripts/failure_review.py) builds frame sheets
+  of each failure for labelling and summarises the labels.
 - **Safety.** Right after connecting, the follower's first servo reading is
   often garbage (wrist and gripper at the ends of their range). LeRobot stores
   that reading as the pose to return to after each trial, which would have
@@ -164,9 +190,11 @@ leader arm ── teleoperation, 15 Hz ──▶ follower arm      stand camera 
 | [scripts/train_pi05.py](scripts/train_pi05.py) | `lerobot-train` plus one processor-name alias needed to start from `lerobot/pi05_base` |
 | [scripts/rollout_safe.py](scripts/rollout_safe.py) | `lerobot-rollout` with the servo-reading guard, LoRA merge, faster loading and per-frame timestamps |
 | [scripts/eval_trials.py](scripts/eval_trials.py), [scripts/eval_stages.py](scripts/eval_stages.py) | Real-robot evaluation; joint-data analysis and paired comparison |
+| [scripts/failure_review.py](scripts/failure_review.py) | Frame sheets of failures, and the summary of the failure labels |
+| [scripts/find_hands.py](scripts/find_hands.py) | Flags trials where something crossed the operator's edges of the frame, for checking by eye |
 | [scripts/placement_coverage.py](scripts/placement_coverage.py) | Grasp position and orientation per trial, against the training demos |
 | [scripts/export_results.py](scripts/export_results.py), [scripts/make_figures.py](scripts/make_figures.py), [scripts/make_demo.py](scripts/make_demo.py) | Result tables, figures, demo video and GIF |
-| [results/](results/) | Every scored trial, the frame intervals and the grasp positions behind the numbers above |
+| [results/](results/) | Every scored trial, the frame intervals, the grasp positions, the failure labels and the operator interventions behind the numbers above |
 | [docs/report.md](docs/report.md) | Full write-up |
 | [docs/roadmap.md](docs/roadmap.md) | Plan and day-by-day log, including dead ends (Chinese) |
 | [docs/recording_guide.md](docs/recording_guide.md) | Recording procedure (Chinese) |
@@ -194,9 +222,11 @@ ACCELERATE_MIXED_PRECISION=bf16 $V -m lerobot.scripts.lerobot_train \
     --batch_size=8 --steps=100000 --save_freq=25000 --seed=1000 --output_dir=outputs/train/act_medbox_102ep
 $V scripts/train_pi05.py ...                    # full command in docs/roadmap.md, 2026-11-17
 
-$V scripts/eval_trials.py --duration 40 --rtc \
-    --name pi05_12k_rtc --policy outputs/train/pi05_lora_102ep/checkpoints/012000/pretrained_model
-$V scripts/eval_stages.py act102_100k_1118 pi05_12k_rtc --cut 25
+$V scripts/eval_trials.py --duration 40 --rtc --placements fixed2 \
+    --name act102_100k_r2 --policy outputs/train/act_medbox_102ep/checkpoints/100000/pretrained_model \
+    --name-b pi05_12k_rtc_r2 --policy-b outputs/train/pi05_lora_102ep/checkpoints/012000/pretrained_model
+$V scripts/eval_stages.py act102_100k_r2 pi05_12k_rtc_r2 --cut 25
+$V scripts/failure_review.py act102_100k_r2 pi05_12k_rtc_r2
 $V scripts/export_results.py
 python scripts/make_figures.py
 ```
@@ -206,28 +236,34 @@ python scripts/make_figures.py
 recording are in [docs/recording_guide.md](docs/recording_guide.md).
 
 **Safety.** The follower moves under a learned policy. Keep hands out of its
-workspace during a trial. `Esc` stops a trial at once and leaves the arm
+workspace during a trial, and leave a dropped box where it is. `Esc` stops a trial at once and leaves the arm
 holding its position.
 
 ## Limitations
 
-- **Small samples.** 20 placements per policy. The direction is the same in
-  every session, but no comparison reaches p < 0.05.
-- **π0.5 against ACT was neither interleaved nor blind.** The three policies
-  ran in consecutive blocks of one session, and synchronous π0.5 is
-  recognisable by its stalls. Only the 45- against 102-demo ACT comparison
-  was interleaved and blind.
+- **Small samples.** 20 placements per set. No comparison reaches p < 0.05,
+  and the π0.5 lead on set 1 was not repeated on set 2.
+- **Blinding.** Set 1 ran in consecutive blocks, and synchronous π0.5 is
+  recognisable by its stalls. Set 2 was interleaved and the voice prompt does
+  not name the model, but π0.5 takes about 12 s longer to load, so the operator
+  could tell. The 45- against 102-demo ACT comparison was interleaved and
+  blind.
 - **One task, one object, one fixed scene.** The random placements stayed
   inside the training coverage. Distractors and a standing box were tried
   three times in all, and failed each time.
 - **The camera moved between days** (knocked or re-plugged; 0.2° of rotation
   on Nov 17, 1.35° on Nov 18), so comparisons are made within one session.
-- **Two operator interventions.** In ACT's trial on fixed placement 15 the
-  operator laid a fallen box flat while the arm was running; ACT still failed,
-  so this can only have helped ACT. In random trial 17 the operator took the
-  box back out of the bin after the success. Neither changes a score.
+- **Operator interventions.** A review of every video on 2026-11-22 found the
+  operator's hand in 13 trials while the arm was running, mostly putting a
+  dropped box back. In 4 the policy then succeeded; they are scored as
+  failures. 10 of the 13 were π0.5 trials, which fits an operator who could
+  tell the models apart. The search looked for change at the frame edges on
+  the operator's side, so a hand that never crossed them would be missed. In
+  random trial 17 the operator took the box out of the bin after the success;
+  that score stands.
 - **The joint-data rule has a blind spot.** It sees where the gripper opens,
-  not whether the box is still in it or where it falls. It would have passed
+  not whether the box is still in it, where it falls, or whether someone
+  helped. It would have passed
   two random-placement failures: one box had already fallen out of the
   gripper, the other was released on the rim and dropped outside. The
   operator's judgement is the score throughout.
