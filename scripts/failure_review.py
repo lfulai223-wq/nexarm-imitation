@@ -43,7 +43,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 from eval_stages import CLOSE_DELTA, ZONE  # noqa: E402
-from eval_trials import SPOKEN, TRIALS, TRIALS2  # noqa: E402
+from eval_trials import ROBUST8, SPOKEN, TRIALS, TRIALS2  # noqa: E402
 
 LABELS = ROOT / "results" / "failure_labels.csv"
 SESSIONS = ["act45_100k", "act45_100k_ab", "act102_100k_ab", "act102_100k_1118",
@@ -58,7 +58,8 @@ NOMINAL = {"横放": 88.0, "竖放": 0.0}  # 训练数据里第一次合上夹�
 DEG = 360 / 4096
 MIN_CLOSE_FRAMES = 5
 FIRM_GAP = 10  # 合上后指令减读数达到这么多计数，算被药盒顶住（夹紧了）
-PLACEMENT_SETS = [("第一份位置表", TRIALS), ("第二份位置表", TRIALS2)]
+PLACEMENT_SETS = [("第一份位置表", TRIALS), ("第二份位置表", TRIALS2), ("鲁棒性 8 个位置", ROBUST8)]
+ROBUST_TAG = "_rb_"  # 鲁棒性测试的评测名里带这个（如 act102_100k_rb_card），用 ROBUST8 位置表
 
 
 def model_of(session: str) -> str:
@@ -68,10 +69,12 @@ def model_of(session: str) -> str:
     return session
 
 
-def placement_set(position: str, orientation: str) -> str:
-    if position == "随机":
+def placement_set(t: dict) -> str:
+    if t["position"] == "随机":
         return "随机摆放"
-    return next((name for name, lst in PLACEMENT_SETS if (position, orientation) in lst), "其他")
+    if ROBUST_TAG in t["session"]:
+        return "鲁棒性 8 个位置"
+    return next((name for name, lst in PLACEMENT_SETS[:2] if (t["position"], t["orientation"]) in lst), "其他")
 
 
 def real_closes(states: np.ndarray) -> list[int]:
@@ -133,7 +136,7 @@ def report(trials: list[dict], labels: dict[tuple[str, int], dict[str, str]]) ->
     n_trials: Counter = Counter()
     one_end: Counter = Counter()
     for t in trials:
-        g = f"{model_of(t['session'])}，{placement_set(t['position'], t['orientation'])}"
+        g = f"{model_of(t['session'])}，{placement_set(t)}"
         n_trials[g] += 1
         if t["result"] == "fail":
             groups[g][cat[(t["session"], t["trial"])]] += 1
@@ -147,7 +150,7 @@ def report(trials: list[dict], labels: dict[tuple[str, int], dict[str, str]]) ->
     # 2. 固定位置 × 场次：哪些位置每场都失败
     for set_name, lst in PLACEMENT_SETS:
         sessions = [s for s in dict.fromkeys(t["session"] for t in trials)
-                    if any(placement_set(t["position"], t["orientation"]) == set_name for t in trials if t["session"] == s)]
+                    if any(placement_set(t) == set_name for t in trials if t["session"] == s)]
         if not sessions:
             continue
         by = {(t["session"], t["trial"]): t for t in trials}
@@ -163,7 +166,7 @@ def report(trials: list[dict], labels: dict[tuple[str, int], dict[str, str]]) ->
             print(f"  {i:>2} {mark}{pos + ori:<10}" + " ".join(f"{c:>16}" for c in cells))
 
     # 3. 去错地方是不是集中在右侧
-    fixed = [t for t in trials if placement_set(t["position"], t["orientation"]) not in ("随机摆放", "其他")]
+    fixed = [t for t in trials if placement_set(t) not in ("随机摆放", "其他")]
     wrong = [t for t in fixed if t["result"] == "fail" and cat[(t["session"], t["trial"])] == "wrong_place"]
     if fixed:
         right_share = sum(t["position"] in RIGHT_SIDE for t in fixed) / len(fixed)

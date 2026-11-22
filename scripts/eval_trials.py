@@ -106,7 +106,14 @@ TRIALS2 = [
     ("下边中间", "横放"), ("中偏左上", "竖放"), ("右边中间", "斜放"), ("中偏右上", "横放"), ("上边中间", "竖放"),
     ("左边中间", "斜放"), ("中偏右下", "竖放"), ("中偏左下", "斜放"), ("下边中间", "竖放"), ("中偏左上", "横放"),
 ]
-PLACEMENT_SETS = {"fixed": TRIALS, "fixed2": TRIALS2}
+# 鲁棒性测试的 8 个位置（2026-11-22）：第二份位置表里 11-22 两个模型都成功的第 2、4、7、9、12、13、15、16 个
+# （不用第 19 个：药盒就在起始姿势的夹爪正下方，太容易）。竖 4、横 2、斜 2，顺序照第二份表，相邻两次位置和方向都不一样。
+ROBUST8 = [TRIALS2[i - 1] for i in (2, 4, 7, 9, 12, 13, 15, 16)]
+PLACEMENT_SETS = {"fixed": TRIALS, "fixed2": TRIALS2, "robust8": ROBUST8}
+# 鲁棒性测试的条件：每一次报完位置后语音提醒怎么布置（clean 是原条件，不提醒）
+CONDITIONS = {"clean": "",
+              "card": "Card flat beside the box, two fingers away, on your side. ",
+              "lamp": "Side lamp on. "}
 # 语音只能说英文
 SPOKEN = {"左上": "top left", "右上": "top right", "右下": "bottom right", "左下": "bottom left",
           "正中": "center", "中偏左": "center left", "中偏右": "center right",
@@ -449,6 +456,7 @@ def run_eval(args, keys: Keys, base: Path = ROOT) -> None:
                 m.writer.writeheader()
 
         stopped = False
+        setup = CONDITIONS[args.condition]
         for i in range(args.start, len(trials) + 1):
             pos, ori = trials[i - 1]
             order = models if i % 2 == 1 else models[::-1]  # 交替测：单数次先 A，双数次先 B
@@ -457,16 +465,16 @@ def run_eval(args, keys: Keys, base: Path = ROOT) -> None:
                     continue
                 if ab:
                     header = f"\n== 第 {i}/{len(trials)} 次，第 {k + 1} 轮（{m.name}）：{pos}，{ori}"
-                    prompt = (f"Trial {i}, first run. {SPOKEN[pos]}, {SPOKEN[ori]}. Press right arrow to start"
+                    prompt = (f"Trial {i}, first run. {SPOKEN[pos]}, {SPOKEN[ori]}. {setup}Press right arrow to start"
                               if k == 0 else
                               f"Trial {i}, second run. Same place: {SPOKEN[pos]}, {SPOKEN[ori]}. "
-                              "Press right arrow to start")
+                              f"{setup}Press right arrow to start")
                 elif args.free:
                     header = f"\n== 第 {i}/{len(trials)} 次：随机摆放"
                     prompt = f"Trial {i}. Put the box somewhere new, at any angle. Press right arrow to start"
                 else:
                     header = f"\n== 第 {i}/{len(trials)} 次：{pos}，{ori}"
-                    prompt = f"Trial {i}. {SPOKEN[pos]}, {SPOKEN[ori]}. Press right arrow to start"
+                    prompt = f"Trial {i}. {SPOKEN[pos]}, {SPOKEN[ori]}. {setup}Press right arrow to start"
                 if not run_trial(args, keys, m, i, (pos, ori), header, prompt, base, n_rollouts):
                     say("Evaluation stopped", args.quiet)
                     stopped = True
@@ -495,7 +503,8 @@ def selftest() -> None:
 
         def ns(**kw):
             d = dict(policy=None, name=None, policy_b=None, name_b=None, duration=0.0, ensemble=None,
-                     n_action_steps=None, rtc=False, free=None, placements="fixed", start=1, quiet=True, selftest=True)
+                     n_action_steps=None, rtc=False, free=None, placements="fixed", condition="clean", start=1, quiet=True,
+                     selftest=True)
             return argparse.Namespace(**{**d, **kw})
 
         def rows(name: str) -> list[dict[str, str]]:
@@ -589,6 +598,16 @@ def selftest() -> None:
         assert all(TRIALS2[i][0] != TRIALS2[i + 1][0] and TRIALS2[i][1] != TRIALS2[i + 1][1] for i in range(19))
         count = lambda lst: sorted(sum(o == k for _, o in lst) for k in ("横放", "竖放", "斜放", "往另一边斜"))  # noqa: E731
         assert count(TRIALS2) == count(TRIALS) and all(p in SPOKEN and o in SPOKEN for p, o in TRIALS2)
+        assert len(ROBUST8) == 8 and set(ROBUST8) <= set(TRIALS2)
+        assert all(ROBUST8[i][0] != ROBUST8[i + 1][0] and ROBUST8[i][1] != ROBUST8[i + 1][1] for i in range(7))
+
+        print("\n== 自测 8：鲁棒性测试 8 个位置、加卡片的条件", flush=True)
+        rb = dict(name="act_rb", policy="pact", name_b="pi_rb", policy_b="ppi", rtc=True, placements="robust8",
+                  condition="card")
+        run_eval(ns(**rb), Keys(scripted=["start", "success", "start", "fail", "esc"]), base)
+        expect("act_rb", [(1, "success")])
+        expect("pi_rb", [(1, "fail")])
+        assert (rows("act_rb")[0]["position"], rows("act_rb")[0]["orientation"]) == ROBUST8[0]
     print("\n自测全部通过", flush=True)
 
 
@@ -607,7 +626,11 @@ def main() -> None:
                     help="RTC 异步推理：后台预测、机械臂不停顿，设置见 inference_overrides。"
                          "只加在 π0.5 这类流匹配的模型上，交替测时另一个模型（ACT）照常同步推理")
     ap.add_argument("--placements", choices=sorted(PLACEMENT_SETS), default="fixed",
-                    help="用哪份固定位置表：fixed 是第一轮的 20 个（TRIALS），fixed2 是 2026-11-20 定的新 20 个（TRIALS2）")
+                    help="用哪份固定位置表：fixed 是第一轮的 20 个（TRIALS），fixed2 是 2026-11-20 定的新 20 个（TRIALS2），"
+                         "robust8 是鲁棒性测试的 8 个（ROBUST8，从 TRIALS2 里挑的）")
+    ap.add_argument("--condition", choices=list(CONDITIONS), default="clean",
+                    help="鲁棒性测试的条件：每次报完位置后语音提醒怎么布置（card 旁边放卡片，lamp 开侧面的灯）；"
+                         "只影响语音，条件写进评测名")
     ap.add_argument("--free", type=int, default=None, metavar="N",
                     help="随机摆放 N 次：不用位置表，每次操作者自己换位置和角度（只测一个模型）")
     ap.add_argument("--start", type=int, default=1,
