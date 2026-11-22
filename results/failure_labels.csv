@@ -69,3 +69,20 @@ act102_100k_1118,13,lost_after_lift,,medium,"box centred and upright, came up a 
 pi05_12k_rtc,5,lost_after_lift,1,medium,"closed on the barcode end, lifted it and dropped it; operator put it back at 14.5 s and the next grasp reached the bin (scored fail, 2026-11-22)"
 act102_100k_r2,6,aligned_no_grasp,,medium,"box centred and upright in the wrist camera but did not come up; operator put it back at 12 s and 23 s, then it reached the bin (scored fail)"
 pi05_12k_rtc_r2,3,orientation,,low,"box about 30 degrees across the fingers; three closes in 15 s, none lifted it; operator put it back at 15 s, then it reached the bin (scored fail)"
+pi05_12k_rtc_rb_clean,2,offset,1,medium,"hovered for 25 s, then closed on the barcode end; never lifted"
+pi05_12k_rtc_rb_clean,3,orientation,,low,"box at a diagonal to the fingers; one brief close, never held it"
+pi05_12k_rtc_rb_clean,7,pushed,,medium,the first approach turned the box round to horizontal; never held it
+act102_100k_rb_card,1,offset,,medium,"box toward the right finger with the card beside it; six closes, never lifted (box placed farther out than in the clean run)"
+act102_100k_rb_card,4,offset,,medium,"gripper centre between the box and the card; three closes, never lifted"
+act102_100k_rb_card,8,wrong_place,,medium,first close on the card; later closed on the box without lifting it and went to the bin empty
+pi05_12k_rtc_rb_card,1,offset,,medium,"gripper centre between the box and the card; one close, never lifted"
+pi05_12k_rtc_rb_card,2,wrong_place,,medium,"closed beside the box, nothing between the fingers; two closes"
+pi05_12k_rtc_rb_card,3,orientation,,low,"box at a diagonal under the gripper and nudged around; one late close, never held"
+pi05_12k_rtc_rb_card,4,wrong_place,,medium,"hovered over the card, never closed"
+pi05_12k_rtc_rb_card,8,wrong_place,,high,"the card filled the wrist camera between the fingers; hovered over it, never closed"
+act102_100k_rb_lamp,6,offset,,medium,"box at the right edge of the wrist camera, gripper beside it; two closes, never lifted"
+pi05_12k_rtc_rb_lamp,1,aligned_no_grasp,,low,"box under the gripper from the start; five closes, never lifted"
+pi05_12k_rtc_rb_lamp,2,lost_after_lift,,high,"carried the box over the bin but still held it when the 40 s ran out; it fell in only as the arm returned (scored fail, 2026-11-22)"
+pi05_12k_rtc_rb_lamp,3,aligned_no_grasp,,low,"box centred between the fingers, washed out in the wrist camera; one 7 s close, never lifted"
+pi05_12k_rtc_rb_lamp,4,wrong_place,,medium,"closed beside the box, which sat at the edge of the wrist camera; two closes"
+pi05_12k_rtc_rb_lamp,5,lost_after_lift,,medium,lifted the box and dropped it at once; the arm went to the bin empty

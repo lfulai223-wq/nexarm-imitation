@@ -41,7 +41,15 @@ SESSIONS = [
     ("pi05_12k_rtc_free", "pi0.5, RTC", "2026-11-18", 40, "random"),
     ("act102_100k_r2", "ACT, 102 demos", "2026-11-22", 40, "fixed2"),
     ("pi05_12k_rtc_r2", "pi0.5, RTC", "2026-11-22", 40, "fixed2"),
+    ("act102_100k_rb_clean", "ACT, 102 demos", "2026-11-22", 40, "robust8"),
+    ("pi05_12k_rtc_rb_clean", "pi0.5, RTC", "2026-11-22", 40, "robust8"),
+    ("act102_100k_rb_card", "ACT, 102 demos", "2026-11-22", 40, "robust8"),
+    ("pi05_12k_rtc_rb_card", "pi0.5, RTC", "2026-11-22", 40, "robust8"),
+    ("act102_100k_rb_lamp", "ACT, 102 demos", "2026-11-22", 40, "robust8"),
+    ("pi05_12k_rtc_rb_lamp", "pi0.5, RTC", "2026-11-22", 40, "robust8"),
 ]
+# 鲁棒性测试的条件（2026-11-22）：评测名结尾是条件；其余场次都是原条件（随机摆放第 9、10 次另有干扰物，见报告）
+CONDITION = {"_rb_card": "printed card beside the box", "_rb_lamp": "extra side lamp"}
 PLACE = {"左上": "top-left", "右上": "top-right", "右下": "bottom-right", "左下": "bottom-left", "正中": "center",
          "中偏左": "center-left", "中偏右": "center-right", "随机": "random",
          "上边中间": "top edge middle", "右边中间": "right edge middle", "下边中间": "bottom edge middle",
@@ -99,7 +107,9 @@ def main() -> None:
         for r in scored_rows(name):
             st = trial_stats(ROOT / r["recording"], hands.get((name, int(r["trial"]))))
             t = st.pop("_t")
+            cond = next((v for k, v in CONDITION.items() if name.endswith(k)), "standard")
             trials.append({"session": name, "policy": policy, "date": date, "time_limit_s": limit, "placements": mode,
+                           "condition": cond,
                            "trial": int(r["trial"]), "position": PLACE[r["position"]], "orientation": ORIENT[r["orientation"]],
                            "operator_result": r["result"], **st})
             if name in TIMING_SESSIONS and int(r["trial"]) == TIMING_TRIAL:
