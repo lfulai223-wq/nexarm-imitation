@@ -1,0 +1,55 @@
+session,trial,category,one_end,confidence,note
+act45_100k,1,orientation,,medium,"box under the gripper, rotated about 40 degrees to the fingers"
+act45_100k,2,offset,,medium,closed with the box beside the left finger
+act45_100k,3,orientation,,medium,box lies diagonally across the fingers
+act45_100k,4,offset,1,low,gripper at one end of the box; stayed closed 13 s without lifting it
+act45_100k,5,aligned_no_grasp,,low,"box roughly between the fingers; four closes, never lifted"
+act45_100k,7,wrong_place,,high,reached past the box toward the bin and closed on the empty table
+act45_100k,9,wrong_place,,high,"box hidden behind the arm at the start; arm never went to it, gripper never closed"
+act45_100k,10,wrong_place,,medium,first close in mid-air above the box; later closes short of it
+act45_100k,12,wrong_place,,high,"box at the bottom edge of the stand image; arm never reached it, gripper never closed"
+act45_100k,13,wrong_place,,high,box partly outside the stand image; closed on the empty table
+act45_100k,15,offset,,low,"box right of centre; closed, box stayed on the table"
+act45_100k,16,wrong_place,,medium,closed on the table with the box at the edge of the wrist view
+act45_100k,17,orientation,,medium,"hovered over the box at a diagonal angle, never closed"
+act45_100k,19,offset,,medium,"box off to the left; closed, box stayed on the table"
+act45_100k_ab,1,wrong_place,,medium,eight closes on the table next to the box
+act45_100k_ab,2,wrong_place,,medium,box at the bottom of the stand image; closed with the box at the edge of the wrist view
+act45_100k_ab,3,orientation,,high,box long axis along the finger direction (about 90 degrees off)
+act45_100k_ab,4,orientation,,medium,"hovered over the box at a diagonal angle, never closed"
+act45_100k_ab,5,wrong_place,,low,box mostly beyond the fingertips when closing
+act45_100k_ab,7,wrong_place,,high,reached past the box toward the bin; seven closes on the empty table
+act45_100k_ab,12,wrong_place,,high,"box at the bottom edge of the stand image; never reached it, never closed"
+act45_100k_ab,13,offset,,medium,"box off to the right; closed, box stayed on the table"
+act45_100k_ab,14,lost_after_lift,,medium,lifted the box several times and lost it; the last grasp reached the bin but was not released before time ran out
+act45_100k_ab,16,orientation,,medium,box rotated about 45 degrees to the fingers
+act45_100k_ab,17,wrong_place,,medium,first close at 24 s with the box out of reach and rotated
+act45_100k_ab,19,wrong_place,,medium,closed on the table with the box at the edge of the wrist view
+act102_100k_ab,1,offset,,medium,"box off to the right, one finger on it; box stayed on the table"
+act102_100k_ab,3,orientation,,medium,"hovered over the box at a diagonal angle, never closed"
+act102_100k_ab,7,wrong_place,,high,closed on the table beside the box
+act102_100k_ab,12,wrong_place,,high,never reached the box; never closed
+act102_100k_ab,13,wrong_place,,high,never reached the box; never closed
+act102_100k_ab,15,orientation,,medium,box rotated about 35 degrees to the fingers
+act102_100k_ab,16,offset,,medium,"box at the right finger; closed, box stayed on the table"
+act102_100k_ab,19,wrong_place,,medium,"box at the far edge of the wrist view, rotated"
+act102_100k_1118,1,aligned_no_grasp,,low,box between the fingers at about 20 degrees; it did not come up and the arm went to the bin empty
+act102_100k_1118,2,aligned_no_grasp,,low,"hovered over the box roughly aligned, never closed"
+act102_100k_1118,3,orientation,,medium,"hovered over the box at a diagonal angle, never closed"
+act102_100k_1118,4,lost_after_lift,,low,closed on the box and held it tilted for 28 s; never reached the bin
+act102_100k_1118,12,lost_after_lift,,medium,lifted the box and dropped it on the way to the bin
+act102_100k_1118,15,lost_after_lift,1,high,grasped one end; the box slipped and stood up on the table (also in the roadmap)
+act102_100k_1118,16,offset,1,low,"box tilted and toward one end; closed, box stayed on the table"
+act102_100k_1118,19,aligned_no_grasp,,medium,"box centred and aligned; three closes, never lifted"
+pi05_12k_smoke,9,lost_after_lift,,low,closed on the box; it came loose within about 2 s and lay on the table
+pi05_12k_smoke,12,wrong_place,,medium,"reached far toward the bottom of the stand image; box at the edge of the wrist view, rotated"
+pi05_12k_smoke,13,pushed,,medium,the closing fingers rotated and pushed the box
+pi05_12k_rtc,3,lost_after_lift,1,medium,"box rotated during the close, grasped by one end, lifted and dropped"
+pi05_12k_rtc,4,offset,1,medium,closed on one end of the box; later wandered off
+pi05_12k_rtc,12,lost_after_lift,1,medium,lifted by one end and dropped on the way; reached the bin empty
+pi05_12k_rtc_free,3,orientation,,medium,"box on the marker sheet, long axis along the finger direction"
+pi05_12k_rtc_free,5,lost_after_lift,1,high,grasped one end; the box hit the bin's front wall and fell outside
+pi05_12k_rtc_free,9,unseen_condition,,high,distractor box and a printed card next to it; never closed
+pi05_12k_rtc_free,10,unseen_condition,,high,distractor box next to it; never closed
+pi05_12k_rtc_free,12,lost_after_lift,1,high,grasped one end; released on the bin rim and the box fell outside
+pi05_12k_rtc_free,16,unseen_condition,,high,box standing on end; never lifted

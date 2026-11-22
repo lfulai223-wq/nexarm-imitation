@@ -34,11 +34,19 @@
 
 π0.5（LoRA 微调，2026-11-18 起）：rollout_safe.py 加载时跳过随机初始化、把 LoRA 合并进权重，
 日志里没有合并的记录就记 error。π0.5 每次重新预测约 0.25 秒，超过一个控制周期，必然超时一次，
-提醒门槛会自动加上这些次数（按 时长 × 15 / 每块执行步数 算）。--n-action-steps 对两个模型都生效，ACT 训练时就是 30。
-加 --rtc 用 RTC 异步推理（只能用于 π0.5）：后台预测、不停顿，参数见 inference_overrides。
+提醒门槛会自动加上这些次数（按 时长 × 15 / 每块执行步数 算）。--n-action-steps 对同步推理的模型生效，ACT 训练时就是 30。
+加 --rtc 用 RTC 异步推理：后台预测、不停顿，参数见 inference_overrides。RTC 只加在流匹配的模型（π0.5）上；
+两个模型交替测时，另一个不是流匹配的模型（ACT）照常同步推理（2026-11-20 起）。
 
     $V scripts/eval_trials.py --duration 40 --rtc \\
         --name pi05_12k_rtc --policy outputs/train/pi05_lora_102ep/checkpoints/012000/pretrained_model
+
+第二份位置表（--placements fixed2，2026-11-20 起）：20 个新的固定摆放，横、竖、斜、往另一边斜的个数和第一份一样（7 / 7 / 5 / 1），
+位置换成起点区四条边的中点和"正中与四个角之间"，见 TRIALS2。第二轮 ACT-102 对 π0.5 RTC 交替测用它：
+
+    $V scripts/eval_trials.py --duration 40 --rtc --placements fixed2 \\
+        --name act102_100k_r2 --policy outputs/train/act_medbox_102ep/checkpoints/100000/pretrained_model \\
+        --name-b pi05_12k_rtc_r2 --policy-b outputs/train/pi05_lora_102ep/checkpoints/012000/pretrained_model
 
 随机摆放（--free N，2026-11-18 起）：不用位置表，每次由操作者换一个新位置、新角度随便摆，共 N 次，只测一个模型。
 CSV 的位置、方向两列记"随机"，实际摆在哪、转了多少度，事后从录像第一帧量。
@@ -87,15 +95,29 @@ TRIALS = [
     ("左上", "斜放"), ("右上", "斜放"), ("右下", "斜放"), ("左下", "斜放"), ("正中", "斜放"),
     ("中偏左", "横放"), ("中偏右", "横放"), ("中偏左", "竖放"), ("中偏右", "竖放"), ("正中", "往另一边斜"),
 ]
+# 第二份位置表（2026-11-20）：和第一份不重复的位置。以第一份的四个角（左上、右上、右下、左下附近）为准：
+# "X边中间" 是相邻两个角的正中间，"中偏X" 是正中和角 X 的正中间。方向个数和第一份一样（横 7、竖 7、斜 5、往另一边斜 1），
+# 右侧（右边中间、中偏右上、中偏右下）7 个，和第一份右侧的 8 个差不多：这一片在支架相机画面下沿，第一轮里最难。
+# 顺序事先打乱、写死：相邻两次的位置和方向都不一样，免得某个方向全挤在评测的开头或结尾。
+TRIALS2 = [
+    ("上边中间", "横放"), ("右边中间", "竖放"), ("下边中间", "斜放"), ("左边中间", "横放"), ("中偏右上", "往另一边斜"),
+    ("右边中间", "横放"), ("中偏左下", "竖放"), ("上边中间", "斜放"), ("中偏右下", "横放"), ("左边中间", "竖放"),
+    ("下边中间", "横放"), ("中偏左上", "竖放"), ("右边中间", "斜放"), ("中偏右上", "横放"), ("上边中间", "竖放"),
+    ("左边中间", "斜放"), ("中偏右下", "竖放"), ("中偏左下", "斜放"), ("下边中间", "竖放"), ("中偏左上", "横放"),
+]
+PLACEMENT_SETS = {"fixed": TRIALS, "fixed2": TRIALS2}
 # 语音只能说英文
 SPOKEN = {"左上": "top left", "右上": "top right", "右下": "bottom right", "左下": "bottom left",
           "正中": "center", "中偏左": "center left", "中偏右": "center right",
+          "上边中间": "top edge, middle", "右边中间": "right edge, middle", "下边中间": "bottom edge, middle",
+          "左边中间": "left edge, middle", "中偏左上": "center, toward top left", "中偏右上": "center, toward top right",
+          "中偏右下": "center, toward bottom right", "中偏左下": "center, toward bottom left",
           "横放": "horizontal", "竖放": "vertical", "斜放": "diagonal", "往另一边斜": "other diagonal"}
 FREE = ("随机", "随机")  # --free 时每一次的位置、方向
 
 
 def trial_list(args) -> list[tuple[str, str]]:
-    return [FREE] * args.free if args.free else TRIALS
+    return [FREE] * args.free if args.free else PLACEMENT_SETS[args.placements]
 
 FIELDS = ["trial", "position", "orientation", "result", "started", "seconds", "slow_steps", "note",
           "recording", "policy"]
@@ -186,6 +208,8 @@ class Model:
     rec_root: Path
     use_peft: bool = False  # LoRA 微调的模型：每次都要确认 rollout_safe.py 把 LoRA 合并进了权重
     expected_slow: int = 0  # 推理本身就超过一个控制周期的模型（π0.5），每次重新预测必然超时一次，提醒门槛要加上这些
+    rtc: bool = False  # 这个模型用 RTC 异步推理（给了 --rtc 而且是流匹配的模型）
+    kind: str = ""  # config.json 里的模型类型（act、pi05），读不到为空
     file: IO[str] | None = None
     writer: csv.DictWriter | None = None
 
@@ -211,19 +235,17 @@ def policy_info(policy: str, base: Path) -> dict:
 
 
 def make_model(name: str, policy: str, args, base: Path) -> Model:
-    label = " ".join([policy, f"--duration={args.duration:g}"] + policy_overrides(args) + inference_overrides(args))
+    """只建对象，不建目录（run_eval 检查完参数再建）。"""
     info = policy_info(policy, base)
-    if args.rtc and info and info.get("type") not in FLOW_POLICIES:
-        raise SystemExit(f"--rtc 只能用于流匹配的模型（{', '.join(FLOW_POLICIES)}），{policy} 是 {info.get('type')}")
+    kind = info.get("type", "")
+    rtc = bool(args.rtc) and kind in FLOW_POLICIES  # RTC 只加在流匹配的模型上，ACT 照常同步推理
+    label = " ".join([policy, f"--duration={args.duration:g}"] + policy_overrides(args, rtc) + inference_overrides(rtc))
     expected_slow = 0
-    if info.get("type") == "pi05" and not args.rtc:  # 同步推理：重新预测一个动作块约 0.25 秒，每次重新预测超时一次
+    if kind == "pi05" and not rtc:  # 同步推理：重新预测一个动作块约 0.25 秒，每次重新预测超时一次
         n_steps = args.n_action_steps or info.get("n_action_steps") or 50
         expected_slow = math.ceil(args.duration * 15 / n_steps)
-    m = Model(name, policy, label, base / "outputs" / "eval" / name, base / "data" / "rollouts" / name,
-              use_peft=bool(info.get("use_peft")), expected_slow=expected_slow)
-    m.out_dir.mkdir(parents=True, exist_ok=True)
-    m.rec_root.mkdir(parents=True, exist_ok=True)
-    return m
+    return Model(name, policy, label, base / "outputs" / "eval" / name, base / "data" / "rollouts" / name,
+                 use_peft=bool(info.get("use_peft")), expected_slow=expected_slow, rtc=rtc, kind=kind)
 
 
 def rollout_cmd(args, m: Model, rec_dir: Path, tag: str) -> list[str]:
@@ -232,24 +254,26 @@ def rollout_cmd(args, m: Model, rec_dir: Path, tag: str) -> list[str]:
             f"--policy.path={m.policy}", f"--duration={args.duration}", "--play_sounds=false",
             "--strategy.type=sentry", f"--dataset.repo_id=local/rollout_{m.name}_{tag}",
             f"--dataset.root={rec_dir}", f"--dataset.single_task={TASK}", "--dataset.fps=15",
-            "--dataset.push_to_hub=false", "--dataset.video=true"] + policy_overrides(args) + inference_overrides(args)
+            "--dataset.push_to_hub=false", "--dataset.video=true"] + policy_overrides(args, m.rtc) + inference_overrides(m.rtc)
 
 
 FLOW_POLICIES = ("pi05", "pi0", "smolvla")  # LeRobot 的 RTC 只支持这些流匹配模型
 
 
-def inference_overrides(args) -> list[str]:
+def inference_overrides(rtc: bool) -> list[str]:
     """RTC 异步推理（实时分块）：后台线程预测下一块，机械臂不停顿；新的一块开头按上一块还没执行完的动作引导，衔接平滑。
     队列剩 20 步时开始预测下一块：动作块 50 步，所以每执行约 30 步（2 秒）看一次新画面，和同步推理、ACT 的节奏一样。
     execution_horizon 10、max_guidance_weight 10、EXP 是 LeRobot RTC 文档的建议值。"""
-    if not args.rtc:
+    if not rtc:
         return []
     return ["--inference.type=rtc", "--inference.rtc.execution_horizon=10", "--inference.rtc.max_guidance_weight=10.0",
             "--inference.rtc.prefix_attention_schedule=EXP", "--inference.queue_threshold=20"]
 
 
-def policy_overrides(args) -> list[str]:
-    """推理时可以改、不用重新训练的 ACT 设置。"""
+def policy_overrides(args, rtc: bool = False) -> list[str]:
+    """推理时可以改、不用重新训练的设置，只对同步推理的模型生效（RTC 时每块执行多少步由队列决定）。"""
+    if rtc:
+        return []
     if args.ensemble is not None:  # 时间集成：每一步都重新推理，把几个动作块对同一时刻的预测加权平均
         return [f"--policy.temporal_ensemble_coeff={args.ensemble}", "--policy.n_action_steps=1"]
     if args.n_action_steps is not None:  # 每个动作块只执行前 N 步就重新推理
@@ -382,8 +406,18 @@ def run_eval(args, keys: Keys, base: Path = ROOT) -> None:
     if args.policy_b:
         models.append(make_model(args.name_b, args.policy_b, args, base))
     ab = len(models) == 2
+    if args.rtc and not any(m.rtc for m in models):
+        raise SystemExit(f"--rtc 只能用于流匹配的模型（{', '.join(FLOW_POLICIES)}），"
+                         f"这次的模型是 {', '.join(m.kind or '未知' for m in models)}")
+    if (args.ensemble is not None or args.n_action_steps is not None) and all(m.rtc for m in models):
+        raise SystemExit("--rtc 时每块执行多少步由队列决定（剩 20 步就预测下一块），不能再给 --ensemble 或 --n-action-steps")
+    for m in models:
+        m.out_dir.mkdir(parents=True, exist_ok=True)
+        m.rec_root.mkdir(parents=True, exist_ok=True)
+        print(f"{m.name}：{m.kind or '未知类型'}，{'RTC 异步推理' if m.rtc else '同步推理'}；{m.label}", flush=True)
+    trials = trial_list(args)
 
-    # 交替测时，已经判过的自动跳过；所以同一个名字下不能有别的模型或别的时长的结果，否则会被当成这次的
+    # 交替测时，已经判过的自动跳过；所以同一个名字下不能有别的模型、别的时长或别的位置表的结果，否则会被当成这次的
     done: dict[str, set[int]] = {m.name: set() for m in models}
     if ab:
         for m in models:
@@ -392,6 +426,12 @@ def run_eval(args, keys: Keys, base: Path = ROOT) -> None:
             if other:
                 raise SystemExit(f"{m.csv_path} 里已经有别的模型或别的时长的结果（{other[0]}），"
                                  f"这次是 {m.label}。换一个名字再测")
+            for r in rows:
+                t = int(r["trial"])
+                if t > len(trials) or (r["position"], r["orientation"]) != trials[t - 1]:
+                    want = "（这份表没有这一次）" if t > len(trials) else "".join(trials[t - 1])
+                    raise SystemExit(f"{m.csv_path} 第 {t} 次记的是 {r['position']}{r['orientation']}，"
+                                     f"这次用的位置表第 {t} 个是 {want}。换一个名字再测")
             done[m.name] = {int(r["trial"]) for r in rows}
             if done[m.name]:
                 print(f"{m.name} 已经测过 {len(done[m.name])} 次，这些会跳过", flush=True)
@@ -405,7 +445,6 @@ def run_eval(args, keys: Keys, base: Path = ROOT) -> None:
             if new_csv:
                 m.writer.writeheader()
 
-        trials = trial_list(args)
         stopped = False
         for i in range(args.start, len(trials) + 1):
             pos, ori = trials[i - 1]
@@ -453,7 +492,7 @@ def selftest() -> None:
 
         def ns(**kw):
             d = dict(policy=None, name=None, policy_b=None, name_b=None, duration=0.0, ensemble=None,
-                     n_action_steps=None, rtc=False, free=None, start=1, quiet=True, selftest=True)
+                     n_action_steps=None, rtc=False, free=None, placements="fixed", start=1, quiet=True, selftest=True)
             return argparse.Namespace(**{**d, **kw})
 
         def rows(name: str) -> list[dict[str, str]]:
@@ -508,6 +547,45 @@ def selftest() -> None:
             "start", "success", "start", "redo", "start", "fail", "start", "success"]), base)
         expect("free", [(1, "success"), (2, "redo"), (2, "fail"), (3, "success")])
         assert all((r["position"], r["orientation"]) == FREE for r in rows("free"))
+
+        # 假模型目录：只有 config.json，用来认模型类型
+        for p, cfg in (("pact", {"type": "act", "n_action_steps": 30}), ("pact2", {"type": "act", "n_action_steps": 30}),
+                       ("ppi", {"type": "pi05", "use_peft": True, "n_action_steps": 50})):
+            (base / p).mkdir()
+            (base / p / "config.json").write_text(json.dumps(cfg))
+        rtc_flag = "--inference.type=rtc"
+
+        print("\n== 自测 6：ACT 和 π0.5 交替，--rtc 只加在 π0.5 上，用第二份位置表", flush=True)
+        mix = dict(name="act_r2", policy="pact", name_b="pi_r2", policy_b="ppi", rtc=True, placements="fixed2")
+        run_eval(ns(**mix), Keys(scripted=["start", "success", "start", "fail", "esc"]), base)  # 第 1 次 A、B；第 2 次没开始就退出
+        expect("act_r2", [(1, "success")])
+        expect("pi_r2", [(1, "fail")])
+        ra, rb = rows("act_r2")[0], rows("pi_r2")[0]
+        assert (ra["position"], ra["orientation"]) == TRIALS2[0] == (rb["position"], rb["orientation"])
+        assert rtc_flag not in ra["policy"] and rtc_flag in rb["policy"], (ra["policy"], rb["policy"])
+        ma, mb = (make_model("x", p, ns(**mix), base) for p in ("pact", "ppi"))
+        assert rtc_flag not in rollout_cmd(ns(**mix), ma, base / "r", "t") and rtc_flag in rollout_cmd(ns(**mix), mb, base / "r", "t")
+        assert mb.expected_slow == 0 and ma.expected_slow == 0 and mb.use_peft
+        # --n-action-steps 只给同步推理的那个模型
+        ma, mb = (make_model("x", p, ns(**{**mix, "n_action_steps": 30}), base) for p in ("pact", "ppi"))
+        assert "--policy.n_action_steps=30" in ma.label and "--policy.n_action_steps" not in mb.label
+
+        def refused(case: str, **kw) -> None:
+            try:
+                run_eval(ns(**kw), Keys(scripted=[]), base)
+            except SystemExit as e:
+                print(f"{case}，拒绝了：{e}", flush=True)
+            else:
+                raise AssertionError(f"{case}，却没有拒绝")
+
+        print("\n== 自测 7：几种应该拒绝的情况", flush=True)
+        refused("同一个名字换了位置表", **{**mix, "placements": "fixed"})
+        refused("--rtc 但两个模型都不是流匹配的", name="x1", policy="pact", name_b="x2", policy_b="pact2", rtc=True)
+        refused("只有一个 RTC 模型还给了 --n-action-steps", name="x3", policy="ppi", rtc=True, n_action_steps=30)
+        assert len(TRIALS2) == len(TRIALS) == 20 and len(set(TRIALS2)) == 20 and not set(TRIALS2) & set(TRIALS)
+        assert all(TRIALS2[i][0] != TRIALS2[i + 1][0] and TRIALS2[i][1] != TRIALS2[i + 1][1] for i in range(19))
+        count = lambda lst: sorted(sum(o == k for _, o in lst) for k in ("横放", "竖放", "斜放", "往另一边斜"))  # noqa: E731
+        assert count(TRIALS2) == count(TRIALS) and all(p in SPOKEN and o in SPOKEN for p, o in TRIALS2)
     print("\n自测全部通过", flush=True)
 
 
@@ -523,7 +601,10 @@ def main() -> None:
     ap.add_argument("--n-action-steps", type=int, default=None,
                     help="每个动作块执行几步就重新推理（训练时是 30，即 2 秒）；不用重新训练")
     ap.add_argument("--rtc", action="store_true",
-                    help="RTC 异步推理（只用于 π0.5 这类流匹配模型）：后台预测、机械臂不停顿，设置见 inference_overrides")
+                    help="RTC 异步推理：后台预测、机械臂不停顿，设置见 inference_overrides。"
+                         "只加在 π0.5 这类流匹配的模型上，交替测时另一个模型（ACT）照常同步推理")
+    ap.add_argument("--placements", choices=sorted(PLACEMENT_SETS), default="fixed",
+                    help="用哪份固定位置表：fixed 是第一轮的 20 个（TRIALS），fixed2 是 2026-11-20 定的新 20 个（TRIALS2）")
     ap.add_argument("--free", type=int, default=None, metavar="N",
                     help="随机摆放 N 次：不用位置表，每次操作者自己换位置和角度（只测一个模型）")
     ap.add_argument("--start", type=int, default=1,
@@ -543,10 +624,10 @@ def main() -> None:
         ap.error("两个模型的名字不能一样，不然结果会写进同一个 CSV")
     if args.ensemble is not None and args.n_action_steps is not None:
         ap.error("--ensemble 和 --n-action-steps 只能选一个")
-    if args.rtc and (args.ensemble is not None or args.n_action_steps is not None):
-        ap.error("--rtc 时每块执行多少步由队列决定（剩 20 步就预测下一块），不能再给 --ensemble 或 --n-action-steps")
     if args.free is not None and (args.free < 1 or args.policy_b):
         ap.error("--free 要大于 0，而且只能测一个模型（随机摆的位置没法给第二个模型原样再摆一次）")
+    if args.free is not None and args.placements != "fixed":
+        ap.error("--free 不用位置表，不能再给 --placements")
     run_eval(args, Keys())
 
 
