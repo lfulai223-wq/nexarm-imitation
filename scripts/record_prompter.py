@@ -5,6 +5,7 @@
 复位时按了 ← 作废刚录的那条，会重新报这一条。只读日志，不碰机械臂和录制程序。
 
     $V scripts/record_prompter.py outputs/logs/record_batch3.log                 # 第三批（默认）
+    $V scripts/record_prompter.py --first 113 outputs/logs/record_batch3b.log    # 第三批从 episode 113 重新开始
     $V scripts/record_prompter.py --plan batch2 outputs/logs/record_batch2_part2.log
 
 第二批的摆放顺序在 PLAN_B2 里，和 docs/recording_guide.md 第五节的第二批表一致，
@@ -102,8 +103,12 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("log", type=Path, help="录制程序的日志（record_safe.py 的输出重定向到这里）")
     ap.add_argument("--plan", choices=sorted(PLANS), default="batch3")
+    ap.add_argument("--first", type=int, default=None,
+                    help="计划的第一条对应的 episode 编号（录废了几条重新开始时用，比如 113）；不给就用计划里写的编号")
     args = ap.parse_args()
     PLAN, TIP = PLANS[args.plan]
+    if args.first is not None:  # 整个计划平移，第一条从 args.first 开始
+        PLAN = {args.first + (k - min(PLAN)): v for k, v in PLAN.items()}
     LAST = max(PLAN)
     path = args.log
     cur, redo, phase, first = None, False, "rec", True
