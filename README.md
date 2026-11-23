@@ -18,9 +18,11 @@ solve, random placements, two failures and the first set's results.
 
 **Status:** first round complete: data collection, two policies, three
 real-robot evaluation sessions, a random-placement test and a demo video.
-Second round under way: a second set of 20 placements with the two policies
-interleaved (done, 2026-11-22), a review of every failure (done), then
-robustness tests. The project follows
+Second round: a second set of 20 placements with the two policies
+interleaved, a review of every failure, and robustness tests with a card
+beside the box and an extra lamp (all done, 2026-11-22). Under way: 48 more
+demonstrations aimed at π0.5's grasp, and both policies retrained on all 150.
+The project follows
 [nexarm-teleop-latency](https://github.com/lfulai223-wq/nexarm-teleop-latency),
 which measured and reduced the teleoperation latency of the same arm. See
 [what is not done](#limitations). Full write-up: [docs/report.md](docs/report.md).
@@ -65,6 +67,13 @@ fixed-placement trials in this project.
   commanded minus measured gripper position was at least 10 counts after the
   first close in 72 of 87 grasps that carried the box straight to the bin, and
   in none of the 57 failures where the gripper closed.
+- **π0.5 grasps on the move.** In the last second before the gripper first
+  closes, the demonstrations have the arm almost still (median joint speed 51
+  counts/s, summed over five joints), and ACT is similar (49–77). π0.5 is at
+  about 360, synchronous or RTC alike: it closes while the arm is still
+  travelling. In its failures it also commands only a partial close (median
+  1580 against 1760 in its successes), which fits the off-centre, one-ended
+  grasps.
 - **π0.5 is slow to predict.** One 50-step action chunk takes 245 ms on the
   RTX 5060 Ti (batch 1, with pre- and post-processing, LoRA merged into the
   weights); ACT takes 9 ms. With synchronous inference the arm stalls for about
@@ -113,6 +122,36 @@ nearest demo is within 7° of base angle and 20° of gripper angle. These
 placements test generalisation within the training coverage, not out of
 distribution. The scenes that were really new, distractors and a standing box,
 failed all three times.
+
+### Robustness: a card beside the box, and an extra lamp
+
+Eight placements from set 2 that both policies had solved on Nov 22, run three
+times in one session (2026-11-22, afternoon): unchanged, with a flat printed
+card about 3 cm from the box's long side, and with an extra lamp shining from
+the side (stand camera 16% brighter, wrist camera 36%). The policies took turns
+on each placement. With eight placements this is a description, not a test.
+
+| Condition | ACT, 102 demos | π0.5, RTC |
+|---|---|---|
+| Unchanged (same session) | 8/8 | 5/8 |
+| Card beside the box | 5/8 | 3/8 |
+| Extra side lamp | 7/8 | 3/8 |
+
+- **The card hurt both.** Each policy lost three placements that had worked
+  unchanged, the same three for both. In five of the eight card failures the
+  gripper went to the card or closed between box and card. π0.5 reads "pick up
+  the medicine box" and still did not avoid it. On one of the three placements
+  the box had sat under the gripper's start pose in the unchanged runs, so that
+  one may not be the card's doing.
+- **The lamp hurt π0.5, not ACT.** ACT lost one placement; π0.5 lost three and
+  gained one, with grasps that did not lift, a drop and a close beside the box.
+  The white top of the box washes out in the wrist camera.
+- **π0.5 was weaker than ACT throughout this session**, 11/24 against 20/24,
+  including 5/8 unchanged on placements it had solved that morning. A
+  readjusted camera, slightly different placing or plain variation could
+  explain that; one session cannot tell them apart. The in-session unchanged
+  run is what keeps the lamp result honest: against Nov 22's 8/8, π0.5's 3/8
+  under the lamp would have looked like a collapse.
 
 ## How it works
 
@@ -249,10 +288,11 @@ holding its position.
   could tell. The 45- against 102-demo ACT comparison was interleaved and
   blind.
 - **One task, one object, one fixed scene.** The random placements stayed
-  inside the training coverage. Distractors and a standing box were tried
-  three times in all, and failed each time.
+  inside the training coverage. The robustness tests changed one thing at a
+  time on eight placements, so they show what can break, not how often.
 - **The camera moved between days** (knocked or re-plugged; 0.2° of rotation
-  on Nov 17, 1.35° on Nov 18), so comparisons are made within one session.
+  on Nov 17, 1.35° on Nov 18 and early Nov 22, about 1° from the afternoon of
+  Nov 22), so comparisons are made within one session.
 - **Operator interventions.** A review of every video on 2026-11-22 found the
   operator's hand in 13 trials while the arm was running, mostly putting a
   dropped box back. In 4 the policy then succeeded; they are scored as

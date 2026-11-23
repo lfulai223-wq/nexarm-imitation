@@ -15,9 +15,13 @@ mostly at the grasp, π0.5 mostly after lifting the box by one end. π0.5 takes
 stalls the arm every 2 s; with RTC the stalls go away and successful trials
 finish as quickly as ACT's. On 15 random flat placements π0.5 succeeded 12
 times, all within the range the demonstrations cover. It failed all three
-trials with distractor objects or a standing box. Four successes in which the
-operator had put a dropped box back during the run are scored as failures
-(section 8).
+trials with distractor objects or a standing box. In a robustness session
+(section 9), a printed card beside the box cost both policies three of eight
+placements, and an extra lamp cost π0.5 three and ACT one; π0.5 did not prove
+more robust. Four successes in which the operator had put a dropped box back
+during the run are scored as failures (section 8). A third batch of
+demonstrations aimed at π0.5's grasp has been recorded and both policies are
+being retrained (section 13).
 
 The day-by-day log, in Chinese and including dead ends, is
 [roadmap.md](roadmap.md). Every scored trial is in
@@ -414,6 +418,14 @@ For the two policies compared on both sets:
   gap was at least 10 counts after the first close in 72 of 87 grasps that
   carried the box straight to the bin, and in none of the 57 failures where
   the gripper closed. It marks a firm grip, not success: 15 successes had less.
+- **π0.5 closes while still moving.** Joint speed over the last second before
+  the first close (absolute change summed over five joints, per second of
+  recorded time): the demonstrations' median is 51 counts/s, ACT's 77 in
+  successes and 49 in failures, π0.5's about 360 in both synchronous (359) and
+  RTC (361) runs. The demonstrations slow to almost a stop before closing; ACT
+  imitates that and π0.5 does not. In π0.5's failures the first close is also
+  commanded only partway (median 1580, against 1760 in its successes and 1729
+  in the demonstrations).
 - **Wrong-place grasps cluster on one side.** On set 1, 13 of 18 grasps that
   closed far from the box were on the right side, which is 40% of the trials
   and sits along the stand camera's bottom edge.
@@ -422,7 +434,60 @@ For the two policies compared on both sets:
   ones. Pairs within a session were placed back to back and are comparable;
   comparing one placement across days is not.
 
-## 9. Random placements
+## 9. Robustness: a card beside the box, and an extra lamp (Nov 22)
+
+**Design, fixed before the session.** Eight of the set-2 placements that both
+policies had solved that morning (four vertical, two horizontal, two
+diagonal), each run three times in one session: unchanged, with a flat printed
+coupon card about 3 cm from the box's long side on the operator's side, and with
+an extra lamp shining on the start area from the side while the ceiling light
+stayed on. The cameras kept their fixed exposure, so the lamp brightened the
+images: the stand camera by 16% and the wrist camera by 36%, measured with the
+setup check at the lamp setting used. ACT synchronous and π0.5 with RTC took
+turns on each placement. Each condition is compared with the unchanged runs of
+the same session, placement by placement, and only described; eight
+placements cannot support a test.
+
+**Session.** 17:12–18:34, 48 runs, none redone, no hand in any run. The stand
+camera had been re-plugged and realigned beforehand (1.4 / 2.7 / 3.2 px from
+the reference, about 1° of rotation). One score was corrected: in a lamp run
+π0.5 still held the box over the bin when the 40 s ran out, and it fell in
+only as the arm returned home, so it counts as a failure. The joint-data check
+had scored it a failure already and agreed with the operator on the other 47.
+
+| Placement | ACT unchanged | ACT card | ACT lamp | π0.5 unchanged | π0.5 card | π0.5 lamp |
+|---|---|---|---|---|---|---|
+| 1 right edge, vertical | ✓ | ✗ | ✓ | ✓ | ✗ | ✗ |
+| 2 left edge, horizontal | ✓ | ✓ | ✓ | ✗ | ✗ | ✗ |
+| 3 centre toward bottom-left, vertical | ✓ | ✓ | ✓ | ✗ | ✗ | ✗ |
+| 4 centre toward bottom-right, horizontal | ✓ | ✗ | ✓ | ✓ | ✗ | ✗ |
+| 5 centre toward top-left, vertical | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ |
+| 6 right edge, diagonal | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ |
+| 7 top edge, vertical | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ |
+| 8 left edge, diagonal | ✓ | ✗ | ✓ | ✓ | ✗ | ✓ |
+| In the bin within 40 s (within 25 s) | 8/8 (7) | 5/8 (5) | 7/8 (7) | 5/8 (4) | 3/8 (2) | 3/8 (3) |
+
+- **The card.** Against the unchanged runs, it broke three placements for each
+  policy, the same three (1, 4, 8), and π0.5 gained one (7). In five of the
+  eight card failures the gripper went to the card or closed between box and
+  card; twice π0.5 hovered over the card and never closed. ACT has no language
+  input; π0.5 is told to pick up the medicine box and was distracted all the
+  same. On placement 1 the box had sat under the gripper's start pose in the
+  unchanged runs but farther out in the card runs, so that loss may not be the
+  card's doing; without placement 1 the card broke two placements for each.
+- **The lamp.** ACT lost one placement (6, an off-centre grasp). π0.5 lost three
+  (1, 4, 5: a grasp that did not lift, a close beside the box, a drop) and
+  gained one (7). The white top of the box washes out in the wrist camera.
+- **The session as a whole.** ACT 20/24, π0.5 11/24. π0.5 managed only 5/8
+  unchanged on placements it had solved that morning, perhaps because the
+  camera had been realigned, the placing differed slightly, or simply by
+  chance. Without the in-session unchanged runs, π0.5's 3/8 under the lamp
+  would have read as a fall from 8/8. Over the 24 pairs ACT succeeded alone 10
+  times and π0.5 once, but the pairs repeat the same eight placements and the
+  analysis was fixed as descriptive, so this is not offered as a significant
+  difference. It runs opposite to set 1.
+
+## 10. Random placements
 
 18 trials of π0.5 with RTC (18:26–19:10, 40 s each). The operator put the box
 anywhere in the start area at any angle (`eval_trials.py --free`). 20 were
@@ -470,7 +535,7 @@ It closed in the first three frames, which pushed the old mean-of-five opening
 value up and hid the close. The opening value is now the minimum of the first
 five frames; re-running every earlier session left all outcomes unchanged.
 
-## 10. Problems found along the way
+## 11. Problems found along the way
 
 | Problem | How it showed | What was done |
 |---|---|---|
@@ -483,9 +548,10 @@ five frames; re-running every earlier session left all outcomes unchanged.
 | Stalls missing from the recording | A control step that overruns records no frame, so frame counts understate elapsed time | Per-frame timestamps saved with every trial and used in all timing |
 | Serial write timeout under RTC | See section 7 | Write timeout raised to 0.5 s |
 | Operator helping during runs | Found on Nov 22 while labelling failures: the operator's hand putting a dropped box back in 13 runs, four of which then succeeded | Those four scored as failures; releases after a hand are ignored by the joint-data check; a spoken "hands off" at the start of each run (section 8) |
+| Stand camera at USB full speed | After a re-plug on Nov 23 it enumerated at 12 Mbit/s and delivered only 160×120; the setup check failed on resolution | Re-plugged until it came up at 480 Mbit/s; the setup check now catches this before recording |
 | GPU shared during a trial | An unrelated offline experiment ran on the GPU during the last 7 s of RTC trial 8 | No visible effect (longest frame gap 81 ms); nothing else runs on the GPU during evaluations |
 
-## 11. Limitations
+## 12. Limitations
 
 - 20 placements per set. No comparison reaches p < 0.05, and the π0.5 lead on
   set 1 was not repeated on set 2.
@@ -497,10 +563,10 @@ five frames; re-running every earlier session left all outcomes unchanged.
   misses a hand that does not cross the frame edges. In random trial 17 the
   operator took the box out of the bin after the success; that score stands.
 - One task, one object, one scene. Random flat placements stayed within the
-  training coverage; distractors and a standing box were tried only three
-  times.
+  training coverage. The robustness session changed one thing at a time on
+  eight placements; it shows what breaks, not how often.
 - The camera position differed slightly between days (rotation 0.2° on Nov 17,
-  1.35° on Nov 18 and Nov 22). Comparisons are within one session, apart from
+  1.35° on Nov 18 and early Nov 22, about 1° from the afternoon of Nov 22). Comparisons are within one session, apart from
   the planned pooling of the two placement sets.
 - The joint-data check cannot tell whether the box is still in the gripper,
   where it lands, or whether someone helped.
@@ -515,15 +581,23 @@ five frames; re-running every earlier session left all outcomes unchanged.
 - ACT and π0.5 use different chunk lengths (30 and 50); both re-plan about
   every 30 steps.
 
-## 12. Next steps
+## 13. Next steps
 
-- Robustness tests with both policies (distractors, another box, lighting),
-  a few fixed placements each, to find failure types the clean scene hides.
-- Demonstrations aimed at the failures found: grasping the box at its middle
-  and firmly for π0.5, centred grasps on the right side for ACT; then re-test
-  on both placement sets.
-- Add demonstrations with distractors and with the box standing, then test
-  positions outside the start area, which would be genuinely new.
+- **Under way: a third batch aimed at π0.5's grasp.** 48 demonstrations
+  (Nov 22–23) on the seven set-1 positions only, so that set 2 stays unseen:
+  the gripper stops over the middle of the box for about a second, closes,
+  and lifts straight up. The stop came through (median joint speed before the
+  first close 12 counts/s, against 54 in the first two batches); a harder
+  squeeze did not (commanded minus measured at least 10 counts in 54% of
+  closes, against 83%). π0.5 is being fine-tuned again from the base model on
+  all 150 demonstrations with the same recipe (18,000 steps, about 23 h), and
+  ACT retrained on the same data. The plan fixed before training: the new π0.5
+  against the current one on set 2, interleaved, looking at success and at
+  the speed before closing, the share of firm grips and one-ended grasps;
+  then the new ACT against the new π0.5. The new π0.5 has both more data and
+  more steps, so an improvement could not be pinned on either.
+- Demonstrations with distractors and with the box standing, then positions
+  outside the start area, which would be genuinely new.
 - Train the vision encoder as OpenPI does, on a larger GPU.
 - For a task with moving objects, measure camera-to-motion delay with the
   high-speed video method from project 1.
